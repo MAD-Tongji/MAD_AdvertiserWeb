@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('madAdvertiserWeb')
+    .module('mad')
     .controller('MainController', MainController);
 
   /** @ngInject */
@@ -11,7 +11,7 @@
 
     vm.awesomeThings = [];
     vm.classAnimation = '';
-    vm.creationDate = 1458798062268;
+    vm.creationDate = 1458122675342;
     vm.showToastr = showToastr;
 
     activate();

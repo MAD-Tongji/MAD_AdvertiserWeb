@@ -1,0 +1,78 @@
+body {
+  background-color: #9DC9C1;
+}
+
+.header {
+  position: absolute;
+}
+
+.ul-nav {
+  padding-right: 10px;
+}
+.content{
+  margin-top: 200px;
+}
+.picture {
+  width: 80%;
+  height: 80%;
+}
+
+.ad {
+  margin-top: 20px;
+}
+.ad, p {
+  margin-left: 30px;
+  font-family: 'Lucida Grande', sans-serif;
+  font-size: 30px;
+  font-style: italic;
+}
+
+.right-section {
+  margin-left: 50px;
+  width: 500px;
+  height: 300px;
+  background-color: #D2E7E3;
+}
+
+.email-input, .pass-input{
+  background-color: #FAF6F9;
+  margin-top: 40px;
+  margin-left: 30px;
+  width: 400px;
+  height: 44px;
+}
+
+.form-email, .form-pass {
+  /*margin-top: 5px;*/
+  background-color: #FAF6F9;
+  height: 44px;
+  /*border-color: #FAF6F9;*/
+}
+
+
+#basic-addon1, #basic-addon2 {
+  background-color: transparent;
+  /*height: 44px;*/
+  /*margin-right: 10px;*/
+}
+
+.sub-btn {
+  margin-top: 40px;
+  margin-left: 16px;
+  width: 150px;
+  background-color: #FFA300;
+  color: #ffffff;
+  font-size: large;
+}
+
+.choose {
+  margin-top: 40px;
+}
+
+.a-1, .a-2 {
+  margin-top: 10px;
+  text-decoration: underline;
+  color: #82B9AD;
+}
+
+

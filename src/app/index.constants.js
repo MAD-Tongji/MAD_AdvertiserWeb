@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('madAdvertiserWeb')
+    .module('mad')
     .constant('malarkey', malarkey)
     .constant('moment', moment);
 

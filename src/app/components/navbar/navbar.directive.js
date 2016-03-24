@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('madAdvertiserWeb')
+    .module('mad')
     .directive('acmeNavbar', acmeNavbar);
 
   /** @ngInject */

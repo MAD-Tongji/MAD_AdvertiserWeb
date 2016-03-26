@@ -2,6 +2,7 @@
   "name": "mad",
   "version": "0.0.0",
   "dependencies": {
+    "bootstrap": "~3.3.6",
     "angular-animate": "~1.4.2",
     "angular-cookies": "~1.4.2",
     "angular-touch": "~1.4.2",

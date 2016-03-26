@@ -6,6 +6,7 @@
     "test": "gulp test"
   },
   "devDependencies": {
+    "bootstrap": "~3.3.6",
     "estraverse": "~4.1.0",
     "gulp": "~3.9.0",
     "gulp-autoprefixer": "~3.0.2",

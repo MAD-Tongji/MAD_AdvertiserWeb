@@ -25,6 +25,12 @@
         templateUrl: 'app/signup/signup.html',
         controller: 'SignupController',
         controllerAs: 'signup'
+      })
+      .state('push-ad', {
+        url: '/push-ad',
+        templateUrl: 'app/push-ad/push-ad.html',
+        controller: 'PushAdController',
+        controllerAs: 'push-ad'
       });
 
     $urlRouterProvider.otherwise('/');

@@ -1,0 +1,81 @@
+<acme-navbar-ad></acme-navbar-ad>
+<div class="container jx-container">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+      <h2>发布新广告</h2>
+      <hr>
+      <div class="col-sm-offset-2 col-sm-8">
+        <form class="form-horizontal" role="form" name="form" novalidate="novalidate">
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">广告编号：</fieldset>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="(不可修改)" readonly="true">
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">广告标题：</fieldset>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="广告标题(不超过20字)" name="title" ng-maxlength="20" ng-model="ad.title" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">广告内容：</fieldset>
+            <div class="col-sm-9">
+              <textarea class="form-control" placeholder="广告内容(不超过200字)" rows="3" name="content" ng-maxlength="200" ng-model="ad.content" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">广告类别：</fieldset>
+            <div class="col-sm-4">
+              <select class="form-control" name="adType" ng-model="adType" ng-options="m.id as m.adType for m in adTypes">
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">面向城市：</fieldset>
+            <div class="col-sm-4">
+              <select class="form-control" name="adCity" ng-model="adCity" ng-options="c.id as c.adCity for c in adCities"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">投放地点：</fieldset>
+            <div class="col-sm-4">
+              <button class="btn btn-primary" name="places" ng-model="ad.places">地图选点</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">发布时段：</fieldset>
+            <div class="col-sm-4">
+              <select class="form-control" name="adPeriod" ng-model="adPeriod" ng-options="p.id as p.adPeriod for p in adPeriods"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">开始播放日期：</fieldset>
+            <div class="col-sm-2">
+              <input type="date" name="startDate" ng-model="ad.startDate" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">认领人数上限：</fieldset>
+            <div class="col-sm-3">
+              <input type="number" class="form-control" placeholder="认领人数上限" name="maxNumber" ng-model="ad.maxNumber" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <fieldset class="col-sm-3 text-left">结算方式：</fieldset>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="settlementMethod" value="实时结算" readonly="true">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12 btn-group">
+              <button class="col-sm-3 btn btn-danger jx-btn">取消</button>
+              <button class="col-sm-3 btn btn-success jx-btn">完成</button>
+              <button class="col-sm-3 btn btn-default">暂存</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,3 +24,7 @@ http://localhost:3000/#/login
 ```
 http://localhost:3000/#/signup
 ```
+###Push-ad page
+```
+http://localhost:3000/#/push-ad
+```

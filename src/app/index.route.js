@@ -7,68 +7,121 @@
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      })
-      .state('login', {
-        url: '/login',
-        templateUrl: 'app/login/login.html',
-        controller: 'LoginController',
-        controllerAs: 'login'
-      })
-      .state('signup', {
-        url: '/signup',
-        templateUrl: 'app/signup/signup.html',
-        controller: 'SignupController',
-        controllerAs: 'signup'
-      })
-      .state('push-ad', {
-        url: '/push-ad',
-        templateUrl: 'app/ad-manage/push-ad/push-ad.html',
-        controller: 'PushAdController',
-        controllerAs: 'push-ad'
-      })
-      .state('ad-list', {
-        url: '/ad-list',
-        templateUrl: 'app/ad-manage/ad-list/ad-list.html',
-        controller: 'AdListController',
-        controllerAs: 'ad-list'
-      })
-      .state('ad-statistics', {
-        url: '/ad-statistics',
-        templateUrl: 'app/statistics/ad-statistics/ad-statistics.html',
-        controller: 'AdStaController',
-        controllerAs: 'ad-sta'
-      })
-      .state('refund', {
-          url: '/refund',
-          templateUrl: 'app/refund/refund.html',
-          controller: 'RefundController',
-          controllerAs: 'refund'
-      })
-      .state('recharge', {
-          url: '/recharge',
-          templateUrl: 'app/recharge/recharge.html',
-          controller: 'RechargeController',
-          controllerAs: 'recharge'
-      })
-      .state('msg-notification', {
-          url: '/msg-notification',
-          templateUrl: 'app/msg-notification/msg-notification.html',
-          controller: 'MsgNoticeController',
-          controllerAs: 'msg-notification'
-      })
-      .state('check-account', {
-          url: '/ck-account',
-          templateUrl: 'app/check-account/check-account.html',
-          controller: 'CheckAccountController',
-          controllerAs: 'msg-notification'
-    });
     $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+      .state('app', {
+        url: '/',
+        views: {
+            'header': {
+                templateUrl: 'app/components/navbar-advert/navbar-advert.html',
+                controller: 'HeaderCtrl'
+            },
+            'content': {
+                templateUrl: 'app/main/main.html',
+                controller: 'MainCtrl'
+            }
+        }
+      })
+      .state('app.advert', {
+        url: 'advert',
+        views: {
+            'content@': {
+                templateUrl: 'app/advertisment/advertisment.html',
+                controller: 'AdvertCtrl'
+            }
+        }
+      })
+      .state('app.advert.modify', {
+        url: '/modify',
+        views: {
+            'content@': {
+                templateUrl: 'app/advert-modify/advert-modify.html',
+                controller: 'AdvertModifyCtrl'
+            }
+        }
+      })
+      .state('app.advert.detail', {
+        url: '/detail',
+        views: {
+            'content@': {
+                templateUrl: 'app/advert-detail/advert-detail.html',
+                controller: 'AdvertDetailCtrl'
+            }
+        }
+      })
+      .state('app.advert.push', {
+        url: '/push',
+        views: {
+            'content@': {
+                templateUrl: 'app/advert-push/advert-push.html',
+                controller: 'AdvertPushCtrl'
+            }
+        }
+      })
+      .state('app.account', {
+          url: 'account',
+          views: {
+              'content@': {
+                  templateUrl: 'app/account/account.html',
+                  controller: 'AccountCtrl'
+              }
+          }
+      })
+      .state('app.account.recharge', {
+          url: '/recharge',
+          views: {
+              'content@': {
+                  templateUrl: 'app/account-recharge/account-recharge.html',
+                  controller: 'AccountRechargeCtrl'
+              }
+          }
+      })
+      .state('app.account.refund', {
+          url: '/refund',
+          views: {
+              'content@': {
+                  templateUrl: 'app/account-refund/account-refund.html',
+                  controller: 'AccountRefundCtrl'
+              }
+          }
+      })
+      .state('app.account.check', {
+          url: '/check',
+          views: {
+              'content@': {
+                  templateUrl: 'app/account-check/account-check.html',
+                  controller: 'AccountCheckCtrl'
+              }
+          }
+      })
+      .state('app.statistics', {
+          url: 'statistics',
+          views: {
+              'content@': {
+                  templateUrl: 'app/statistics/statistics.html',
+                  controller: 'SatisticsCtrl'
+              }
+          }
+      })
+      .state('app.statistics.detail', {
+          url: '/detail',
+          views: {
+              'content@': {
+                  templateUrl: 'app/statistics-detail/statistics-detail.html',
+                  controller: 'SatisticsDetailCtrl'
+              }
+          }
+      })
+      .state('app.notification', {
+          url: 'notification',
+          views: {
+              'content@': {
+                  templateUrl: 'app/notification/notification.html',
+                  controller: 'NotificationCtrl'
+              }
+          }
+      });
   }
 
 })();

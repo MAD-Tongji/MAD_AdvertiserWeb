@@ -3,7 +3,7 @@
 
   angular
     .module('mad')
-    .controller('MainController', MainController);
+    .controller('MainCtrl', MainController);
 
   /** @ngInject */
   function MainController($timeout, webDevTec, toastr) {

@@ -2,9 +2,9 @@
   'use strict';
   angular
     .module('mad')
-    .controller('RechargeController', RechargeController);
+    .controller('AccountRechargeCtrl', AccountRechargeCtrl);
 
-  function RechargeController($scope, $http) {
+  function AccountRechargeCtrl($scope, $http) {
    
   }
 })();

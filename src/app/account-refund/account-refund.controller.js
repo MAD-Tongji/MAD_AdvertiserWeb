@@ -2,9 +2,9 @@
   'use strict';
   angular
     .module('mad')
-    .controller('RefundController', RefundController);
+    .controller('AccountRefundCtrl', AccountRefundCtrl);
 
-  function RefundController($scope, $http) {
+  function AccountRefundCtrl($scope, $http) {
    
   }
 })();

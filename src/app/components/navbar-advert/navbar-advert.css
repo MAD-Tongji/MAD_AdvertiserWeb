@@ -1,14 +1,14 @@
-/*.navbar {*/
-  /*position: absolute;*/
-/*}*/
+.navbar {
+    border-radius: 0;
+}
 .jx-bold {
   color: #00b3ee;
 }
 
-.test1 {
-  margin-left: 10%;
+.ht-nav-panel {
+  margin-left: 5%;
 }
 
 .test2 {
-  margin-right: 10%;
+  margin-right: 5%;
 }

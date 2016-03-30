@@ -5,9 +5,9 @@
   'use strict';
   angular
     .module('mad')
-    .controller('AdvertSatisticsCtrl', AdStaController);
+    .controller('AdvertSatisticsCtrl', AdvertSatisticsCtrl);
 
-  function AdStaController($scope) {
+  function AdvertSatisticsCtrl($scope) {
 
 
   }

@@ -100,7 +100,7 @@
           views: {
               'content@': {
                   templateUrl: 'app/statistics/statistics.html',
-                  controller: 'SatisticsCtrl'
+                  controller: 'AdvertSatisticsCtrl'
               }
           }
       })

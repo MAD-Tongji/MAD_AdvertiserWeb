@@ -3,10 +3,10 @@
 
   angular
     .module('mad')
-    .controller('MainCtrl', MainController);
+    .controller('HeaderCtrl', HeaderCtrl);
 
   /** @ngInject */
-  function MainController() {
+  function HeaderCtrl() {
     
   }
 })();

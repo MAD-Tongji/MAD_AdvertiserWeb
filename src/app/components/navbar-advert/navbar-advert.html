@@ -1,15 +1,15 @@
 <nav class="navbar navbar-inverse">
-  <div class="navbar-collapse collapse test1">
+  <div class="navbar-collapse collapse ht-nav-panel">
     <ul class="nav navbar-nav">
-      <li class="navbar-link"><a href="#">首页</a></li>
+      <li class="navbar-link"><a ui-sref="app">首页</a></li>
       <li class="dropdown" ng-class="{active: isManage}">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">广告管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li ng-class="{active: isPush}">
-              <a href="#/push-ad">发布新广告</a>
+              <a ui-sref="app.advert.push">发布新广告</a>
           </li>
           <li ng-class="{active: isList}">
-              <a href="#/ad-list">已发布广告</a>
+              <a ui-sref="app.advert">已发布广告</a>
           </li>
         </ul>
       </li>
@@ -17,10 +17,10 @@
         <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">支付管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li ng-class="{active: isPut}">
-              <a href="#/recharge" class="">账户充值</a>
+              <a ui-sref="app.account.recharge" class="">账户充值</a>
           </li>
           <li ng-class="{active: isBack}">
-              <a href="#/refund" class="">账户退款</a>
+              <a ui-sref="app.account.refund" class="">账户退款</a>
           </li>
         </ul>
       </li>
@@ -28,14 +28,11 @@
         <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">统计<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li ng-class="{active: isAccount}">
-              <a href="#/ck-account" class="col-sm-offset-1">账务对账</a>
+              <a ui-sref="app.statistics">账务对账</a>
           </li>
           <li>
-            <div class="row">
-              <a href="#/ad-statistics" class="col-sm-offset-1 navbar-link">广告统计</a>
-            </div>
           <li ng-class="{active: isAdSta}">
-              <a href="#/ad-statistics" class="col-sm-offset-1">广告统计</a>
+              <a ui-sref="app.statistics.detail">广告统计</a>
           </li>
         </ul>
       </li>
@@ -43,10 +40,8 @@
     <div class="navbar-header navbar-right test2">
       <ul class="nav navbar-nav">
         <li class="active navbar-link"><a href="#" ng-init="name='霍腾'" ng-bind="name"></a></li>
-        <li><a href="#/msg-notification" class="navbar-link">消息管理</a></li>
+        <li><a ui-sref="app.notification" class="navbar-link">消息管理</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-

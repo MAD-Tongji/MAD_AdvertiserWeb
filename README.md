@@ -16,14 +16,14 @@ Mad Advertiser Web
   ![terminal in webstorm](http://cl.ly/472p2y0K2n0x/Image%202016-03-28%20at%2010.49.34%20%E4%B8%8B%E5%8D%88.png)
 
 ## 界面说明
-###1.登录
+###1.登录（设计图已完成）
 url:
 ```
 http://localhost:3000/login.html
 ```
 ####文件目录:
 
-###2.注册
+###2.注册（设计图已完成）
 url:
 ```
 http://localhost:3000/signup.html
@@ -38,7 +38,7 @@ http://localhost:3000/#/
 ####文件目录:
 app/main/main.html
 
-###4.广告列表
+###4.广告列表（设计图已完成）
 url:
 ```
 http://localhost:3000/#/advert
@@ -62,7 +62,7 @@ http://localhost:3000/#/advert/detail
 ####文件目录:
 app/advert-detail/advert-detail.html
 
-###7.新广告发布
+###7.新广告发布（设计图已完成）
 url:
 ```
 http://localhost:3000/#/advert/push
@@ -78,7 +78,7 @@ http://localhost:3000/#/account
 ####文件目录:
 app/account/account.html
 
-###9.广告商账户充值
+###9.广告商账户充值（设计图已完成）
 url:
 ```
 http://localhost:3000/#/account/recharge
@@ -86,7 +86,7 @@ http://localhost:3000/#/account/recharge
 ####文件目录:
 app/account-recharge/account-recharge.html
 
-###10.广告商账户退款
+###10.广告商账户退款（设计图已完成）
 url:
 ```
 http://localhost:3000/#/account/refund
@@ -102,7 +102,7 @@ http://localhost:3000/#/account/check
 ####文件目录:
 app/account-check/account-check.html
 
-###12.广告商统计列表
+###12.广告商统计列表（设计图已完成）
 url:
 ```
 http://localhost:3000/#/statistics
@@ -117,3 +117,11 @@ http://localhost:3000/#/statistics/detail
 ```
 ####文件目录:
 app/statistics-detail/statistics-detail.html
+
+###14.广告商通知（设计图已完成）
+url:
+```
+http://localhost:3000/#/notification
+```
+####文件目录:
+app/notification/notification.html

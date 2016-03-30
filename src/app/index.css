@@ -37,7 +37,7 @@
   font-feature-settings: 'liga';
 }
 
-html {
+html, a, h1, h2, p, fieldset {
   font-family: "Microsoft YaHei", serif;
 }
 

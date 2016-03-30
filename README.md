@@ -99,16 +99,14 @@ http://localhost:3000/#/account/check
 ####文件目录:
 app/account-check/account-check.html
 
-###12.广告商统计列表（设计图已完成）
-
+###12.广告商财务对账（设计图已完成）
 ```
 http://localhost:3000/#/statistics
 ```
 ####文件目录:
 app/statistics/statistics.html
 
-###13.广告商统计详情
-
+###13.广告商广告统计详情
 ```
 http://localhost:3000/#/statistics/detail
 ```

@@ -17,21 +17,18 @@ Mad Advertiser Web
 
 ## 界面说明
 ###1.登录（设计图已完成）
-url:
 ```
 http://localhost:3000/login.html
 ```
 ####文件目录:
 
 ###2.注册（设计图已完成）
-url:
 ```
 http://localhost:3000/signup.html
 ```
 ####文件目录:
 
 ###3.广告商首页
-url:
 ```
 http://localhost:3000/#/
 ```
@@ -39,7 +36,7 @@ http://localhost:3000/#/
 app/main/main.html
 
 ###4.广告列表（设计图已完成）
-url:
+
 ```
 http://localhost:3000/#/advert
 ```
@@ -47,7 +44,7 @@ http://localhost:3000/#/advert
 app/advertisment/advertisment.html
 
 ###5.广告修改
-url:
+
 ```
 http://localhost:3000/#/advert/modify
 ```
@@ -55,7 +52,7 @@ http://localhost:3000/#/advert/modify
 app/advert-modify/advert-modify.html
 
 ###6.广告详情
-url:
+
 ```
 http://localhost:3000/#/advert/detail
 ```
@@ -63,7 +60,7 @@ http://localhost:3000/#/advert/detail
 app/advert-detail/advert-detail.html
 
 ###7.新广告发布（设计图已完成）
-url:
+
 ```
 http://localhost:3000/#/advert/push
 ```
@@ -71,7 +68,7 @@ http://localhost:3000/#/advert/push
 app/advert-push/advert-push.html
 
 ###8.广告商账户首页
-url:
+
 ```
 http://localhost:3000/#/account
 ```
@@ -79,7 +76,7 @@ http://localhost:3000/#/account
 app/account/account.html
 
 ###9.广告商账户充值（设计图已完成）
-url:
+
 ```
 http://localhost:3000/#/account/recharge
 ```
@@ -87,7 +84,7 @@ http://localhost:3000/#/account/recharge
 app/account-recharge/account-recharge.html
 
 ###10.广告商账户退款（设计图已完成）
-url:
+
 ```
 http://localhost:3000/#/account/refund
 ```
@@ -95,7 +92,7 @@ http://localhost:3000/#/account/refund
 app/account-refund/account-refund.html
 
 ###11.广告商账户验证
-url:
+
 ```
 http://localhost:3000/#/account/check
 ```
@@ -103,7 +100,7 @@ http://localhost:3000/#/account/check
 app/account-check/account-check.html
 
 ###12.广告商统计列表（设计图已完成）
-url:
+
 ```
 http://localhost:3000/#/statistics
 ```
@@ -111,7 +108,7 @@ http://localhost:3000/#/statistics
 app/statistics/statistics.html
 
 ###13.广告商统计详情
-url:
+
 ```
 http://localhost:3000/#/statistics/detail
 ```
@@ -119,7 +116,7 @@ http://localhost:3000/#/statistics/detail
 app/statistics-detail/statistics-detail.html
 
 ###14.广告商通知（设计图已完成）
-url:
+
 ```
 http://localhost:3000/#/notification
 ```

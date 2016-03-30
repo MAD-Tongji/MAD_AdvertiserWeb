@@ -1,0 +1,32 @@
+<acme-navbar-ad></acme-navbar-ad>
+
+<!--<head>-->
+  <!--<link href="msg-notification.css" rel="stylesheet">-->
+<!--</head>-->
+
+<div class="container lsr-container">
+  <h1 ng-model="test">{{test}}消息列表</h1>
+
+  <hr style="border: 1px solid #000000;">
+
+  <!--消息列表-->
+  <ul class="list-group " style="border: 1px solid #000000;" >
+    <li class="list-group-item" ng-repeat="x in msgContentItem track by $index">
+      <div class="media" >
+        <div class="media-left">
+          <a href="#">
+            <img alt="..." src="{{x.avatar}}" class="media-object lsr-img-size" >
+          </a>
+        </div>
+
+        <div class="media-body">
+          <h4 class="media-heading">{{x.msgTitle}}</h4>
+          <p>{{x.msgBody}}</p>
+        </div>
+      </div>
+    </li>
+
+
+
+  </ul>
+</div>

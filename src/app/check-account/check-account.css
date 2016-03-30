@@ -1,0 +1,14 @@
+.lsr-table-head{
+  float: right;
+  cursor: pointer;
+}
+.lsr-table{
+  background-color: #ffffff;
+}
+.lsr-btn{
+  margin-bottom: 5%;
+}
+
+.lsr-p-position{
+  margin-top: 5px;
+}

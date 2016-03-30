@@ -31,6 +31,18 @@
         templateUrl: 'app/push-ad/push-ad.html',
         controller: 'PushAdController',
         controllerAs: 'push-ad'
+      })
+      .state('refund', {
+          url: '/refund',
+          templateUrl: 'app/refund/refund.html',
+          controller: 'RefundController',
+          controllerAs: 'refund'
+      })
+      .state('recharge', {
+          url: '/recharge',
+          templateUrl: 'app/recharge/recharge.html',
+          controller: 'RechargeController',
+          controllerAs: 'recharge'
       });
 
     $urlRouterProvider.otherwise('/');

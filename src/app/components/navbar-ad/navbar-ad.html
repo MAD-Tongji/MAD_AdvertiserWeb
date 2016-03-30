@@ -1,19 +1,15 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-collapse collapse">
+  <div class="navbar-collapse collapse test1">
     <ul class="nav navbar-nav">
       <li class="navbar-link"><a href="#">首页</a></li>
       <li class="active dropdown" ng-class="{active: isManage}">
         <a class="dropdown-toggle" data-toggle="dropdown">广告管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li>
-            <div class="row">
-              <a href="#/push-ad" class="col-sm-offset-1 navbar-link" ng-class="{'jx-bold': isPush}">发布新广告</a>
-            </div>
+              <a href="#/push-ad" ng-class="{'jx-bold': isPush}">发布新广告</a>
           </li>
           <li>
-            <div class="row">
-              <a href="#/ad-list" class="col-sm-offset-1 navbar-link" ng-class="{'jx-bold': isList}">已发布广告</a>
-            </div>
+              <a href="#/ad-list" ng-class="{'jx-bold': isList}">已发布广告</a>
           </li>
         </ul>
       </li>
@@ -21,14 +17,10 @@
         <a class="dropdown-toggle" data-toggle="dropdown">支付管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li>
-            <div class="row">
-              <a href="" class="col-sm-offset-1 navbar-link">账户充值</a>
-            </div>
+              <a href="#/refund" class="">账户充值</a>
           </li>
           <li>
-            <div class="row">
-              <a href="" class="col-sm-offset-1 navbar-link">账户退款</a>
-            </div>
+              <a href="#/recharge" class="">账户退款</a>
           </li>
         </ul>
       </li>
@@ -36,22 +28,18 @@
         <a class="dropdown-toggle" data-toggle="dropdown">统计<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li>
-            <div class="row">
-              <a href="" class="col-sm-offset-1 navbar-link">账务对账</a>
-            </div>
+              <a href="#/ck-account" class="col-sm-offset-1">账务对账</a>
           </li>
           <li>
-            <div class="row">
-              <a href="#/ad-statistics" class="col-sm-offset-1 navbar-link" ng-class="{'jx-bold': isAdSta}">广告统计</a>
-            </div>
+              <a href="#/ad-statistics" class="col-sm-offset-1" ng-class="{'jx-bold': isAdSta}">广告统计</a>
           </li>
         </ul>
       </li>
     </ul>
-    <div class="navbar-header navbar-right ul-nav">
+    <div class="navbar-header navbar-right test2">
       <ul class="nav navbar-nav">
         <li class="active navbar-link"><a href="#" ng-init="name='霍腾'" ng-bind="name"></a></li>
-        <li><a href="#" class="navbar-link">消息管理</a></li>
+        <li><a href="#/msg-notification" class="navbar-link">消息管理</a></li>
       </ul>
     </div>
   </div>

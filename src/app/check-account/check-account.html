@@ -1,0 +1,48 @@
+<acme-navbar-ad></acme-navbar-ad>
+
+
+<div class="container lsr-container" >
+  <h1 >财务对账</h1>
+
+  <hr style="border: 1px solid #000000;">
+
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lsr-p-position">总支出: {{totalPay}} 元</p>
+    </div>
+    <div class="col-md-3">
+      <p class="lsr-p-position">总充值金额: {{totalTopUp}} 元</p>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-primary lsr-btn" >充值历史</button>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-warning">账户余额</button>
+    </div>
+  </div>
+
+<div class="table-responsive ">
+  <table class="table table-bordered lsr-table" >
+    <thead style="background-color: #888888">
+    <tr>
+      <th>广告编号<span class="glyphicon glyphicon-sort lsr-table-head" ></span></th>
+      <th>广告标题<span class="glyphicon glyphicon-sort lsr-table-head" ></span></th>
+      <th>发布时间<span class="glyphicon glyphicon-sort lsr-table-head" ></span></th>
+      <th>次数统计<span class="glyphicon glyphicon-sort lsr-table-head" ></span></th>
+      <th>总花费(元)<span class="glyphicon glyphicon-sort lsr-table-head" ></span></th>
+      <th>广告详情</th>
+    </tr>
+    </thead>
+
+ <tbody>
+<tr ng-repeat="tableColumn in tableContent">
+  <td ng-repeat="x in tableColumn track by $index">{{x}}</td>
+
+  <td><a>查看详情</a></td>
+</tr>
+
+</tbody>
+
+  </table>
+</div>
+  </div>

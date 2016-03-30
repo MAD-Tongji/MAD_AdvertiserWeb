@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
 
 @font-face {
-  font-family: 'Material Icons';
+  font-family: "Microsoft YaHei sans-serif";
   font-style: normal;
   font-weight: 400;
   src: url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
@@ -38,7 +38,7 @@
 }
 
 html {
-  font-family: 'Roboto Slab', serif;
+  font-family: "Microsoft YaHei", serif;
 }
 
 [layout=row] {

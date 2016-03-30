@@ -1,0 +1,42 @@
+<acme-navbar-ad></acme-navbar-ad>
+<div class="container jx-container">
+  <div class="row">
+
+    <div class="col-md-offset-2 col-md-8">
+      <h1>已发布广告</h1>
+      <hr>
+    </div>
+
+    <div class="col-md-offset-1 col-md-10">
+      <table class="table table-hover table-striped table-bordered">
+          <tr class="success">
+            <th>广告编号</th>
+            <th>广告标题</th>
+            <th>广告状态</th>
+            <th>创建时间</th>
+            <th>查看广告详情</th>
+            <th>修改广告</th>
+          </tr>
+        <tbody>
+          <tr ng-repeat="ad in adList">
+            <td>{{ad.adId}}</td>
+            <td>{{ad.adTitle}}</td>
+            <td class="{{ad.stateClass}}">{{ad.adState}}</td>
+            <td>{{ad.createDate}}</td>
+            <td>
+              <button class="btn btn-success">{{ad.viewAd}}</button>
+            </td>
+            <td>
+              <button class="btn btn-warning col-md-6" ng-show="ad.isDisableModify">修改</button>
+              <button class="btn btn-danger col-md-6"  ng-show="ad.isDisableDelete">删除</button>
+              <button class="btn btn-danger col-md-6"  ng-show="ad.isDisableCancel">取消审核</button>
+              <button class="btn btn-danger col-md-6"  ng-show="ad.isDisableOff">下架</button>
+              <button class="btn btn-primary col-md-6" ng-show="ad.isDisableRe">重新审核</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

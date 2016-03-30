@@ -1,18 +1,18 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li class="navbar-link jx-dividing-line"><a href="#">首页</a></li>
-      <li class="active dropdown">
+      <li class="navbar-link"><a href="#">首页</a></li>
+      <li class="active dropdown" ng-class="{active: isManage}">
         <a class="dropdown-toggle" data-toggle="dropdown">广告管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li>
             <div class="row">
-              <a href="" class="col-sm-offset-1 navbar-link active">发布新广告</a>
+              <a href="#/push-ad" class="col-sm-offset-1 navbar-link" ng-class="{'jx-bold': isPush}">发布新广告</a>
             </div>
           </li>
           <li>
             <div class="row">
-              <a href="" class="col-sm-offset-1 navbar-link">已发布广告</a>
+              <a href="#/ad-list" class="col-sm-offset-1 navbar-link" ng-class="{'jx-bold': isList}">已发布广告</a>
             </div>
           </li>
         </ul>
@@ -32,7 +32,7 @@
           </li>
         </ul>
       </li>
-      <li class="dropdown">
+      <li class="dropdown" ng-class="{active: isStatistics}">
         <a class="dropdown-toggle" data-toggle="dropdown">统计<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li>
@@ -42,7 +42,7 @@
           </li>
           <li>
             <div class="row">
-              <a href="" class="col-sm-offset-1 navbar-link">广告统计</a>
+              <a href="#/ad-statistics" class="col-sm-offset-1 navbar-link" ng-class="{'jx-bold': isAdSta}">广告统计</a>
             </div>
           </li>
         </ul>

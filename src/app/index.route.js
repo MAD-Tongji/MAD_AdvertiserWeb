@@ -28,9 +28,21 @@
       })
       .state('push-ad', {
         url: '/push-ad',
-        templateUrl: 'app/push-ad/push-ad.html',
+        templateUrl: 'app/ad-manage/push-ad/push-ad.html',
         controller: 'PushAdController',
         controllerAs: 'push-ad'
+      })
+      .state('ad-list', {
+        url: '/ad-list',
+        templateUrl: 'app/ad-manage/ad-list/ad-list.html',
+        controller: 'AdListController',
+        controllerAs: 'ad-list'
+      })
+      .state('ad-statistics', {
+        url: '/ad-statistics',
+        templateUrl: 'app/statistics/ad-statistics/ad-statistics.html',
+        controller: 'AdStaController',
+        controllerAs: 'ad-sta'
       });
 
     $urlRouterProvider.otherwise('/');

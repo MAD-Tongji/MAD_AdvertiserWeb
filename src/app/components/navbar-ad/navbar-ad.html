@@ -1,37 +1,37 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse">
   <div class="navbar-collapse collapse test1">
     <ul class="nav navbar-nav">
       <li class="navbar-link"><a href="#">首页</a></li>
-      <li class="active dropdown" ng-class="{active: isManage}">
-        <a class="dropdown-toggle" data-toggle="dropdown">广告管理<b class="caret"></b></a>
+      <li class="dropdown" ng-class="{active: isManage}">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">广告管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li>
-              <a href="#/push-ad" ng-class="{'jx-bold': isPush}">发布新广告</a>
+          <li ng-class="{active: isPush}">
+              <a href="#/push-ad">发布新广告</a>
           </li>
-          <li>
-              <a href="#/ad-list" ng-class="{'jx-bold': isList}">已发布广告</a>
+          <li ng-class="{active: isList}">
+              <a href="#/ad-list">已发布广告</a>
           </li>
         </ul>
       </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">支付管理<b class="caret"></b></a>
+      <li class="dropdown" ng-class="{active: isPay}">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">支付管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li>
-              <a href="#/refund" class="">账户充值</a>
+          <li ng-class="{active: isPut}">
+              <a href="#/recharge" class="">账户充值</a>
           </li>
-          <li>
-              <a href="#/recharge" class="">账户退款</a>
+          <li ng-class="{active: isBack}">
+              <a href="#/refund" class="">账户退款</a>
           </li>
         </ul>
       </li>
       <li class="dropdown" ng-class="{active: isStatistics}">
-        <a class="dropdown-toggle" data-toggle="dropdown">统计<b class="caret"></b></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">统计<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li>
+          <li ng-class="{active: isAccount}">
               <a href="#/ck-account" class="col-sm-offset-1">账务对账</a>
           </li>
-          <li>
-              <a href="#/ad-statistics" class="col-sm-offset-1" ng-class="{'jx-bold': isAdSta}">广告统计</a>
+          <li ng-class="{active: isAdSta}">
+              <a href="#/ad-statistics" class="col-sm-offset-1">广告统计</a>
           </li>
         </ul>
       </li>

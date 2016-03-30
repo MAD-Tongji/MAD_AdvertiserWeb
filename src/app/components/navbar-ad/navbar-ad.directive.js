@@ -28,27 +28,44 @@
       $scope.isManage = false;
       $scope.isPush = false;
       $scope.isList = false;
-      
+
+      $scope.isPay = false;
+      $scope.isPut = false;
+      $scope.isBack = false;
+
       $scope.isStatistics = false;
+      $scope.isAccount = false;
       $scope.isAdSta = false;
 
       var path = $location.path();
-      console.log(path);
-      if (path == '/ad-statistics') {
-        $scope.isStatistics = true;
-        $scope.isAdSta = true;
-      }
+
       if (path == '/push-ad') {
         $scope.isManage = true;
         $scope.isPush = true;
-        // $scope.isList = false;
-        // $scope.isStatistics = false;
       }
+
       if (path == '/ad-list') {
         $scope.isManage = true;
         $scope.isList = true;
-        // $scope.isPush = false;
-        // $scope.isStatistics = false;
+      }
+
+      if (path == '/recharge') {
+        $scope.isPay = true;
+        $scope.isPut = true;
+      }
+
+      if (path == '/refund') {
+        $scope.isPay = true;
+        $scope.isBack = true;
+      }
+
+      if (path == '/ck-account') {
+        $scope.isStatistics = true;
+        $scope.isAccount = true;
+      }
+      if (path == '/ad-statistics') {
+        $scope.isStatistics = true;
+        $scope.isAdSta = true;
       }
     }
   }

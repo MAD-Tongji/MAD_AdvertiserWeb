@@ -1,3 +1,10 @@
+.lsr-container {
+  width: 100%;
+  height: 700px;
+  background-color: #ffffff;
+  font-family: Microsoft YaHei, sans-serif;
+  margin-top: 50px;
+}
 .lsr-table-head{
   float: right;
   cursor: pointer;

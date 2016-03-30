@@ -1,12 +1,14 @@
-nav {
-  position: absolute;
-}
+/*.navbar {*/
+  /*position: absolute;*/
+/*}*/
 .jx-bold {
   color: #00b3ee;
 }
+
 .test1 {
   margin-left: 10%;
 }
+
 .test2 {
   margin-right: 10%;
 }

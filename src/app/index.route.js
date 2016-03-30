@@ -43,8 +43,31 @@
         templateUrl: 'app/statistics/ad-statistics/ad-statistics.html',
         controller: 'AdStaController',
         controllerAs: 'ad-sta'
-      });
-
+      })
+      .state('refund', {
+          url: '/refund',
+          templateUrl: 'app/refund/refund.html',
+          controller: 'RefundController',
+          controllerAs: 'refund'
+      })
+      .state('recharge', {
+          url: '/recharge',
+          templateUrl: 'app/recharge/recharge.html',
+          controller: 'RechargeController',
+          controllerAs: 'recharge'
+      })
+      .state('msg-notification', {
+          url: '/msg-notification',
+          templateUrl: 'app/msg-notification/msg-notification.html',
+          controller: 'MsgNoticeController',
+          controllerAs: 'msg-notification'
+      })
+      .state('check-account', {
+          url: '/ck-account',
+          templateUrl: 'app/check-account/check-account.html',
+          controller: 'CheckAccountController',
+          controllerAs: 'msg-notification'
+    });
     $urlRouterProvider.otherwise('/');
   }
 

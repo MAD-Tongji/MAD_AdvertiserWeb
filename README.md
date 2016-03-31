@@ -35,7 +35,7 @@ http://localhost:3000/#/
 ####文件目录:
 app/main/main.html
 
-###4.广告列表（设计图已完成）
+###4.广告列表（已完成）
 
 ```
 http://localhost:3000/#/advert
@@ -43,7 +43,7 @@ http://localhost:3000/#/advert
 ####文件目录:
 app/advertisment/advertisment.html
 
-###5.广告修改
+###5.广告修改（已完成）
 
 ```
 http://localhost:3000/#/advert/modify
@@ -51,7 +51,7 @@ http://localhost:3000/#/advert/modify
 ####文件目录:
 app/advert-modify/advert-modify.html
 
-###6.广告详情
+###6.广告详情（已完成）
 
 ```
 http://localhost:3000/#/advert/detail
@@ -59,7 +59,7 @@ http://localhost:3000/#/advert/detail
 ####文件目录:
 app/advert-detail/advert-detail.html
 
-###7.新广告发布（设计图已完成）
+###7.新广告发布（已完成）
 
 ```
 http://localhost:3000/#/advert/push
@@ -75,7 +75,7 @@ http://localhost:3000/#/account
 ####文件目录:
 app/account/account.html
 
-###9.广告商账户充值（设计图已完成）
+###9.广告商账户充值（已完成）
 
 ```
 http://localhost:3000/#/account/recharge
@@ -83,7 +83,7 @@ http://localhost:3000/#/account/recharge
 ####文件目录:
 app/account-recharge/account-recharge.html
 
-###10.广告商账户退款（设计图已完成）
+###10.广告商账户退款（已完成）
 
 ```
 http://localhost:3000/#/account/refund
@@ -91,7 +91,7 @@ http://localhost:3000/#/account/refund
 ####文件目录:
 app/account-refund/account-refund.html
 
-###11.广告商账户验证
+###11.广告商账户验证（已完成）
 
 ```
 http://localhost:3000/#/account/check
@@ -99,7 +99,7 @@ http://localhost:3000/#/account/check
 ####文件目录:
 app/account-check/account-check.html
 
-###12.广告商财务对账（设计图已完成）
+###12.广告商财务对账（已完成）
 ```
 http://localhost:3000/#/statistics
 ```
@@ -113,7 +113,7 @@ http://localhost:3000/#/statistics/detail
 ####文件目录:
 app/statistics-detail/statistics-detail.html
 
-###14.广告商通知（设计图已完成）
+###14.广告商通知（已完成）
 
 ```
 http://localhost:3000/#/notification

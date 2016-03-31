@@ -1,20 +1,23 @@
 <div class="container">
     <div class="container jx-container">
         <div class="row">
-            <div class="col-sm-offset-1 col-sm-10">
-                <h2>账户退款</h2>
+            <div class="col-md-offset-2 col-md-8">
+                <h2 class="text-center">账户充值</h2>
+                <p class="text-center">为确保您的广告正常播放，请经常查看余额或充值</p>
                 <hr>
                 <div class="row">
-                    <div class="panel panel-default col-sm-10 col-sm-offset-1">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                          <h3 class="panel-title text-center">充值</h3>
+                        </div>
                         <div class="panel-body">
-                            <div class="col-sm-7">
+                            <div class="col-sm-7 recharge-part">
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">充值金额</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="请输入整数">
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" placeholder="请输入整数，单位为元">
                                         </div>
-                                        <label for="" class="col-sm-4 control-label">人民币（元）</label>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-10">
@@ -25,19 +28,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="">
-                                        <button type="submit" class="btn btn-default center-block">充值</button>
+                                    <div>
+                                        <button type="submit" class="btn btn-success center-block btn-fluid">充值</button>
                                     </div>
                                 </form>
                             </div>
                             <div class="col-sm-5">
                                 <div class="ht-user-info row">
                                     <div class="col-sm-6">
-                                        <img src="" alt="头像图片" class="img-rounded">
+                                        <img src="../../assets/images/avatar.jpg" alt="头像图片" class="img-responsive img-rounded">
                                     </div>
                                     <div class="col-sm-6 ht-user-name">
-                                        <label for="">霍腾（ht2016）</label>
-                                        <button class="btn btn-default">查看账户余额</button>
+                                        <h3 for="">霍腾<small>(ht2016)</small></h3>
+                                        <button class="btn btn-primary">查看账户余额</button>
                                     </div>
                                 </div>
                             </div>
@@ -46,29 +49,39 @@
                 </div>
                 <div class="row">
                     <h3 class="ht-charge-title">充值记录</h3>
+                    <p class="text-center">查看您的历史充值记录</p>
+                    <hr style="margin-top: 15px;">
                 </div>
+              <!--TODO: search bar-->
                 <div class="row">
-                    <div class="panel panel-default col-sm-10 col-sm-offset-1">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>充值金额（元）</th>
-                                <th>充值账户</th>
-                                <th>充值时间</th>
-                                <th>充值状态</th>
-                            </tr>
-                            <tr>
-                                <td>1200</td>
-                                <td>ht2016</td>
-                                <td>2016-01-01</td>
-                                <td>已到账</td>
-                            </tr>
-                            <tr>
-                                <td>1200</td>
-                                <td>ht2016</td>
-                                <td>2016-01-01</td>
-                                <td>到账中</td>
-                            </tr>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <table class="table table-hover">
+                          <thead>
+                          <tr>
+                            <th>充值金额（元）</th>
+                            <th>充值账户</th>
+                            <th>充值时间</th>
+                            <th>充值状态</th>
+                          </tr>
+                          </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>1200</td>
+                                    <td>ht2016</td>
+                                    <td>2016-01-01</td>
+                                    <td>已到账</td>
+                                </tr>
+                                <tr>
+                                    <td>1200</td>
+                                    <td>ht2016</td>
+                                    <td>2016-01-01</td>
+                                    <td>到账中</td>
+                                </tr>
+                            </tbody>
                         </table>
+                      </div>
                     </div>
                 </div>
             </div>

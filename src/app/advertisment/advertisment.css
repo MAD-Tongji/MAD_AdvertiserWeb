@@ -12,6 +12,15 @@
 .jx-putting {
   color: #228B22;
 }
-.jx-btn {
-  margin-right: 40px;
+
+@media screen and (min-width: 970px) {
+  .btn-margin {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .btn-margin {
+    margin-top: 10px;
+  }
 }

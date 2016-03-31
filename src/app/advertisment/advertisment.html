@@ -1,14 +1,17 @@
 <div class="container jx-container">
   <div class="row">
 
-    <div class="col-md-offset-2 col-md-8">
-      <h1>已发布广告</h1>
+    <div class="col-md-offset-1 col-md-10">
+      <h1 class="text-center">已发布广告</h1>
+      <p class="text-center">您的已发布广告列表</p>
       <hr>
     </div>
-
-    <div class="col-md-offset-1 col-md-10">
-      <table class="table table-hover table-striped table-bordered">
-          <tr class="success">
+    <!--TODO: search bar-->
+    <div class="col-md-offset-1 col-md-10 panel panel-default">
+      <div class="panel-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
             <th>广告编号</th>
             <th>广告标题</th>
             <th>广告状态</th>
@@ -16,6 +19,7 @@
             <th>查看广告详情</th>
             <th>修改广告</th>
           </tr>
+        </thead>
         <tbody>
           <tr ng-repeat="ad in adList">
             <td>{{ad.adId}}</td>
@@ -23,18 +27,39 @@
             <td class="{{ad.stateClass}}">{{ad.adState}}</td>
             <td>{{ad.createDate}}</td>
             <td>
-              <button class="btn btn-success">{{ad.viewAd}}</button>
+              <button class="btn btn-success btn-sm">{{ad.viewAd}}</button>
             </td>
             <td>
-              <button class="btn btn-warning col-md-4 jx-btn" ng-show="ad.isDisableModify">修改</button>
-              <button class="btn btn-danger col-md-4 jx-btn"  ng-show="ad.isDisableDelete">删除</button>
-              <button class="btn btn-danger col-md-4"  ng-show="ad.isDisableCancel">取消审核</button>
-              <button class="btn btn-danger col-md-4"  ng-show="ad.isDisableOff">下架</button>
-              <button class="btn btn-primary col-md-4" ng-show="ad.isDisableRe">重新审核</button>
+              <button class="btn btn-danger btn-sm"  ng-show="ad.isDisableDelete">删除</button>
+              <button class="btn btn-warning btn-sm btn-margin" ng-show="ad.isDisableModify">修改</button>
+              <button class="btn btn-danger btn-sm"  ng-show="ad.isDisableCancel">取消审核</button>
+              <button class="btn btn-danger btn-sm"  ng-show="ad.isDisableOff">下架</button>
+              <button class="btn btn-primary btn-sm btn-margin" ng-show="ad.isDisableRe">重新审核</button>
             </td>
           </tr>
         </tbody>
       </table>
+        <!--TODO: 分页-->
+        <nav class="text-center">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
 </div>

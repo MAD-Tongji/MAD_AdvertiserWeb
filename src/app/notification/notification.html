@@ -1,16 +1,18 @@
 <div class="container">
-  <h1>消息列表</h1>
-  <hr>
-  <!--消息列表-->
-  <div class="panel panel-default" ng-repeat="ntf in notificationContents">
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-1 col-xm-2 col-xs-3">
-          <img alt="..." src="{{ntf.avatar}}" class="img-responsive img-circle" >
-        </div>
-        <div class="col-md-11 col-xm-10 col-xs-9">
-          <h4 class="media-heading">{{ntf.msgTitle}}</h4>
-          <p>{{ntf.msgBody}}</p>
+  <div class="col-md-offset-1 col-md-10">
+    <h1>消息列表</h1>
+    <hr>
+    <!--消息列表-->
+    <div class="panel panel-default" ng-repeat="ntf in notificationContents">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-1 col-xm-2 col-xs-3">
+            <img alt="..." src="{{ntf.avatar}}" class="img-responsive img-circle" >
+          </div>
+          <div class="col-md-11 col-xm-10 col-xs-9">
+            <h4 class="media-heading">{{ntf.msgTitle}}</h4>
+            <p>{{ntf.msgBody}}</p>
+          </div>
         </div>
       </div>
     </div>

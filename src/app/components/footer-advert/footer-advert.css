@@ -1,0 +1,11 @@
+footer {
+  margin-bottom: 30px;
+  text-align: center;
+  color: rgba(0,0,0,.5);
+  font-size: 15px;
+}
+
+hr {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}

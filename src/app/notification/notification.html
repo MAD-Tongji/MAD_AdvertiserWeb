@@ -1,20 +1,18 @@
-<acme-navbar-ad></acme-navbar-ad>
-
 <div class="container">
-  <h1 ng-model="test">消息列表</h1>
+  <h1>消息列表</h1>
   <hr>
   <!--消息列表-->
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="x in msgContentItem track by $index">
+  <div class="panel panel-default" ng-repeat="ntf in notificationContents">
+    <div class="panel-body">
       <div class="row">
         <div class="col-md-1 col-xm-2 col-xs-3">
-          <img alt="..." src="../images/avatar.jpg" class="img-responsive img-circle" >
+          <img alt="..." src="{{ntf.avatar}}" class="img-responsive img-circle" >
         </div>
         <div class="col-md-11 col-xm-10 col-xs-9">
-          <h4 class="media-heading">{{x.msgTitle}}</h4>
-          <p>{{x.msgBody}}</p>
+          <h4 class="media-heading">{{ntf.msgTitle}}</h4>
+          <p>{{ntf.msgBody}}</p>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

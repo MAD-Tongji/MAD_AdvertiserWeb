@@ -12,7 +12,7 @@
   function acmeNavbarAd() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/components/navbar-ad/navbar-ad.html',
+      templateUrl: 'app/components/navbar-advert/navbar-advert.html',
       scope: {
         creationDate: '='
       },

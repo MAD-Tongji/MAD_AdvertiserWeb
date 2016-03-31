@@ -20,6 +20,10 @@
             'content': {
                 templateUrl: 'app/main/main.html',
                 controller: 'MainCtrl'
+            },
+            'footer': {
+              templateUrl: 'app/components/footer-advert/footer-advert.html',
+              controller: 'FooterCtrl'
             }
         }
       })

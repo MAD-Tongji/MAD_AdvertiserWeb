@@ -1,14 +1,61 @@
+/*.navbar {*/
+    /*border-radius: 0;*/
+/*}*/
+/*.jx-bold {*/
+  /*color: #00b3ee;*/
+/*}*/
+
+
+
 .navbar {
-    border-radius: 0;
-}
-.jx-bold {
-  color: #00b3ee;
-}
-
-.ht-nav-panel {
-  margin-left: 5%;
+  height: 58px;
+  border-radius: 0;
+  z-index: 20;
 }
 
-.test2 {
-  margin-right: 5%;
+.navbar-nav {
+  margin-top: 4px;
+}
+
+
+
+a.navbar-brand {
+  margin-top: 14px;
+  width: 100px;
+  height: 30px;
+  background-image: url('../../../assets/images/logo.png');
+  background-size: 77px 30px;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  a.navbar-brand {
+    margin-left: 20px;
+  }
+  .btn-signin,
+  .btn-signup {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .nav-margin-left {
+    margin-left: 15%;
+  }
+
+  a.navbar-brand {
+    margin-left: 120px;
+  }
+
+  .nav-margin-right {
+    margin-right: 10%;
+  }
+}
+
+a.navbar-brand:hover{
+  background-image: url('../../../assets/images/logo2.png');
+}
+
+.navbar-collapse {
+  background-color: #222;
 }

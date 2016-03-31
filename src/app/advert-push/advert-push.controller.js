@@ -6,7 +6,7 @@
     .controller('AdvertPushCtrl', AdvertPushCtrl);
 
   /** @ngInject */
-  function AdvertPushCtrl() {
+  function AdvertPushCtrl($scope) {
     $scope.adTypes = [{
       id: 1,
       adType: '公益广告'

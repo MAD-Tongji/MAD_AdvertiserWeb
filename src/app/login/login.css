@@ -1,5 +1,7 @@
-body {
-  /*background-color: #9DC9C1;*/
+.ht-login {
+    height: auto;
+    width: 100%;
+    background-color: #9DC9C1;
 }
 
 .header {

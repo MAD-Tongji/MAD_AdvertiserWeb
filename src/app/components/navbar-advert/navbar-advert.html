@@ -24,13 +24,16 @@
         </ul>
       </li>
       <li class="dropdown" ng-class="{active: isPay}">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">支付管理<b class="caret"></b></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">账户管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li ng-class="{active: isPut}">
               <a ui-sref="app.account.recharge" class="">账户充值</a>
           </li>
           <li ng-class="{active: isBack}">
               <a ui-sref="app.account.refund" class="">账户退款</a>
+          </li>
+          <li ng-class="{active: isBack}">
+              <a ui-sref="app.account.check" class="">账户验证</a>
           </li>
         </ul>
       </li>

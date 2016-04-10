@@ -1,12 +1,3 @@
-/*.navbar {*/
-    /*border-radius: 0;*/
-/*}*/
-/*.jx-bold {*/
-  /*color: #00b3ee;*/
-/*}*/
-
-
-
 .navbar {
   height: 58px;
   border-radius: 0;
@@ -16,8 +7,6 @@
 .navbar-nav {
   margin-top: 4px;
 }
-
-
 
 a.navbar-brand {
   margin-top: 14px;

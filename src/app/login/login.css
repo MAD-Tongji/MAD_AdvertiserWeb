@@ -8,9 +8,6 @@
   position: absolute;
 }
 
-.ul-nav {
-  padding-right: 10px;
-}
 .content{
   margin-top: 200px;
 }
@@ -24,3 +21,4 @@
     width: 330px;
     margin: 0 auto;
 }
+

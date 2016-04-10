@@ -126,33 +126,25 @@
               }
           }
       })
-      .state('app.login', {
-          url: 'login',
+      .state('login', {
+          url: '/login',
           views: {
-              'header@': {
+              'header': {
                   templateUrl: 'app/components/navbar/navbar.html'
               },
-              'content@': {
+              'content': {
                   templateUrl: 'app/login/login.html'
-              },
-              'footer@': {
-                  templateUrl: 'app/components/footer-advert/footer-advert.html',
-                  controller: 'FooterCtrl'
               }
           }
       })
-      .state('app.signup', {
-          url: 'signup',
+      .state('signup', {
+          url: '/signup',
           views: {
               'header@': {
                   templateUrl: 'app/components/navbar/navbar.html'
               },
-              'content@': {
+              'content': {
                   templateUrl: 'app/signup/signup.html'
-              },
-              'footer@': {
-                  templateUrl: 'app/components/footer-advert/footer-advert.html',
-                  controller: 'FooterCtrl'
               }
           }
       });

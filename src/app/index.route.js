@@ -117,6 +117,15 @@
               }
           }
       })
+      .state('app.statistics.advertis', {
+          url: '/advertis',
+          views: {
+              'content@': {
+                  templateUrl: 'app/statistics-advertis/statistics-advertis.html',
+                  controller: 'SatisticsAdvertMapCtrl'
+              }
+          }
+      })
       .state('app.notification', {
           url: 'notification',
           views: {

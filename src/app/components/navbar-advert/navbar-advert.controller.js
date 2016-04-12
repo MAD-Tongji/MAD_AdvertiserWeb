@@ -20,10 +20,12 @@
     $scope.isConfirm = false;
 
     $scope.isStatistics = false;
-    $scope.isAccount = false;
+    $scope.isAccSta = false;
     $scope.isAdSta = false;
 
     $scope.isMsg = false;
+
+    $scope.isAccount = false;
 
     if ($location.path() == '/') {
       $scope.isMain = true;
@@ -56,12 +58,16 @@
 
     if ($location.path() == '/statistics') {
       $scope.isStatistics = true;
-      $scope.isAccount = true;
+      $scope.isAccSta = true;
     }
 
     if ($location.path() == '/statistics/detail') {
       $scope.isStatistics = true;
       $scope.isAdSta = true;
+    }
+
+    if ($location.path() == '/account') {
+      $scope.isAccount = true;
     }
 
     if ($location.path() == '/notification') {

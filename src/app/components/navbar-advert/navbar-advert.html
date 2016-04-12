@@ -40,7 +40,7 @@
       <li class="dropdown" ng-class="{active: isStatistics}">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">统计<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li ng-class="{active: isAccount}">
+          <li ng-class="{active: isAccSta}">
               <a ui-sref="app.statistics" ui-sref-opts="{reload: true}">账务对账</a>
           </li>
           <li>
@@ -52,7 +52,7 @@
     </ul>
     <div class="navbar-header navbar-right nav-margin-right">
       <ul class="nav navbar-nav">
-        <li class="navbar-link active"><a href="#" ng-init="name='霍腾'" ng-bind="name"></a></li>
+        <li class="navbar-link" ng-class="{active: isAccount}"><a ui-sref="app.account" ui-sref-opts="{reload: true}" ng-init="name='霍腾'" ng-bind="name"></a></li>
         <li ng-class="{active: isMsg}"><a ui-sref="app.notification" class="navbar-link" ui-sref-opts="{reload: true}">消息管理</a></li>
         <li><a ui-sref="app.login"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
       </ul>

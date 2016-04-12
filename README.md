@@ -67,7 +67,7 @@ http://localhost:3000/#/advert/push
 ####文件目录:
 app/advert-push/advert-push.html
 
-###8.广告商账户首页
+###8.广告商账户信息
 
 ```
 http://localhost:3000/#/account

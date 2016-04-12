@@ -4,7 +4,10 @@
     .module('mad')
     .controller('AccountCtrl', AccountCtrl);
 
-  function AccountCtrl() {
-
+  /** @ngInject */
+  function AccountCtrl($scope, $http) {
+    angular.module('tabsDemoDynamicHeight', ['ngMaterial']);
   }
-});
+})();
+
+

@@ -1,0 +1,21 @@
+.tabsdemoDynamicHeight md-content {
+  background-color: transparent !important; }
+.tabsdemoDynamicHeight md-content md-tabs {
+  background: #f6f6f6;
+  border: 1px solid #e1e1e1; }
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+  background: white; }
+.tabsdemoDynamicHeight md-content h1:first-child {
+  margin-top: 0; }
+
+md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+   color: grey;
+}
+
+md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {
+   color: dodgerblue;
+}
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+  background-color:dodgerblue !important;
+}

@@ -4,7 +4,7 @@
     .module('mad')
     .controller('AccountCheckCtrl', AccountCheckCtrl);
 
-  function AccountCheckCtrl() {
-    
+  function AccountCheckCtrl($scope, $http) {
+
   }
-});
+})();

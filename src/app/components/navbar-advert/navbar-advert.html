@@ -51,7 +51,11 @@
       </li>
     </ul>
     <div class="navbar-header navbar-right nav-margin-right">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" ng-show="isMain">
+        <button type="button" class="btn btn-signup navbar-btn">Sign up</button>
+        <button type="button" class="btn btn-signin navbar-btn">Sign in</button>
+      </ul>
+      <ul class="nav navbar-nav" ng-hide="isMain">
         <li class="navbar-link" ng-class="{active: isAccount}"><a ui-sref="app.account" ui-sref-opts="{reload: true}" ng-init="name='霍腾'" ng-bind="name"></a></li>
         <li ng-class="{active: isMsg}"><a ui-sref="app.notification" class="navbar-link" ui-sref-opts="{reload: true}">消息管理</a></li>
         <li><a ui-sref="app.login"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>

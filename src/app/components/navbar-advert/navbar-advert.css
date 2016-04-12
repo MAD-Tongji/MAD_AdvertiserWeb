@@ -58,3 +58,30 @@ a.navbar-brand:hover{
 .navbar-collapse {
   background-color: #222;
 }
+
+
+/* Custom sign up button */
+.btn-signup {
+  color: #333;
+  text-shadow: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+}
+
+.btn-signup:hover {
+  background-color: #fff;
+}
+
+/*Custom sign in button*/
+.btn-signin {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: none;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+}
+
+.btn-signin:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}

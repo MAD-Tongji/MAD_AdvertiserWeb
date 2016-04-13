@@ -52,8 +52,8 @@
     </ul>
     <div class="navbar-header navbar-right nav-margin-right">
       <ul class="nav navbar-nav" ng-show="isMain">
-        <button type="button" class="btn btn-signup navbar-btn">Sign up</button>
-        <button type="button" class="btn btn-signin navbar-btn">Sign in</button>
+        <button type="button" class="btn btn-signup navbar-btn" data-toggle="modal" data-target="#signup">Sign up</button>
+        <button type="button" class="btn btn-signin navbar-btn" data-toggle="modal" data-target="#login">Sign in</button>
       </ul>
       <ul class="nav navbar-nav" ng-hide="isMain">
         <li class="navbar-link" ng-class="{active: isAccount}"><a ui-sref="app.account" ui-sref-opts="{reload: true}" ng-init="name='霍腾'" ng-bind="name"></a></li>

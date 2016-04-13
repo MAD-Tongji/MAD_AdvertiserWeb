@@ -134,29 +134,23 @@
                   controller: 'NotificationCtrl'
               }
           }
-      })
-      .state('login', {
-          url: '/login',
-          views: {
-              'header': {
-                  templateUrl: 'app/components/navbar/navbar.html'
-              },
-              'content': {
-                  templateUrl: 'app/login/login.html'
-              }
-          }
-      })
-      .state('signup', {
-          url: '/signup',
-          views: {
-              'header@': {
-                  templateUrl: 'app/components/navbar/navbar.html'
-              },
-              'content': {
-                  templateUrl: 'app/signup/signup.html'
-              }
-          }
       });
+    //   .state('app.login', {
+    //       url: 'login',
+    //       views: {
+    //           'sgin': {
+    //               templateUrl: 'app/login/login.html'
+    //           }
+    //       }
+    //   })
+    //   .state('app.signup', {
+    //       url: 'signup',
+    //       views: {
+    //           'sgin': {
+    //               templateUrl: 'app/signup/signup.html'
+    //           }
+    //       }
+    //   });
   }
 
 })();

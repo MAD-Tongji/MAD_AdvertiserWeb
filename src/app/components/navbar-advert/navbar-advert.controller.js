@@ -6,8 +6,7 @@
     .controller('HeaderCtrl', HeaderCtrl);
 
   /** @ngInject */
-  function HeaderCtrl($scope, $location, $injector) {
-    $injector.get('$templateCache').removeAll();
+  function HeaderCtrl($scope, $location) {
     $scope.isMain = false;
 
     $scope.isManage = false;

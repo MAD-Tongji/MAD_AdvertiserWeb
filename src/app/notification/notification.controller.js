@@ -7,16 +7,16 @@
     .module('mad')
     .controller('NotificationCtrl', NotificationCtrl);
 
-  function NotificationCtrl($scope, $http) {
+  function NotificationCtrl($scope) {
 
     $scope.notificationContents = [
       {
-        avatar : "../../assets/images/avatar.jpg",
+        avatar : "assets/images/avatar.jpg",
         msgTitle : '系统消息',
         msgBody : '您的广告123242903890已经通过审核，可以进行修改'
       },
       {
-        avatar : "../../assets/images/avatar.jpg",
+        avatar : "assets/images/avatar.jpg",
         msgTitle : '系统消息',
         msgBody : '您的广告123242903890已经通过审核，可以进行修改'
       }

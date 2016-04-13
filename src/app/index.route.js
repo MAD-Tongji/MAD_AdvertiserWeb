@@ -135,22 +135,6 @@
               }
           }
       });
-    //   .state('app.login', {
-    //       url: 'login',
-    //       views: {
-    //           'sgin': {
-    //               templateUrl: 'app/login/login.html'
-    //           }
-    //       }
-    //   })
-    //   .state('app.signup', {
-    //       url: 'signup',
-    //       views: {
-    //           'sgin': {
-    //               templateUrl: 'app/signup/signup.html'
-    //           }
-    //       }
-    //   });
   }
 
 })();

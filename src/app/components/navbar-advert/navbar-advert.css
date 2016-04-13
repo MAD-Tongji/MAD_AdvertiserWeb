@@ -23,7 +23,7 @@ a.navbar-brand {
   }
   .btn-signin,
   .btn-signup {
-    margin-left: 20px;
+    margin-left: 3px;
   }
 }
 
@@ -33,7 +33,10 @@ a.navbar-brand {
   }
   .btn-signin,
   .btn-signup {
-    margin-left: 40px;
+    margin-left: 5px;
+  }
+  .btn-signin {
+    margin-right: 40px;
   }
 }
 
@@ -41,13 +44,15 @@ a.navbar-brand {
   .nav-margin-left {
     margin-left: 15%;
   }
-
   a.navbar-brand {
     margin-left: 120px;
   }
-
   .nav-margin-right {
     margin-right: 10%;
+  }
+  .btn-signin,
+  .btn-signup {
+    margin-left: 10px;
   }
 }
 
@@ -81,7 +86,101 @@ a.navbar-brand:hover{
   font-weight: bold;
 }
 
+.btn-signin:active,
 .btn-signin:hover {
   color: #fff;
   border: 1px solid #fff;
+}
+
+.jx-signup {
+  height: auto;
+  width: 100%;
+  background-color: #9DC9C1;
+}
+.ht-icon-box {
+  padding: 40px 0;
+}
+.ht-icon-box img {
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.ht-input-box {
+  padding: 40px 0px;
+  background-color: #D4E8E5;
+  border-radius: 8px;
+}
+.ht-input-box>form {
+  width: 80%;
+  margin: 0 auto;
+}
+.ht-input {
+  margin-bottom: 15px;
+}
+.ht-input img {
+  width: 18px;
+}
+.ht-signup-btn {
+  width: 130px;
+  background-color: #FFA300;
+  color: #ffffff;
+  font-size: large;
+  height: 40px;
+}
+.ht-signup-btn:not([disabled]):hover {
+  background-color: #E98C00;
+  color: #FFFFFF;
+}
+.ht-signup-btn[disabled] {
+  color : rgba(0, 0, 0, 0.26);
+  background-color: #FFFFFF;
+}
+.ht-input>*  {
+  background-color: #fff;
+  border: 0px;
+  border-radius: 6px;
+  height: 45px;
+  box-shadow: 0px 0px 0px #ffffff;
+}
+.ht-group {
+  margin-top: 20px;
+}
+.ht-group>* {
+  padding: 0px;
+}
+.ht-group a {
+  text-decoration: underline;
+  color: #82B9AD;
+}
+.ht-group a:hover {
+  color: #FFFFFF;
+}
+
+.xmd-btn-register {
+  width: 100%;
+}
+
+.xmd-content {
+  margin: 10% 5%;
+}
+
+.xmd-modal-content {
+  background-color: #AFD4CE;
+}
+
+@media screen and (max-width: 750px) {
+  .xmd-right-content {
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .xmd-left-content {
+    margin-top: 7%;
+  }
+}
+
+.xmd-form {
+  width: 80%;
+  margin-left: 10%;
 }

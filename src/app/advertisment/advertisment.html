@@ -27,11 +27,11 @@
             <td class="{{ad.stateClass}}">{{ad.adState}}</td>
             <td>{{ad.createDate}}</td>
             <td>
-              <button class="btn btn-success btn-sm">{{ad.viewAd}}</button>
+              <button ui-sref="app.advert.detail" class="btn btn-success btn-sm">{{ad.viewAd}}</button>
             </td>
             <td>
               <button class="btn btn-danger btn-sm"  ng-show="ad.isDisableDelete">删除</button>
-              <button class="btn btn-warning btn-sm btn-margin" ng-show="ad.isDisableModify">修改</button>
+              <button ui-sref="app.advert.detail" class="btn btn-warning btn-sm btn-margin" ng-show="ad.isDisableModify">修改</button>
               <button class="btn btn-danger btn-sm"  ng-show="ad.isDisableCancel">取消审核</button>
               <button class="btn btn-danger btn-sm"  ng-show="ad.isDisableOff">下架</button>
               <button class="btn btn-primary btn-sm btn-margin" ng-show="ad.isDisableRe">重新审核</button>

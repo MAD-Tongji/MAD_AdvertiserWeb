@@ -9,13 +9,13 @@
   function AdvertPushCtrl($scope) {
     $scope.adTypes = [{
       id: 1,
-      adType: '公益广告'
+      adType: '教育广告'
     }, {
       id: 2,
-      adType: '促销广告'
+      adType: '商业广告'
     }, {
       id: 3,
-      adType: '宣传广告'
+      adType: '生活广告'
     }];
 
     $scope.adType = $scope.adTypes[0].id;

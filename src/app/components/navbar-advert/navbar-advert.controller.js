@@ -69,6 +69,19 @@
       $scope.isMsg = true;
     }
     
+    $('#signup').on('hidden.bs.modal', function (e) {
+      $scope.thereIsError = false;
+      $scope.errMessage = '';
+      console.log('hide signup');
+      
+    });
+    
+    $('#login').on('hidden.bs.modal', function (e) {
+      $scope.thereIsError = false;
+      $scope.errMessage = '';
+      console.log('hide login');
+    })
+    
     $scope.isLogin = false;
     if ($rootScope.token !== undefined && $rootScope.token !== null) {
       $scope.isLogin = true;
@@ -124,6 +137,7 @@
       
     };
     
+    // 登录
     $scope.login = function (email, pass) {
       if (email == null || pass == null) {
         $scope.thereIsError = true;

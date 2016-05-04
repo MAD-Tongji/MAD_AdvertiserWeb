@@ -101,7 +101,7 @@
                             <input type="password" class="form-control" placeholder="确认密码" aria-describedby="basic-addon2" ng-model="passConfirm">
                           </div>
                         </div>
-                        <span class="help-block" ng-if="thereIsError">{{ errMessage }}</span>
+                        <span class="help-block" ng-show="thereIsError">{{ errMessage }}</span>
                         <div class="form-group">
                           <button class="btn btn-warning btn-lg xmd-btn-register" ng-click="register(nickname, email, password, passConfirm)">注册</button>
                         </div>
@@ -139,7 +139,7 @@
                           <span class="input-group-addon"><img src="assets/images/confirm.png"></span>
                           <input type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon2" ng-model="password">
                         </div>
-                        <span class="help-block" ng-if="thereIsError">{{ errMessage }}</span>
+                        <span class="help-block" ng-show="thereIsError">{{ errMessage }}</span>
                       </div>
                       <div class="form-group">
                         <button class="btn btn-warning btn-lg xmd-btn-register" ng-click="login(email, password)">登录</button>

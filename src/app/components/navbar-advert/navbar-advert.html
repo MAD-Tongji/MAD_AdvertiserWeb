@@ -10,7 +10,7 @@
     <a class="navbar-brand" ui-sref="app"></a>
   </div>
   <div class="navbar-collapse collapse nav-margin-left" id="navbar">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav" ng-if="isLogin">
       <li class="" ng-class="{'active': isMain}"><a ui-sref="app" ui-sref-opts="{reload: true}">首页</a></li>
       <li class="dropdown" ng-class="{'active': isManage}">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">广告管理<b class="caret"></b></a>
@@ -51,14 +51,14 @@
       </li>
     </ul>
     <div class="navbar-header navbar-right nav-margin-right">
-      <ul class="nav navbar-nav" ng-show="isMain">
+      <ul class="nav navbar-nav" ng-if="!isLogin">
         <button type="button" class="btn btn-signup navbar-btn" data-toggle="modal" data-target="#signup">注册</button>
         <button type="button" class="btn btn-signin navbar-btn" data-toggle="modal" data-target="#login">登录</button>
       </ul>
-      <ul class="nav navbar-nav" ng-hide="isMain">
+      <ul class="nav navbar-nav" ng-if="isLogin">
         <li class="navbar-link" ng-class="{active: isAccount}"><a ui-sref="app.account" ui-sref-opts="{reload: true}" ng-init="name='霍腾'" ng-bind="name"></a></li>
         <li ng-class="{active: isMsg}"><a ui-sref="app.notification" class="navbar-link" ui-sref-opts="{reload: true}">消息管理</a></li>
-        <li><a ui-sref="app.login"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+        <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
       </ul>
     </div>
   </div>
@@ -80,13 +80,13 @@
                         <div class="form-group">
                           <div class="input-group ht-input">
                             <span class="input-group-addon"><img src="assets/images/nickname.png"></span>
-                            <input type="password" class="form-control" placeholder="昵称" aria-describedby="basic-addon2" ng-model="nickname">
+                            <input type="text" class="form-control" placeholder="昵称" aria-describedby="basic-addon2" ng-model="nickname">
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="input-group ht-input">
                             <span class="input-group-addon"><img src="assets/images/email.png"></span>
-                            <input type="password" class="form-control" placeholder="邮箱" aria-describedby="basic-addon2" ng-model="email">
+                            <input type="text" class="form-control" placeholder="邮箱" aria-describedby="basic-addon2" ng-model="email">
                           </div>
                         </div>
                         <div class="form-group">
@@ -101,8 +101,9 @@
                             <input type="password" class="form-control" placeholder="确认密码" aria-describedby="basic-addon2" ng-model="passConfirm">
                           </div>
                         </div>
+                        <span class="help-block" ng-if="thereIsError">{{ errMessage }}</span>
                         <div class="form-group">
-                          <button class="btn btn-warning btn-lg xmd-btn-register" ng-click="register()">注册</button>
+                          <button class="btn btn-warning btn-lg xmd-btn-register" ng-click="register(nickname, email, password, passConfirm)">注册</button>
                         </div>
                       </form>
                     </div>
@@ -130,7 +131,7 @@
                       <div class="form-group">
                         <div class="input-group ht-input">
                           <span class="input-group-addon"><img src="assets/images/email.png"></span>
-                          <input type="password" class="form-control" placeholder="邮箱" aria-describedby="basic-addon2" ng-model="email">
+                          <input type="text" class="form-control" placeholder="邮箱" aria-describedby="basic-addon2" ng-model="email">
                         </div>
                       </div>
                       <div class="form-group">
@@ -138,9 +139,10 @@
                           <span class="input-group-addon"><img src="assets/images/confirm.png"></span>
                           <input type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon2" ng-model="password">
                         </div>
+                        <span class="help-block" ng-if="thereIsError">{{ errMessage }}</span>
                       </div>
                       <div class="form-group">
-                        <button class="btn btn-warning btn-lg xmd-btn-register">登录</button>
+                        <button class="btn btn-warning btn-lg xmd-btn-register" ng-click="login(email, password)">登录</button>
                       </div>
                     </form>
                   </div>

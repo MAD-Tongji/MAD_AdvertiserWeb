@@ -17,5 +17,7 @@
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
   }
+  
+  angular.module('mad').value('baseURL', 'http://localhost:4000/advertiser');
 
 })();

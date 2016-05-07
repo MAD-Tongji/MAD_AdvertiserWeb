@@ -9,7 +9,44 @@
     <!--TODO: search bar-->
     <div class="col-md-offset-1 col-md-10 panel panel-default">
       <div class="panel-body">
-      <table class="table table-hover">
+        <table st-table="advertCollection" st-safe-src="advertList" class="table table-striped">
+          <thead>
+            <tr>
+              <th>广告编号</th>
+              <th>广告标题</th>
+              <th>广告状态</th>
+              <th>创建时间</th>
+              <th>查看广告详情</th>
+              <th>修改广告</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="row in advertCollection">
+            <td>{{row.adId}}</td>
+            <td>{{row.adTitle}}</td>
+            <td class="{{row.stateClass}}">{{row.adState}}</td>
+            <td>{{row.createDate}}</td>
+            <td>
+              <button ui-sref="app.advert.detail" class="btn btn-success btn-sm">{{row.viewAd}}</button>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm"  ng-show="row.isDisableDelete">删除</button>
+              <button ui-sref="app.advert.detail" class="btn btn-warning btn-sm btn-margin" ng-show="row.isDisableModify">修改</button>
+              <button class="btn btn-danger btn-sm"  ng-show="row.isDisableCancel">取消审核</button>
+              <button class="btn btn-danger btn-sm"  ng-show="row.isDisableOff">下架</button>
+              <button class="btn btn-primary btn-sm btn-margin" ng-show="row.isDisableRe">重新审核</button>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div st-items-by-page="itemsByPage" st-pagination="" st-template="../components/pagination.custom.html"></div>
+                </td>
+            </tr>
+          </tfoot>
+        </table>
+      <!--<table class="table table-hover">
         <thead>
           <tr>
             <th>广告编号</th>
@@ -38,9 +75,9 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table>-->
         <!--TODO: 分页-->
-        <nav class="text-center">
+        <!--<nav class="text-center">
           <ul class="pagination">
             <li>
               <a href="#" aria-label="Previous">
@@ -58,7 +95,7 @@
               </a>
             </li>
           </ul>
-        </nav>
+        </nav>-->
       </div>
     </div>
   </div>

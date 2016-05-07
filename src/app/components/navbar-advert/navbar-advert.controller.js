@@ -82,7 +82,9 @@
       console.log('hide login');
     })
     
-    $scope.isLogin = false;
+    $scope.isLogin = true;//for test
+    
+    
     if ($rootScope.token !== undefined && $rootScope.token !== null) {
       $scope.isLogin = true;
     } 
@@ -185,6 +187,7 @@
       
       $rootScope.token = null;
       $scope.isLogin = false;
+      $state.go('app');
     }
     
     

@@ -7,20 +7,14 @@
     .module('mad')
     .controller('NotificationCtrl', NotificationCtrl);
 
-  function NotificationCtrl($scope) {
-
-    $scope.notificationContents = [
-      {
-        avatar : "assets/images/avatar.jpg",
-        msgTitle : '系统消息',
-        msgBody : '您的广告123242903890已经通过审核，可以进行修改'
-      },
-      {
-        avatar : "assets/images/avatar.jpg",
-        msgTitle : '系统消息',
-        msgBody : '您的广告123242903890已经通过审核，可以进行修改'
+  function NotificationCtrl($scope, AdvertiserSrv) {
+    //TODO: 消息按照时间倒序排列
+    AdvertiserSrv.getMessages().get().$promise.then(function(response) {
+      if (response.errCode === 0) {
+        console.log(response.messages);
+        $scope.notificationContents = response.messages;
       }
-    ];
+    });
   }
 
 })();

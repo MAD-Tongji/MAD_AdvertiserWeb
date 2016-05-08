@@ -5,19 +5,19 @@
     .controller('AdvertCtrl', AdvertCtrl);
 
   function AdvertCtrl($scope, AdvertisementSrv) {
-    
+
     $scope.taskList = [];
     $scope.itemsByPage = 5;
     // $scope.advertCollection = [].concat($scope.advertList);
-    
+
     AdvertisementSrv.getReleaseAdvertisement().get().$promise.then(function(response) {
       if (response.errCode === 0) {
         console.log(response.advertisement);
       }
-    })
-    
-    
-    
+    });
+
+
+
     // $scope.advertList = [{
     //   adId: '893729872939',
     //   adTitle: '家教招聘',
@@ -183,9 +183,9 @@ angular.module('mad').directive('stRatio',function(){
         return {
           link:function(scope, element, attr){
             var ratio=+(attr.stRatio);
-            
+
             element.css('width',ratio+'%');
-            
+
           }
         };
     });

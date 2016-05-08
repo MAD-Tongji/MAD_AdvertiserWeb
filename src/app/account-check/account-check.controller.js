@@ -4,7 +4,8 @@
     .module('mad')
     .controller('AccountCheckCtrl', AccountCheckCtrl);
 
-  function AccountCheckCtrl($scope, $http) {
-
+    /** @ngInject */
+  function AccountCheckCtrl($scope) {
+    
   }
 })();

@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="table-summary">
+            共<span class="red">{{totalItemCount}}</span>条数据，
+            每页<span class="red">{{stItemsByPage}}</span>条，
+            共<span class="red">{{numPages}}</span>页</div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <nav class="pull-right" ng-if="numPages &amp;&amp; pages.length >= 2">
+            <ul class="pagination">
+                <li><a ng-click="selectPage(1)">首页</a></li>
+                <li><a ng-click="selectPage(currentPage - 1)">&lt;</a></li>
+                <li ng-repeat="page in pages" ng-class="{active: page==currentPage}">
+                    <a ng-click="selectPage(page)">{{page}}</a>
+                </li>
+                <li><a ng-click="selectPage(currentPage + 1)">&gt;</a></li>
+                <li><a ng-click="selectPage(numPages)">尾页</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

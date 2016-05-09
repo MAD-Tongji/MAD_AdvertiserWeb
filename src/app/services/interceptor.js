@@ -40,12 +40,13 @@
                   // response.data.errCode === 101
                   // response.errCode = 101
                     if (response.data.errCode === 101) {
+                        console.log('errCode:' + response.data.errCode);
                         $injector.get('NoticeSrv').notice($injector.get('ErrorSrv').getError(response.data.errCode + ""));
-                        window.location.href = '#/login';
+                        window.location.href = '#/';
                     }
                     if (response.data.errCode && response.data.errCode !== 0) {
                         $injector.get('NoticeSrv').error($injector.get('ErrorSrv').getError(response.data.errCode + ""));
-                        console.log(response);
+                        console.log('errCode:' + response.data.errCode);
                     }
 
 

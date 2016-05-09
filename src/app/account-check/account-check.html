@@ -207,6 +207,16 @@
           <input class="form-control" id="" placeholder="申请结果将通过邮件发送至该邮箱">
         </div>
       </div>
+      <h4>上传营业执照</h4>
+      <hr style="margin-top:10px;">
+      
+      <!--测试-->
+      <div flow-init="{target: 'http://localhost:4000/advertiser/pic'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+      
+      <!--<div flow-init="{target: 'http://121.42.57.59:4000/advertiser/pic'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">-->
+        <span class="btn btn-default" flow-btn>上传营业执照</span>
+        <img flow-img="$flow.files[0]" />
+      </div>
       <hr style="margin-top:10px;">
       <div class="text-center">
         <button class="btn btn-primary">提交申请</button>

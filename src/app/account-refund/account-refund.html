@@ -30,6 +30,7 @@
                     <!--</div>-->
                     <div class="col-sm-8">
                       <input type="text" class="form-control" placeholder="请输入支付宝账户" ng-model="account">
+                      <span class="text-red" ng-show="thereIsError">{{errMessage}}</span>
                     </div>
                     <!--<div class="col-sm-4">-->
                       <!--<button type="submit" class="btn btn-warning">添加退款帐号</button>-->
@@ -47,7 +48,7 @@
                   </div>
                   <div class="col-sm-6">
                     <h3 for="">{{name}}<br><small>{{email}}</small></h3>
-                    <button class="btn btn-primary" id="balance-btn" ng-click="getBalance(this)">查看账户余额</button>
+                    <button class="btn btn-primary" id="balance-btn" ng-click="getBalance()">查看账户余额</button>
                     <p id="balance-label" hidden><b>余额：</b>{{balance}}</p>
                   </div>
                 </div>
@@ -98,22 +99,6 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bs-example-modal-sm" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">出错啦</h4>
-      </div>
-      <div class="modal-body">
-        {{errMessage}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade bs-example-modal-sm" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
   <div class="modal-dialog" role="document">

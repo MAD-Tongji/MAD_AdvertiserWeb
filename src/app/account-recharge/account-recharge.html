@@ -14,22 +14,35 @@
                             <div class="col-sm-7 recharge-part">
                                 <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="" class="col-sm-3 control-label">充值金额</label>
+                                        <label for="singleSelect" class="col-sm-3 control-label">充值金额</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" placeholder="请输入整数，单位为元">
+                                            <select name="singleSelect" id="singleSelect" class="form-control" ng-model="amount">
+                                                <option value="">---请选择---</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                                <option value="200">200</option>
+                                                <option value="500">500</option>
+                                            </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-sm-3 control-label">支付宝帐号</label>
+                                      <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="输入与转账相符的支付宝账户" ng-model="account">
+                                        <span class="text-red" ng-show="thereIsError">{{errMessage}}</span>
+                                      </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-10">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox">已阅读并同意<a href="">广告发布协议</a>
+                                                    <input type="checkbox" ng-model="checkbox.trueValue">已阅读并同意<a href="">广告发布协议</a>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <button type="submit" class="btn btn-success center-block btn-fluid">充值</button>
+                                        <button type="submit" class="btn btn-success center-block btn-fluid" ng-click="recharge(account, amount)">充值</button>
                                     </div>
                                 </form>
                             </div>
@@ -38,10 +51,10 @@
                                     <div class="col-sm-6">
                                         <img src="assets/images/avatar.jpg" alt="头像图片" class="img-responsive img-rounded">
                                     </div>
-                                    <div class="col-sm-6 ht-user-name">
-                                        <h3 for="">霍腾<small>(ht2016)</small></h3>
-                                        <button class="btn btn-primary" id="balance-btn" ng-click="getBalance(this)">查看账户余额</button>
-                                        <p id="balance-label" hidden><b>余额：</b>110元</p>
+                                    <div class="col-sm-6">
+                                        <h3 for="">{{name}}<br><small>{{email}}</small></h3>
+                                        <button class="btn btn-primary" id="balance-btn" ng-click="getBalance()">查看账户余额</button>
+                                        <p id="balance-label" hidden><b>余额：</b>{{balance}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -88,4 +101,42 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="qrCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">充值</h4>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <img src="{{qrCodeImage}}" class="img-responsive qrcode-img">
+          <button class="btn btn-success" ng-click="rechargeFinish(account, amount)">转账成功后点击这里</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">申请充值成功</h4>
+      </div>
+      <div class="modal-body">
+        您申请的充值信息已提交，请随时关注消息通知！
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
 </div>

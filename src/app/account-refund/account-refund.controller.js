@@ -30,14 +30,12 @@
       if (amount == null || account == null) {
         $scope.thereIsError = true;
         $scope.errMessage = '请输入完整信息';
-        $('#errorModal').modal('show');
         return;
       }
 
       if (amount < 0) {
         $scope.thereIsError = true;
         $scope.errMessage = '请输入合法退款金额';
-        $('#errorModal').modal('show');
         return;
       }
 
@@ -61,7 +59,6 @@
               $scope.thereIsError = true;
               $scope.errMessage = '未知错误:' + response.errCode;
             }
-            $('#errorModal').modal('show');
           }
         }
         , function (error) {
@@ -69,7 +66,6 @@
           console.log(error);
           $scope.thereIsError = true;
           $scope.errMessage = '未知错误:' + error;
-          $('#errorModal').modal('show');
         }
       );
     }

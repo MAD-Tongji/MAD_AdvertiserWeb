@@ -23,7 +23,7 @@
       return $resource(baseURL + '/message');
     };
 
-    this.recharege = function () {
+    this.recharge = function () {
       return $resource(baseURL + '/account/recharge');
     };
 

@@ -9,14 +9,14 @@
     $scope.advertList = [];
     $scope.itemsByPage = 10;
     $scope.advertCollection = [];//.concat($scope.advertList);
-    
+
     AdvertisementSrv.getReleaseAdvertisement().get().$promise.then(function(response) {
       if (response.errCode === 0) {
         console.log(response.advertisement);
         for (i = 0; i < response.advertisement.length; i += 1) {
           $scope.advertList.push(AdvertisementSrv.parseAdvertisement(response.advertisement[i], i));
           // console.log(response.advertisement[i]);
-          // $scope.advertCollection.push(response.advertisement[i]);  
+          // $scope.advertCollection.push(response.advertisement[i]);
       }
         // console.log($scope.advertList);
         $scope.advertCollection = [].concat($scope.advertList);
@@ -24,9 +24,6 @@
     }, function(error) {
       console.log('获取广告列表失败');
     });
-    
-    
-    
     // $scope.advertList = [{
     //   adId: '893729872939',
     //   adTitle: '家教招聘',
@@ -192,9 +189,9 @@ angular.module('mad').directive('stRatio',function(){
         return {
           link:function(scope, element, attr){
             var ratio=+(attr.stRatio);
-            
+
             element.css('width',ratio+'%');
-            
+
           }
         };
     });

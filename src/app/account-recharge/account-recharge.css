@@ -9,3 +9,26 @@
 .recharge-part {
   margin-top: 10px;
 }
+
+.text-red {
+  color: red;
+}
+
+.qrcode-img {
+  margin-left: 25%;
+  padding-left: -140px;
+}
+
+@media screen and (max-width: 600px) {
+  .qrcode-img {
+    margin-left: 15%;
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .qrcode-img {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}

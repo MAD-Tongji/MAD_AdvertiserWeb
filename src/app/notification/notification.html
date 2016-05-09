@@ -7,11 +7,18 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-md-1 col-xm-2 col-xs-3">
-            <img alt="..." src={{ntf.avatar}} class="img-responsive img-circle" >
+            <img alt="..." src="assets/images/avatar.jpg" class="img-responsive img-circle" >
           </div>
-          <div class="col-md-11 col-xm-10 col-xs-9">
-            <h4 class="media-heading">{{ntf.msgTitle}}</h4>
-            <p>{{ntf.msgBody}}</p>
+          <div class="col-md-11 col-sm-10 col-xs-9">
+            <div class="row">
+              <div class="col-xs-6">
+                <h4 class="media-heading text-left">系统消息</h4>
+              </div>
+              <div class="col-xs-6">
+                <p class="text-right">{{ntf.date}}</p>
+              </div>
+            </div>
+            <p>{{ntf.content}}</p>
           </div>
         </div>
       </div>

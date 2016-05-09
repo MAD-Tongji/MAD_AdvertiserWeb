@@ -10,7 +10,7 @@
     this.register = function () {
         return $resource(baseURL + '/signup');
     };
-    
+
     this.login = function () {
         return $resource(baseURL + '/login');
     }
@@ -32,5 +32,29 @@
       
       return data;
     }
+
+    this.getAccountDetails = function () {
+      return $resource(baseURL + '/account/detail');
+    };
+
+    this.getMessages = function () {
+      return $resource(baseURL + '/message');
+    };
+
+    this.recharge = function () {
+      return $resource(baseURL + '/account/recharge');
+    };
+
+    this.refund = function () {
+      return $resource(baseURL + '/account/refund');
+    };
+
+    this.getRechargeHistory = function () {
+      return $resource(baseURL + '/account/recharge/all');
+    };
+
+    this.getRefundHistory = function () {
+      return $resource(baseURL + '/account/refund/all');
+    };
   }
 })();

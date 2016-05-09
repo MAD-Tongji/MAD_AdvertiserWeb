@@ -24,6 +24,27 @@
     };
 
     // TODO:表格信息的填写
+    $scope.rowCollection = [];
+    AdvertiserSrv.getRefundHistory().get().$promise.then(
+      function (response) {
+        var i = 0;
+        var state = '';
+        if (response.errCode === 0) {
+          console.log('退款记录')
+          console.log(response);
+          for (i = 0; i < response.refundHistory.length; i++) {
+            // if (response.refundHistory[i].status) {
+            //   state = '';
+            // } else {
+            //   state = '';
+            // }
+            $scope.rowCollection.push(response.refundHistory[i]);
+          }
+        }
+      }, function (error) {
+        console.log('退款记录Error');
+        console.log(error);
+      });
 
     // 退款操作
     $scope.refund = function (amount, account) {

@@ -83,6 +83,27 @@
       );
     };
 
+    $scope.rowCollection = [];
     //TODO: 下方充值记录表格
+    AdvertiserSrv.getRechargeHistory().get().$promise.then(
+      function (response) {
+        var i = 0;
+        var state = '';
+        if (response.errCode === 0) {
+          console.log('充值记录')
+          console.log(response);
+          for (i = 0; i < response.rechargeHistory.length; i++) {
+            // if (response.refundHistory[i].status) {
+            //   state = '';
+            // } else {
+            //   state = '';
+            // }
+            $scope.rowCollection.push(response.rechargeHistory[i]);
+          }
+        }
+      }, function (error) {
+        console.log('充值记录Error');
+        console.log(error);
+      });
   }
 })();

@@ -65,7 +65,7 @@
         <div class="row">
           <div class="panel panel-default">
             <div class="panel-body">
-              <table class="table table-hover">
+              <table class="table table-hover" st-table="rowCollection">
                 <thead>
                 <tr>
                   <th>退款金额（元）</th>
@@ -75,19 +75,12 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                <tr>
-                  <td>1200</td>
-                  <td>ht2016</td>
-                  <td>2016-01-01</td>
-                  <td>已退款</td>
-                </tr>
-                <tr>
-                  <td>1200</td>
-                  <td>ht2016</td>
-                  <td>2016-01-01</td>
-                  <td>审核中</td>
-                </tr>
+                  <tr ng-repeat="row in rowCollection">
+                      <td>{{ row.amount }}</td>
+                      <td>{{ row.account }}</td>
+                      <td>{{ row.time }}</td>
+                      <td>{{ row.status }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

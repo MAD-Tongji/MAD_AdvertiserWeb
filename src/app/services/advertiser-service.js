@@ -13,11 +13,11 @@
 
     this.login = function () {
         return $resource(baseURL + '/login');
-    }
+    };
     
     this.checkInfo = function () {
         return $resource(baseURL + '/account/check');
-    }
+    };
     
     this.formatCheckInfo = function (data) {
       
@@ -31,7 +31,7 @@
       }
       
       return data;
-    }
+    };
 
     this.getAccountDetails = function () {
       return $resource(baseURL + '/account/detail');
@@ -55,6 +55,6 @@
 
     this.getRefundHistory = function () {
       return $resource(baseURL + '/account/refund/all');
-    };
+    };    
   }
 })();

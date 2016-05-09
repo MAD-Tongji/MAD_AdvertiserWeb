@@ -46,7 +46,7 @@
         }
       })
       .state('app.advert.detail', {
-        url: '/detail',
+        url: '/detail/:advertId',
         views: {
             'content@': {
                 templateUrl: 'app/advert-detail/advert-detail.html',

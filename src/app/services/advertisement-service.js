@@ -11,8 +11,8 @@
         return $resource(baseURL + '/advertisement/list/all');
     };
     
-    this.saveNewAdvertisementToDraft = function () {
-        return $resource(baseURL + '/');
+    this.saveDraftAdvertisement = function () {
+        return $resource(baseURL + '/advertisement/save');
     };
     
     this.getAdvertisementById = function () {
@@ -20,7 +20,7 @@
     }
     
     this.parseAdvertisement = function (advertisement, i) {
-        // advertisement.id = i;
+        advertisement.number = i;
         var state = '未知'
         
         if (advertisement.status === '001') {

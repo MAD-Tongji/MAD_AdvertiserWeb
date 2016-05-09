@@ -4,14 +4,16 @@
     .module('mad')
     .controller('AccountRechargeCtrl', AccountRechargeCtrl);
 
-  function AccountRechargeCtrl($scope, $http) {
+  function AccountRechargeCtrl($scope, $http, AdvertiserSrv) {
+    // 显示余额
     $scope.getBalance = function getBalance(button) {
-      //$(button).hide();
-      //console.log(button);
-      //console.log($('#balance-btn'));
+      //TODO: 显示余额API
       $('#balance-btn').hide();
       $('#balance-label').show();
-    }
+    };
 
+    $scope.recharge = function () {
+
+    }
   }
 })();

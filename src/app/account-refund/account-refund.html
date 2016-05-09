@@ -16,24 +16,27 @@
                   <div class="form-group">
                     <label for="" class="col-sm-3 control-label">退款金额</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" placeholder="请输入整数，单位为元">
+                      <input type="number" class="form-control" placeholder="请输入整数，单位为元" ng-model="amount">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 control-label" for="">退款账户</label>
-                    <div class="col-sm-4">
-                      <select class="form-control">
-                        <option>支付宝</option>
-                        <option>建设银行账户（5678）</option>
-                        <option>中国银行账户（1234）</option>
-                      </select>
+                    <!--<div class="col-sm-4">-->
+                      <!--<select class="form-control">-->
+                        <!--<option>支付宝</option>-->
+                        <!--<option>建设银行账户（5678）</option>-->
+                        <!--<option>中国银行账户（1234）</option>-->
+                      <!--</select>-->
+                    <!--</div>-->
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="请输入支付宝账户" ng-model="account">
                     </div>
-                    <div class="col-sm-4">
-                      <button type="submit" class="btn btn-warning">添加退款帐号</button>
-                    </div>
+                    <!--<div class="col-sm-4">-->
+                      <!--<button type="submit" class="btn btn-warning">添加退款帐号</button>-->
+                    <!--</div>-->
                   </div>
                   <div>
-                    <button type="submit" class="btn btn-success center-block btn-fluid">申请退款</button>
+                    <button type="submit" class="btn btn-success center-block btn-fluid" ng-click="refund(amount, account)">申请退款</button>
                   </div>
                 </form>
               </div>
@@ -88,6 +91,41 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">出错啦</h4>
+      </div>
+      <div class="modal-body">
+        {{errMessage}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">申请退款成功</h4>
+      </div>
+      <div class="modal-body">
+        您申请的退款信息已提交，请随时关注消息通知！
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
       </div>
     </div>
   </div>

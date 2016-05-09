@@ -9,7 +9,6 @@
     angular.module('tabsDemoDynamicHeight', ['ngMaterial']);
     AdvertiserSrv.getAccountDetails().get().$promise.then(function(response) {
       if (response.errCode === 0) {
-        console.log(response.advertiser);
         $scope.alipay = response.advertiser.alipay;
         $scope.email = response.advertiser.email;
         $scope.name = response.advertiser.name;

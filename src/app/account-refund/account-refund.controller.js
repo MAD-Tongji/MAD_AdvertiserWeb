@@ -8,20 +8,38 @@
 
     // 广告商账户信息展示
     // TODO:广告商头像
+    AdvertiserSrv.getAccountDetails().get().$promise.then(function(response) {
+      if (response.errCode === 0) {
+        $scope.alipay = response.advertiser.alipay;
+        $scope.email = response.advertiser.email;
+        $scope.name = response.advertiser.name;
+        $scope.balance = response.advertiser.balance;
+      }
+    });
+
+    // 显示余额
+    $scope.getBalance = function getBalance() {
+      $('#balance-btn').hide();
+      $('#balance-label').show();
+    };
+
+    // TODO:表格信息的填写
 
     // 退款操作
     $scope.refund = function (amount, account) {
       if (amount == null || account == null) {
         $scope.thereIsError = true;
         $scope.errMessage = '请输入完整信息';
+        $('#errorModal').modal('show');
         return;
       }
 
-      //if (amount.search(/^\+?[1-9][0-9]*$/) === -1) {
-      //  $scope.thereIsError = true;
-      //  $scope.errMessage = '请输入合法退款金额';
-      //  return;
-      //}
+      if (amount < 0) {
+        $scope.thereIsError = true;
+        $scope.errMessage = '请输入合法退款金额';
+        $('#errorModal').modal('show');
+        return;
+      }
 
       $scope.thereIsError = false;
       AdvertiserSrv.refund().save({
@@ -31,9 +49,9 @@
         function (response) {
           console.log(response);
           if (0 == response.errCode) {
-            // TODO: 弹框通知成功并刷新页面
             console.log('退款申请成功');
             $('#successModal').modal('show');
+            // TODO: 刷新下面表格内容
           } else {
             // 错误处理
             if (304 == response.errCode) {

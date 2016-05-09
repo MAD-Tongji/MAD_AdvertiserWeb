@@ -45,9 +45,10 @@
                   <div class="col-sm-6">
                     <img src="assets/images/avatar.jpg" alt="头像图片" class="img-responsive img-rounded">
                   </div>
-                  <div class="col-sm-6 ht-user-name">
-                    <h3 for="">霍腾<small>(ht2016)</small></h3>
-                    <button class="btn btn-primary">查看账户余额</button>
+                  <div class="col-sm-6">
+                    <h3 for="">{{name}}<br><small>{{email}}</small></h3>
+                    <button class="btn btn-primary" id="balance-btn" ng-click="getBalance(this)">查看账户余额</button>
+                    <p id="balance-label" hidden><b>余额：</b>{{balance}}</p>
                   </div>
                 </div>
               </div>

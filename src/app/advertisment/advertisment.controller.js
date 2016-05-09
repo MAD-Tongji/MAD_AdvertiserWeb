@@ -12,7 +12,7 @@
     
     AdvertisementSrv.getReleaseAdvertisement().get().$promise.then(function(response) {
       if (response.errCode === 0) {
-        // console.log(response.advertisement);
+        console.log(response.advertisement);
         for (i = 0; i < response.advertisement.length; i += 1) {
           $scope.advertList.push(AdvertisementSrv.parseAdvertisement(response.advertisement[i], i));
           // console.log(response.advertisement[i]);

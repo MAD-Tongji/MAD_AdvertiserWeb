@@ -20,7 +20,7 @@
     }
     
     this.parseAdvertisement = function (advertisement, i) {
-        advertisement.id = i;
+        // advertisement.id = i;
         var state = '未知'
         
         if (advertisement.status === '001') {

@@ -43,7 +43,7 @@
             <div class="row">
               <!--row begin-->
               <div class="col-sm-3 col-xs-4 checkbox" ng-repeat="district in districts">
-                <label><input type="checkbox" value="district.id" ng-checked="district.selected"/>{{district.name}}</label>
+                <label><input type="checkbox" ng-model="district.selected"/>{{district.name}}</label>
               </div>
               <!--row end-->
             </div>

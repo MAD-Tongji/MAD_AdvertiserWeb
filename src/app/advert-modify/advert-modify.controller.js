@@ -47,8 +47,8 @@
       advertId: $scope.advertId
     }).$promise.then(function (response) {
       if (0 === response.errCode) {
-        console.log('advertDetail');
-        console.log(response.advertisement);
+        //console.log('advertDetail');
+        //console.log(response.advertisement);
 
         //格式化数据
         $scope.advertisement = AdvertisementSrv.formatAdvertisement(response.advertisement);
@@ -64,14 +64,13 @@
               var selected = $scope.advertisement.broadcastLocation;
               //检查selected状况并添加key
               districts.forEach(function (district) {
-                if (selected.indexOf(district.id) == -1) {
+                if (selected.indexOf(district.id) === -1) {
                   district["selected"] = false;
                 } else {
                   district["selected"] = true;
                 }
               });
               $scope.districts = districts;
-              console.log(districts);
             }
           }, function (error) {
             console.log('失败');
@@ -87,7 +86,15 @@
 
     //暂存草稿
     $scope.saveDraft = function() {
-      console.log($scope.advertisement);
+      var selectedArray = [];
+
+      $scope.districts.forEach(function (district) {
+        if (district.selected) {
+          selectedArray.push(district.id);
+        }
+      });
+
+      //console.log($scope.advertisement);
       if (!$scope.advertisement || !$scope.advertisement.title
       || !$scope.advertisement.content || !$scope.advertisement.catalog
       || !$scope.advertisement.city || !$scope.advertisement.startDate || !$scope.advertisement.endDate) {
@@ -98,13 +105,13 @@
 
       // 格式化时间
       // 计算广告价格
-
+      // TODO: 往后端传,多加2个attribute: 1.add:新加的location 2.remove:减少的location
       AdvertisementSrv.saveDraftAdvertisement().save({
         "id": $scope.advertId,
         "title": advertisement.title,
         "content": advertisement.content,
         "catalog": advertisement.catalog,
-        "broadcastlocation":['district_name1','district_name2'],
+        "broadcastlocation": selectedArray,
         "startDate": advertisement.startDate,
         "endDate": advertisement.endDate,
         "city": advertisement.city,

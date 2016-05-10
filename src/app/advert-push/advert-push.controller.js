@@ -55,35 +55,13 @@
     }]
 
     $scope.draft.advertCity = $scope.advertCities[0].id;
-
-    // $scope.adPeriods = [{
-    //   id: 1,
-    //   adPeriod: '06:00-9:00'
-    // }, {
-    //   id: 2,
-    //   adPeriod: '09:00-12:00'
-    // }, {
-    //   id: 3,
-    //   adPeriod: '12:00-15:00'
-    // }, {
-    //   id: 4,
-    //   adPeriod: '15:00-18:00'
-    // }, {
-    //   id: 5,
-    //   adPeriod: '18:00-21:00'
-    // }, {
-    //   id: 6,
-    //   adPeriod: '21:00-24:00'
-    // }]
-
-    // $scope.adPeriod = $scope.adPeriods[0].id;
     
     $scope.saveDraft = function() {
       console.log($scope.draft);
-      if (!$scope.draft || !$scope.draft.title || !$scope.draft.content || !$scope.draft.advertType || !$scope.draft.advertCity || !$scope.draft.startDate || !$scope.draft.endDate) {
-        console.log('输入检查');
-        console.log($scope.draft.startDate.toString());
-        
+      if (!$scope.draft || !$scope.draft.title 
+      || !$scope.draft.content || !$scope.draft.advertType 
+      || !$scope.draft.advertCity || !$scope.draft.startDate || !$scope.draft.endDate) {
+        console.log('输入检查');        
         return;
       }
       var draft = $scope.draft;

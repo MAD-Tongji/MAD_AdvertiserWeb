@@ -21,7 +21,8 @@
     "angular": "~1.4.2",
     "amcharts3": "^3.20.2",
     "angular-smart-table": "^2.1.8",
-    "ng-flow": "~2"
+    "ng-file-upload": "^12.0.4",
+    "qiniu": "^1.0.15-beta"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

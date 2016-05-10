@@ -1,7 +1,7 @@
 <div class="container">
   <div>
-    <h1 class="text-center">广告标题</h1>
-    <h4 class="text-center">广告类别</h4>
+    <h1 class="text-center" ng-bind="advertisement.title">广告标题</h1>
+    <h4 class="text-center" ng-bind="advertisement.catalog">广告类别</h4>
     <hr>
   </div>
   <div class="col-md-offset-2 col-sm-8 col-sm-offset-1 col-sm-10">
@@ -9,40 +9,32 @@
       <tbody>
       <tr>
         <th>广告内容</th>
-        <td>广告内容广告内容广告内容广告内容广告内容广告内容广告内容广告内容广告内容广告内容</td>
-      </tr>
-      <tr>
-        <th>广告类别</th>
-        <td>公益广告</td>
+        <td ng-bind="advertisement.content"></td>
       </tr>
       <tr>
         <th>广告地点</th>
-        <td>黄浦区9382083</td>
+        <td ng-bind="advertisement.broadcastLocation">黄浦区9382083</td>
       </tr>
       <tr>
         <th>广告发布时段</th>
-        <td>9:00-12:00</td>
+        <td>24小时</td>
       </tr>
       <tr>
-        <th>广告播放起始日期</th>
-        <td>2016年3月31日</td>
+        <th>广告播放开始日期</th>
+        <td ng-bind="advertisement.startDate">2016年3月31日</td>
       </tr>
       <tr>
-        <th>广告结算方式</th>
-        <td>预付费</td>
+        <th>广告播放结束日期</th>
+        <td ng-bind="advertisement.endDate">2016年3月31日</td>
       </tr>
       <tr>
         <th>广告单条费用</th>
-        <td>0.22元</td>
-      </tr>
-      <tr>
-        <th>广告目前认领情况</th>
-        <td>1134人认领</td>
+        <td ng-bind="advertisement.price">0.22元</td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 <div class="text-center">
-  <button class="btn btn-primary text-right">修改信息</button>
+  <button class="btn btn-primary text-right" ui-sref="app.advert.modify({advertId: advertId})">修改信息</button>
 </div>

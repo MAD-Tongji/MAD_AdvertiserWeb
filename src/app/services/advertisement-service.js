@@ -16,7 +16,9 @@
     };
     
     this.getAdvertisementById = function () {
-        return $resource(baseURL + '/');
+        return $resource(baseURL + '/advertisement/:advertId', {
+          advertId: 'advertId'
+        });
     }
     
     this.parseAdvertisement = function (advertisement, i) {
@@ -44,6 +46,19 @@
         advertisement.state = state;
         
         return advertisement;
+    }
+    
+    this.formatAdvertisement = function (advertisement) {
+      advertisement.city = 1;
+      
+      // format date
+      var startDay = moment(advertisement.startDate).toDate();
+      var endDay = moment(advertisement.endDate).toDate();
+      
+      advertisement.startDate = startDay;
+      advertisement.endDate = endDay;
+      
+      return advertisement;
     }
   }
 })();

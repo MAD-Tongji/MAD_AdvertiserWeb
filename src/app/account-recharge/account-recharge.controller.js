@@ -39,16 +39,16 @@
         // TODO: 把图片换个地方放,这个网加载太慢
         switch (amount) {
           case "50":
-            $scope.qrCodeImage = "http://cl.ly/3v2O3L0E0y2m/50.jpg";
+            $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/50.jpg";
             break;
           case "100":
-            $scope.qrCodeImage = "http://cl.ly/0Q0e2b2l2H3e/100.jpg";
+            $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/100.jpg";
             break;
           case "200":
-            $scope.qrCodeImage = "http://cl.ly/0N12001O3o2V/200.jpg";
+            $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/200.jpg";
             break;
           case "500":
-            $scope.qrCodeImage = "http://cl.ly/2r0M2y2n0G1g/500.jpg";
+            $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/500.jpg";
             break;
           default :
         }

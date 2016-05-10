@@ -17,7 +17,7 @@
     }, function (error) {
       console.log('get advert detail error');
       console.log(error);
-    })
+    });
     
   }
 })();

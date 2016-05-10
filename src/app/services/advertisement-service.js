@@ -47,5 +47,18 @@
         
         return advertisement;
     }
+    
+    this.formatAdvertisement = function (advertisement) {
+      advertisement.city = 1;
+      
+      // format date
+      var startDay = moment(advertisement.startDate).toDate();
+      var endDay = moment(advertisement.endDate).toDate();
+      
+      advertisement.startDate = startDay;
+      advertisement.endDate = endDay;
+      
+      return advertisement;
+    }
   }
 })();

@@ -13,37 +13,37 @@
         <div class="col-sm-10">
           <div class="col-sm-4 col-xs-6">
             <label>
-              <input type="radio" name="company-type" required ng-model="detail.companyType" value="企业">
+              <input type="radio" name="company-type" ng-model="detail.companyType" value="企业">
               企业
             </label>
           </div>
           <div class="col-sm-4 col-xs-6">
             <label>
-              <input type="radio" name="company-type" required ng-model="detail.companyType" value="事业单位">
+              <input type="radio" name="company-type" ng-model="detail.companyType" value="事业单位">
               事业单位
             </label>
           </div>
           <div class="col-sm-4 col-xs-6">
             <label>
-              <input type="radio" name="company-type" required ng-model="detail.companyType" value="民办非企业单位">
+              <input type="radio" name="company-type" ng-model="detail.companyType" value="民办非企业单位">
               民办非企业单位
             </label>
           </div>
           <div class="col-sm-4 col-xs-6">
             <label>
-              <input type="radio" name="company-type" required ng-model="detail.companyType" value="个体工商户">
+              <input type="radio" name="company-type" ng-model="detail.companyType" value="个体工商户">
               个体工商户
             </label>
           </div>
           <div class="col-sm-4 col-xs-6">
             <label>
-              <input type="radio" name="company-type" required ng-model="detail.companyType" value="社会团体">
+              <input type="radio" name="company-type" ng-model="detail.companyType" value="社会团体">
               社会团体
             </label>
           </div>
           <div class="col-sm-4 col-xs-6">
             <label>
-              <input type="radio" name="company-type" required ng-model="detail.companyType" value="党政及国家机关">
+              <input type="radio" name="company-type" ng-model="detail.companyType" value="党政及国家机关">
               党政及国家机关
             </label>
           </div>
@@ -67,13 +67,13 @@
         <div class="col-sm-10">
           <div class="radio">
             <label>
-              <input type="radio" name="license-type" required ng-model="detail.licenseType" value="普通营业执照">
+              <input type="radio" name="license-type" ng-model="detail.licenseType" value="普通营业执照">
               普通营业执照（存在独立的组织机构代码证）
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="license-type" required ng-model="detail.licenseType" value="多证合一营业执照">
+              <input type="radio" name="license-type" ng-model="detail.licenseType" value="多证合一营业执照">
               多证合一营业执照（不存在独立的组织机构代码证）
             </label>
           </div>
@@ -82,26 +82,26 @@
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">企业名称</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.companyName" placeholder="企业全称，与营业执照上一致">
+          <input class="form-control" ng-model="detail.companyName" placeholder="企业全称，与营业执照上一致">
         </div>
       </div>
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">注册号</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.licenseCode" placeholder="如：111112222233333">
+          <input class="form-control" ng-model="detail.licenseCode" placeholder="如：111112222233333">
         </div>
       </div>
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">单位所在地</label>
         <div class="col-sm-5">
-          <select class="form-control" required ng-model="detail.companyLocationProvince">
+          <select class="form-control" ng-model="detail.companyLocationProvince">
             <option>请选择</option>
             <option>上海</option>
             <option>江苏</option>
           </select>
         </div>
         <div class="col-sm-5">
-          <select class="form-control" required ng-model="detail.companyLocationDistrict">
+          <select class="form-control" ng-model="detail.companyLocationDistrict">
             <option>请选择</option>
             <option>黄浦区</option>
             <option>嘉定区</option>
@@ -111,19 +111,19 @@
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">住所</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.accomodation" placeholder="">
+          <input class="form-control" ng-model="detail.accomodation" placeholder="">
         </div>
       </div>
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">经营范围</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.businessScope" placeholder="">
+          <input class="form-control" ng-model="detail.businessScope" placeholder="">
         </div>
       </div>
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">营业期限</label>
         <div class="col-sm-3">
-          <input class="form-control" type="date" required ng-model="detail.businessPeriod" required>
+          <input class="form-control" type="date" ng-model="detail.businessPeriod">
         </div>
         <div class="col-sm-7">
           <div class="checkbox">
@@ -136,7 +136,7 @@
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">组织机构代码</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.organizationCode" placeholder="如：00001111-1">
+          <input class="form-control" ng-model="detail.organizationCode" placeholder="如：00001111-1">
         </div>
       </div>
       <br>
@@ -145,7 +145,7 @@
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">法定代表人归属地</label>
         <div class="col-sm-10">
-          <select class="form-control" required ng-model="detail.legalPersonLocation">
+          <select class="form-control" ng-model="detail.legalPersonLocation">
             <option value="中国大陆">中国大陆</option>
             <option value="香港">香港</option>
             <option value="澳门">澳门</option>
@@ -157,19 +157,19 @@
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">法定代表人姓名</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.legalPersonName" placeholder="">
+          <input class="form-control" ng-model="detail.legalPersonName" placeholder="">
         </div>
       </div>
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">身份证号</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.legalPersonId" placeholder="">
+          <input class="form-control" ng-model="detail.legalPersonId" placeholder="">
         </div>
       </div>
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">证件有效期</label>
         <div class="col-sm-3">
-          <input class="form-control" type="date" required ng-model="detail.legalPersonValidDate" required>
+          <input class="form-control" type="date" ng-model="detail.legalPersonValidDate">
         </div>
         <div class="col-sm-7">
           <div class="checkbox">
@@ -184,12 +184,12 @@
         <div class="col-sm-10">
           <div class="col-xs-6 radio">
             <label>
-              <input type="radio" name="fill-person" required ng-model="detail.legalPersonIflegalperson" value="true">我是法定代表人
+              <input type="radio" name="fill-person" ng-model="detail.legalPersonIflegalperson" value="true">我是法定代表人
             </label>
           </div>
           <div class="col-xs-6 radio">
             <label>
-              <input type="radio" name="fill-person" required ng-model="detail.legalPersonIflegalperson" value="false">我是代理人
+              <input type="radio" name="fill-person" ng-model="detail.legalPersonIflegalperson" value="false">我是代理人
             </label>
           </div>
         </div>
@@ -200,18 +200,35 @@
       <div class="form-group">
         <label for="" class="col-sm-2 control-label">联系人邮箱</label>
         <div class="col-sm-10">
-          <input class="form-control" required ng-model="detail.contactEmail" placeholder="验证结果将通过邮件发送至该邮箱">
+          <input class="form-control" ng-model="detail.contactEmail" placeholder="验证结果将通过邮件发送至该邮箱">
         </div>
       </div>
       <h4>上传营业执照</h4>
       <hr style="margin-top:10px;">
       
       <!--TODO: 修改图片上传-->
-      <div flow-init="{target: 'http://121.42.57.59:4000/advertiser/pic'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+      <!--<div flow-init="{target: 'http://121.42.57.59:4000/advertiser/pic'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
         <span class="btn btn-default" flow-btn>上传营业执照</span>
         <img flow-img="$flow.files[0]" />
+      </div>-->
+      
+      <div>
+        <button id="uploadBtn" class="btn btn-default">Upload</button>
       </div>
       
+      <h4>Upload on file select</h4>
+      <button class="btn btn-default" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+              accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+          Select File</button>
+      <br><br>
+      File:
+      <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+          <span class="progress" ng-show="f.progress >= 0">
+              <div style="width:{{f.progress}}%"  
+                  ng-bind="f.progress + '%'"></div>
+          </span>
+      </div>     
+      {{errorMsg}}
       
       
       <hr style="margin-top:10px;">

@@ -37,7 +37,7 @@
         }
       })
       .state('app.advert.modify', {
-        url: '/modify',
+        url: '/modify/:advertId',
         views: {
             'content@': {
                 templateUrl: 'app/advert-modify/advert-modify.html',

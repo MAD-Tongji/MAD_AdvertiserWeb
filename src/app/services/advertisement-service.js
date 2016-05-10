@@ -16,7 +16,9 @@
     };
     
     this.getAdvertisementById = function () {
-        return $resource(baseURL + '/');
+        return $resource(baseURL + '/advertisement/:advertId', {
+          advertId: 'advertId'
+        });
     }
     
     this.parseAdvertisement = function (advertisement, i) {

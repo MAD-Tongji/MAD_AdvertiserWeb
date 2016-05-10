@@ -39,11 +39,17 @@
         </div>
         <div class="form-group">
           <fieldset class="col-sm-3 text-left">投放地点：</fieldset>
-          <div class="col-sm-4">
-            <button class="btn btn-primary" name="places" ng-model="ad.places">地图选点</button>
+          <div class="col-sm-9">
+            <div class="row">
+              <!--row begin-->
+              <div class="col-sm-3 col-xs-4 checkbox" ng-repeat="district in districts">
+                <label><input type="checkbox" value="district.id" ng-checked="district.selected"/>{{district.name}}</label>
+              </div>
+              <!--row end-->
+            </div>
           </div>
         </div>
-        
+
         <div class="form-group">
             <fieldset class="col-sm-3 text-left">开始播放日期：</fieldset>
             <div class="col-sm-9">
@@ -61,13 +67,32 @@
               <button type="button" class="btn btn-danger btn-fluit">取消</button>
             </div>
             <div class="col-xs-4">
-              <button type="button" class="btn btn-success btn-fluit">提交审核</button>
+              <button type="button" class="btn btn-success btn-fluit" ng-click="submitApply()">提交审核</button>
             </div>
             <div class="col-xs-4">
               <button type="button" class="btn btn-default btn-fluit" ng-click="saveDraft()">暂存草稿</button>
             </div>
           </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+<div class="modal fade bs-example-modal-sm" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">{{resultTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        {{resultDetail}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
     </div>
   </div>
 </div>

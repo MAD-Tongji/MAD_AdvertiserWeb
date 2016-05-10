@@ -10,21 +10,29 @@
     this.getReleaseAdvertisement = function () {
         return $resource(baseURL + '/advertisement/list/all');
     };
-    
+
     this.saveDraftAdvertisement = function () {
         return $resource(baseURL + '/advertisement/save');
     };
-    
+
     this.getAdvertisementById = function () {
         return $resource(baseURL + '/advertisement/:advertId', {
           advertId: 'advertId'
         });
-    }
-    
+    };
+
+    this.submitAdvertisementById = function () {
+        return $resource(baseURL + '/advertisement/release');
+    };
+
+    this.getDistrictsByCity = function () {
+        return $resource(baseURL + '/advertisement/district/all');
+    };
+
     this.parseAdvertisement = function (advertisement, i) {
         advertisement.number = i;
         var state = '未知'
-        
+
         if (advertisement.status === '001') {
           state = '正常投放';
           advertisement.isDisableOff = true;
@@ -44,21 +52,21 @@
           addEventListener.isDisableModify = true;
         }
         advertisement.state = state;
-        
+
         return advertisement;
-    }
-    
+    };
+
     this.formatAdvertisement = function (advertisement) {
-      advertisement.city = 1;
-      
+      advertisement.city = 'Shanghai';
+
       // format date
       var startDay = moment(advertisement.startDate).toDate();
       var endDay = moment(advertisement.endDate).toDate();
-      
+
       advertisement.startDate = startDay;
       advertisement.endDate = endDay;
-      
+
       return advertisement;
-    }
+    };
   }
 })();

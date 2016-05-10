@@ -59,11 +59,11 @@
     });
     
     //暂存草稿
-    $scope.saveadvertisement = function() {
+    $scope.saveDraft = function() {
       console.log($scope.advertisement);
       if (!$scope.advertisement || !$scope.advertisement.title 
-      || !$scope.advertisement.content || !$scope.advertisement.advertType 
-      || !$scope.advertisement.advertCity || !$scope.advertisement.startDate || !$scope.advertisement.endDate) {
+      || !$scope.advertisement.content || !$scope.advertisement.catalog 
+      || !$scope.advertisement.city || !$scope.advertisement.startDate || !$scope.advertisement.endDate) {
         console.log('输入检查');
         
         return;
@@ -73,14 +73,15 @@
       // 格式化时间
       // 计算广告价格
       
-      AdvertisementSrv.saveadvertisementAdvertisement().save({
+      AdvertisementSrv.saveDraftAdvertisement().save({
+        "id": $scope.advertId,
         "title": advertisement.title, 
         "content": advertisement.content, 
-        "catalog": advertisement.advertType, 
+        "catalog": advertisement.catalog, 
         "broadcastlocation":['district_name1','district_name2'],
         "startDate": advertisement.startDate,
         "endDate": advertisement.endDate, 
-        "city": advertisement.advertCity,
+        "city": advertisement.city,
         "price": 10.0 
       }).$promise.then(
         function (response) {

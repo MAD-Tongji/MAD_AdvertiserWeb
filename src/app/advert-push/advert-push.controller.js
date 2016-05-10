@@ -70,6 +70,7 @@
       // 计算广告价格
       
       AdvertisementSrv.saveDraftAdvertisement().save({
+        "id": null,
         "title": draft.title, 
         "content": draft.content, 
         "catalog": draft.advertType, 

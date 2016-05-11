@@ -4,6 +4,8 @@
     .module('mad')
     .controller('AccountCheckCtrl', AccountCheckCtrl);
 
+// TODO: 图片上传功能；当用户验证过时给用户提示；所有页面都需要加消息提醒
+
     /** @ngInject */
   function AccountCheckCtrl($scope, Upload, AdvertiserSrv) {
     

@@ -4,6 +4,8 @@
     .module('mad')
     .controller('AdvertCtrl', AdvertCtrl);
 
+// TODO: 修改广告的几个按钮逻辑
+
   function AdvertCtrl($scope, AdvertisementSrv, NoticeSrv) {
     var i = 0;
     $scope.advertList = [];

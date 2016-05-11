@@ -4,7 +4,14 @@
     .module('mad')
     .controller('AdvertEditCtrl', AdvertEditCtrl);
 
-  function AdvertEditCtrl($scope, $stateParams, AdvertisementSrv) {
+// TODO: 提交草稿按钮往后端传数据多加2个attribute: 1.add:新加的location 2.remove:减少的location；
+// 保存草稿接口测试；
+// 修改提交审核按钮，当没有ID时要禁用提交审核按钮；
+// 取消按钮跳转已发布广告列表；
+// 提交审核按钮添加成功和失败提示；
+// 广告价格计算公式
+
+  function AdvertEditCtrl($scope, $stateParams, $state, NoticeSrv, AdvertisementSrv) {
     $scope.advertTypes = [{
       id: 'other',
       type: '其他'
@@ -39,7 +46,8 @@
       city: '上海'
     }];
 
-    
+    var oldDistrict = [];
+    var districtArray = [];
     
     if ('' !== $stateParams.advertId) {
       // 修改广告信息
@@ -69,10 +77,12 @@
                 var selected = $scope.advertisement.broadcastLocation;
                 //检查selected状况并添加key
                 districts.forEach(function (district) {
+                  districtArray.push(district.id);
                   if (selected.indexOf(district.id) === -1) {
                     district["selected"] = false;
                   } else {
                     district["selected"] = true;
+                    oldDistrict.push(district.id);
                   }
                 });
                 $scope.districts = districts;
@@ -91,6 +101,7 @@
       // 修改标题
       $scope.pageTitle = '新增广告';
       $scope.pageDetail = '所有信息都必填';
+      $scope.advertId = null;
       
       // 初始化广告数据
       $scope.advertisement = {
@@ -107,8 +118,10 @@
                 $scope.advertisement.broadcastLocation = [];
                 //检查selected状况并添加key
                 districts.forEach(function (district) {
+                  districtArray.push(district.id);
                   district["selected"] = true;
                   $scope.advertisement.broadcastLocation.push(district.id);
+                  oldDistrict.push(district.id);
                 });
                 $scope.districts = districts;
                 
@@ -122,32 +135,53 @@
     
     //暂存草稿
     $scope.saveDraft = function() {
-      var selectedArray = [];
-
-      $scope.districts.forEach(function (district) {
-        if (district.selected) {
-          selectedArray.push(district.id);
-        }
-      });
-
       //console.log($scope.advertisement);
       if (!$scope.advertisement || !$scope.advertisement.title
       || !$scope.advertisement.content || !$scope.advertisement.catalog
       || !$scope.advertisement.city || !$scope.advertisement.startDate || !$scope.advertisement.endDate) {
         console.log('输入检查');
+        NoticeSrv.notice('请输入完整广告信息');
         return;
       }
+      
+      // 比对district
+      var adds = [];
+      var removes = [];
+      var selectedArray = [];
+      $scope.districts.forEach(function (district) {
+        if (district.selected) {
+          selectedArray.push(district.id);
+        }
+      });
+      var selectedSet = new Set(selectedArray);
+      var oldDistrictSet = new Set(oldDistrict);
+      if ($scope.advertId) {
+        districtArray.forEach(function (district) {
+          if (selectedArray.has(district) && !oldDistrictSet.has(district)) {
+            adds.push(district);
+          } else if (!selectedArray.has(district) && oldDistrictSet.has(district)) {
+            removes.push(district);
+          }
+        });
+      } else {
+        adds = selectedArray;
+      }
+      
+      
+      
+      
+      
       var advertisement = $scope.advertisement;
 
       // 格式化时间
       // 计算广告价格
-      // TODO: 往后端传,多加2个attribute: 1.add:新加的location 2.remove:减少的location
       AdvertisementSrv.saveDraftAdvertisement().save({
         "id": $scope.advertId,
         "title": advertisement.title,
         "content": advertisement.content,
         "catalog": advertisement.catalog,
-        "broadcastlocation": selectedArray,
+        "add": adds,
+        "remove": removes,
         "startDate": advertisement.startDate,
         "endDate": advertisement.endDate,
         "city": advertisement.city,
@@ -157,11 +191,14 @@
           if (response.errCode === 0) {
             console.log('保存草稿成功');
             console.log(response);
+            NoticeSrv.success('保存草稿成功');
+            $state.go('app.advert.edit', {advertId: response.id});
           }
 
         }, function (error) {
           console.log('保存草稿失败');
           console.log(error);
+          NoticeSrv.error('保存草稿失败');
         });
     };
 
@@ -196,10 +233,5 @@
           console.log(error);
         });
     };
-    
-    
-    function getDistricts() {
-      
-    }
   }
 })();

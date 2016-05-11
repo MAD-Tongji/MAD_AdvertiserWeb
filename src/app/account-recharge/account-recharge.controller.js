@@ -4,6 +4,9 @@
     .module('mad')
     .controller('AccountRechargeCtrl', AccountRechargeCtrl);
 
+// TODO: 列表的退款状态和充值状态应该显示中文
+
+
   function AccountRechargeCtrl($scope, $http, AdvertiserSrv) {
 
     $scope.checkbox = {
@@ -36,7 +39,6 @@
         $scope.thereIsError = false;
         // 根据amount显示modal图片
         console.log(amount);
-        // TODO: 把图片换个地方放,这个网加载太慢
         switch (amount) {
           case "50":
             $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/50.jpg";
@@ -84,7 +86,7 @@
     };
 
     $scope.rowCollection = [];
-    //TODO: 下方充值记录表格
+
     AdvertiserSrv.getRechargeHistory().get().$promise.then(
       function (response) {
         var i = 0;

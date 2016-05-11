@@ -2,9 +2,9 @@
   'use strict';
   angular
     .module('mad')
-    .controller('AdvertModifyCtrl', AdvertModifyCtrl);
+    .controller('AdvertEditCtrl', AdvertEditCtrl);
 
-  function AdvertModifyCtrl($scope, $stateParams, AdvertisementSrv) {
+  function AdvertEditCtrl($scope, $stateParams, AdvertisementSrv) {
     $scope.advertTypes = [{
       id: 'other',
       type: '其他'
@@ -39,51 +39,87 @@
       city: '上海'
     }];
 
+    
+    
+    if ('' !== $stateParams.advertId) {
+      // 修改广告信息
+      $scope.pageTitle = '修改广告';
+      $scope.pageDetail = '';
+      $scope.advertId = $stateParams.advertId;
 
-    $scope.advertId = $stateParams.advertId;
+      //获取广告详情
+      AdvertisementSrv.getAdvertisementById().get({
+        advertId: $scope.advertId
+      }).$promise.then(function (response) {
+        if (0 === response.errCode) {
+          //console.log('advertDetail');
+          //console.log(response.advertisement);
 
-    //获取广告详情
-    AdvertisementSrv.getAdvertisementById().get({
-      advertId: $scope.advertId
-    }).$promise.then(function (response) {
-      if (0 === response.errCode) {
-        //console.log('advertDetail');
-        //console.log(response.advertisement);
+          //格式化数据
+          $scope.advertisement = AdvertisementSrv.formatAdvertisement(response.advertisement);
 
-        //格式化数据
-        $scope.advertisement = AdvertisementSrv.formatAdvertisement(response.advertisement);
-
-        //获取商圈列表
-        console.log($scope.advertisement.city);
-        AdvertisementSrv.getDistrictsByCity().get({
-          city: $scope.advertisement.city
-        }).$promise.then(
-          function (response) {
-            if (response.errCode === 0) {
-              var districts = response.broadcastLocation;
-              var selected = $scope.advertisement.broadcastLocation;
-              //检查selected状况并添加key
-              districts.forEach(function (district) {
-                if (selected.indexOf(district.id) === -1) {
-                  district["selected"] = false;
-                } else {
+          //获取商圈列表
+          console.log($scope.advertisement.city);
+          AdvertisementSrv.getDistrictsByCity().get({
+            city: $scope.advertisement.city
+          }).$promise.then(
+            function (response) {
+              if (response.errCode === 0) {
+                var districts = response.broadcastLocation;
+                var selected = $scope.advertisement.broadcastLocation;
+                //检查selected状况并添加key
+                districts.forEach(function (district) {
+                  if (selected.indexOf(district.id) === -1) {
+                    district["selected"] = false;
+                  } else {
+                    district["selected"] = true;
+                  }
+                });
+                $scope.districts = districts;
+              }
+            }, function (error) {
+              console.log('失败');
+              console.log(error);
+            });
+        }
+      }, function (error) {
+        console.log('get advert detail error');
+        console.log(error);
+      });
+    } else {
+      // 新增广告
+      // 修改标题
+      $scope.pageTitle = '新增广告';
+      $scope.pageDetail = '所有信息都必填';
+      
+      // 初始化广告数据
+      $scope.advertisement = {
+        city: 'Shanghai',
+        catalog: 'other'
+      };
+      
+      AdvertisementSrv.getDistrictsByCity().get({
+            city: $scope.advertisement.city
+          }).$promise.then(
+            function (response) {
+              if (response.errCode === 0) {
+                var districts = response.broadcastLocation;
+                $scope.advertisement.broadcastLocation = [];
+                //检查selected状况并添加key
+                districts.forEach(function (district) {
                   district["selected"] = true;
-                }
-              });
-              $scope.districts = districts;
-            }
-          }, function (error) {
-            console.log('失败');
-            console.log(error);
-          });
-      }
-    }, function (error) {
-      console.log('get advert detail error');
-      console.log(error);
-    });
+                  $scope.advertisement.broadcastLocation.push(district.id);
+                });
+                $scope.districts = districts;
+                
+              }
+            }, function (error) {
+              console.log('失败');
+              console.log(error);
+            });
+    }
 
-
-
+    
     //暂存草稿
     $scope.saveDraft = function() {
       var selectedArray = [];
@@ -160,5 +196,10 @@
           console.log(error);
         });
     };
+    
+    
+    function getDistricts() {
+      
+    }
   }
 })();

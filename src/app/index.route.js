@@ -36,12 +36,12 @@
             }
         }
       })
-      .state('app.advert.modify', {
-        url: '/modify/:advertId',
+      .state('app.advert.edit', {
+        url: '/edit/:advertId',
         views: {
             'content@': {
-                templateUrl: 'app/advert-modify/advert-modify.html',
-                controller: 'AdvertModifyCtrl'
+                templateUrl: 'app/advert-edit/advert-edit.html',
+                controller: 'AdvertEditCtrl'
             }
         }
       })
@@ -51,15 +51,6 @@
             'content@': {
                 templateUrl: 'app/advert-detail/advert-detail.html',
                 controller: 'AdvertDetailCtrl'
-            }
-        }
-      })
-      .state('app.advert.push', {
-        url: '/push',
-        views: {
-            'content@': {
-                templateUrl: 'app/advert-push/advert-push.html',
-                controller: 'AdvertPushCtrl'
             }
         }
       })

@@ -80,3 +80,19 @@ section.jumbotron h1 {
   float: right;
   width: 100px;
 }
+
+.notice {
+  animation-name: fadeIn; /*动画名称*/
+  animation-duration: 0.5s; /*动画持续时间*/
+  animation-iteration-count: 1; /*动画次数*/
+  animation-delay: 0s; /*延迟时间*/
+}
+
+.fixed {
+  position: fixed;
+  top: 100px;
+  right:20px;
+  text-align: center;
+  z-index:9999999;
+}
+

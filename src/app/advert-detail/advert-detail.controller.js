@@ -4,6 +4,8 @@
     .module('mad')
     .controller('AdvertDetailCtrl', AdvertDetailCtrl);
 
+// TODO: 广告时间显示不太正常；广告地点应该显示城区
+
   function AdvertDetailCtrl($scope, $stateParams, AdvertisementSrv) {
     $scope.advertId = $stateParams.advertId;
     AdvertisementSrv.getAdvertisementById().get({

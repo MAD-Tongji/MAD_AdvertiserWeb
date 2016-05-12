@@ -8,7 +8,7 @@
   /** @ngInject */
   function TokenSrv() {
     return {
-          token: '3c47bc088e99c3f962f6d0f3c0dd87c65222dd15cee709f137d6c47f703be303',//
+          token: 'a96ff26be4ff8ac213636aa9c1a943b9c96e3ff4c03d87d87074d289926bf8cb',//
           setToken: function (token) {
               this.token = token;
           },

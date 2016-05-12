@@ -4,7 +4,9 @@
     .module('mad')
     .controller('AdvertCtrl', AdvertCtrl);
 
-  function AdvertCtrl($scope, AdvertisementSrv) {
+// TODO: 修改广告的几个按钮逻辑
+
+  function AdvertCtrl($scope, AdvertisementSrv, NoticeSrv) {
     var i = 0;
     $scope.advertList = [];
     $scope.itemsByPage = 10;
@@ -19,36 +21,13 @@
       }
         // console.log($scope.advertList);
         $scope.advertCollection = [].concat($scope.advertList);
+        NoticeSrv.success('获取广告列表成功');
       }
     }, function(error) {
       console.log('获取广告列表失败');
+      NoticeSrv.error('获取广告列表失败');
     });
 
     $scope.advertCollection = [].concat($scope.advertList);
   }
 })();
-
-angular.module('mad').directive('stRatio',function(){
-        return {
-          link:function(scope, element, attr){
-            var ratio=+(attr.stRatio);
-
-            element.css('width',ratio+'%');
-
-          }
-        };
-    });
-
-
-angular.module('mad')
-    .directive('pageSelect', function() {
-      return {
-        restrict: 'E',
-        template: '<input type="text" class="select-page" ng-model="inputPage" ng-change="selectPage(inputPage)">',
-        link: function(scope, element, attrs) {
-          scope.$watch('currentPage', function(c) {
-            scope.inputPage = c;
-          });
-        }
-      }
-    });

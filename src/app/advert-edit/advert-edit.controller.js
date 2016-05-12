@@ -9,7 +9,7 @@
 // 修改提交审核按钮，当没有ID时要禁用提交审核按钮；
 // 取消按钮跳转已发布广告列表；
 // 提交审核按钮添加成功和失败提示；
-// 广告价格计算公式
+// BUG: 从详情进入广告编辑页面不修改点击保存草稿页面无反应或者返回错误207
 
   function AdvertEditCtrl($scope, $stateParams, $state, NoticeSrv, AdvertisementSrv) {
     $scope.advertTypes = [{
@@ -46,10 +46,8 @@
       city: '上海'
     }];
 
-    var oldDistrict = [];
-    var districtArray = [];
-    $scope.districts = [];
-    
+    var selectedBefore = [];
+
     if ('' !== $stateParams.advertId) {
       // 修改广告信息
       $scope.pageTitle = '修改广告';
@@ -76,14 +74,13 @@
               if (response.errCode === 0) {
                 var districts = response.broadcastLocation;
                 var selected = $scope.advertisement.broadcastLocation;
+                selectedBefore = $scope.advertisement.broadcastLocation;
                 //检查selected状况并添加key
                 districts.forEach(function (district) {
-                  districtArray.push(district.id);
                   if (selected.indexOf(district.id) === -1) {
                     district["selected"] = false;
                   } else {
                     district["selected"] = true;
-                    oldDistrict.push(district.id);
                   }
                 });
                 $scope.districts = districts;
@@ -103,34 +100,35 @@
       $scope.pageTitle = '新增广告';
       $scope.pageDetail = '所有信息都必填';
       $scope.advertId = null;
-      
+
       // 初始化广告数据
       $scope.advertisement = {
         city: 'Shanghai',
         catalog: 'other'
       };
-      
+
       AdvertisementSrv.getDistrictsByCity().get({
-            city: $scope.advertisement.city
-          }).$promise.then(
-            function (response) {
-              if (response.errCode === 0) {
-                var districts = response.broadcastLocation;
-                $scope.advertisement.broadcastLocation = [];
-                //检查selected状况并添加key
-                districts.forEach(function (district) {
-                  districtArray.push(district.id);
-                  district["selected"] = true;
-                  $scope.advertisement.broadcastLocation.push(district.id);
-                  oldDistrict.push(district.id);
-                });
-                $scope.districts = districts;
-                
-              }
-            }, function (error) {
-              console.log('失败');
-              console.log(error);
-            });
+           city: $scope.advertisement.city
+         }).$promise.then(
+           function (response) {
+             if (response.errCode === 0) {
+               var districts = response.broadcastLocation;
+               $scope.advertisement.broadcastLocation = [];
+               //检查selected状况并添加key
+               districts.forEach(function (district) {
+                //  districtArray.push(district.id);
+                 
+                 district["selected"] = true;
+                 $scope.advertisement.broadcastLocation.push(district.id);
+                 selectedBefore.push(district.id);
+               });
+               $scope.districts = districts;
+      
+             }
+           }, function (error) {
+             console.log('失败');
+             console.log(error);
+           });
     }
     
     function wordCount(input) {
@@ -187,69 +185,68 @@
       console.log($scope.advertisement.price);
     };
     
+
     //暂存草稿
     $scope.saveDraft = function() {
-      //console.log($scope.advertisement);
-      if (!$scope.advertisement || !$scope.advertisement.title
-      || !$scope.advertisement.content || !$scope.advertisement.catalog
-      || !$scope.advertisement.city || !$scope.advertisement.startDate || !$scope.advertisement.endDate) {
-        console.log('输入检查');
-        NoticeSrv.notice('请输入完整广告信息');
-        return;
-      }
-      
-      // 比对district
-      var adds = [];
-      var removes = [];
+      // 获取最后被选中的行政区
       var selectedArray = [];
       $scope.districts.forEach(function (district) {
         if (district.selected) {
           selectedArray.push(district.id);
         }
       });
-      var selectedSet = new Set(selectedArray);
-      var oldDistrictSet = new Set(oldDistrict);
-      if ($scope.advertId) {
-        districtArray.forEach(function (district) {
-          if (selectedSet.has(district) && !oldDistrictSet.has(district)) {
-            adds.push(district);
-          } else if (!selectedSet.has(district) && oldDistrictSet.has(district)) {
-            removes.push(district);
-          }
-        });
-      } else {
-        adds = selectedArray;
+
+      // 获取原先选中的行政区
+      selectedBefore = $scope.advertisement.broadcastLocation;
+      // 输入检查
+      if (!$scope.advertisement || !$scope.advertisement.title
+        || !$scope.advertisement.content || !$scope.advertisement.catalog
+        || !$scope.advertisement.city || !$scope.advertisement.startDate || !$scope.advertisement.endDate) {
+        console.log('输入检查');
+        NoticeSrv.notice('请输入完整信息');
+        return;
       }
-      
-      
       var advertisement = $scope.advertisement;
 
-      // 格式化时间
-      // 计算广告价格
+      // TODO: 格式化时间
+      // TODO: 计算广告价格
+
+      // 往后端传,多加2个attribute: 1.add:新加的location 2.remove:减少的location
+      var result = compareArray(selectedBefore, selectedArray);
+      //console.log("selectedBefore:");
+      //console.log(selectedBefore);
+      //console.log("selectedArray:");
+      //console.log(selectedArray);
+      //console.log("added:");
+      //console.log(result.add);
+      //console.log("removed:");
+      //console.log(result.remove);
+      // 发送请求
       AdvertisementSrv.saveDraftAdvertisement().save({
         "id": $scope.advertId,
         "title": advertisement.title,
         "content": advertisement.content,
         "catalog": advertisement.catalog,
-        "add": adds,
-        "remove": removes,
+        "broadcastLocation": selectedArray,
         "startDate": advertisement.startDate,
         "endDate": advertisement.endDate,
         "city": advertisement.city,
-        "price": advertisement.price
+        "price": advertisement.price,
+        "add": result.add,
+        "remove": result.remove
       }).$promise.then(
         function (response) {
           if (response.errCode === 0) {
             console.log('保存草稿成功');
             console.log(response);
+            // $('#successModal').modal('show');
+            $state.go('app.advert.edit', {advertId: response.id})
             NoticeSrv.success('保存草稿成功');
-            $state.go('app.advert.edit', {advertId: response.id});
           }
 
         }, function (error) {
           console.log('保存草稿失败');
           console.log(error);
-          NoticeSrv.error('保存草稿失败');
         });
     };
 
@@ -284,5 +281,31 @@
           console.log(error);
         });
     };
+
+    /**
+     * helper: 比较两个array并返回add和remove
+     * @param before
+     * @param after
+     */
+    var compareArray = function(before,after) {
+      var add = new Array;
+      var remove = new Array;
+      // 对于每个after,如果不存在于before中,则添加入add数组
+      after.forEach(function (aft) {
+        if(before.indexOf(aft) === -1) {
+          add.push(aft);
+        }
+      });
+      // 对于每个before,如果不存在于after中,则添加入remove
+      before.forEach(function (bef) {
+        if(after.indexOf(bef) === -1) {
+          remove.push(bef);
+        }
+      });
+      return {
+        add: add,
+        remove: remove
+      }
+    }
   }
 })();

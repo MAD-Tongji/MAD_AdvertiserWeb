@@ -19,7 +19,7 @@
     toastrConfig.progressBar = true;
   }
 
-  // angular.module('mad').value('baseURL', 'http://121.42.57.59:4000/advertiser');
+  angular.module('mad').value('baseURL', 'http://121.42.57.59:4000/advertiser');
   // 测试
-  angular.module('mad').value('baseURL', 'http://localhost:4000/advertiser');
+  //angular.module('mad').value('baseURL', 'http://localhost:4000/advertiser');
 })();

@@ -1,7 +1,7 @@
 <div class="container">
   <div>
     <h1 class="text-center" ng-bind="advertisement.title">广告标题</h1>
-    <h4 class="text-center" ng-bind="advertisement.catalog">广告类别</h4>
+    <h4 class="text-center" >广告类别:{{advertisement.catalog}}</h4>
     <hr>
   </div>
   <div class="col-md-offset-2 col-sm-8 col-sm-offset-1 col-sm-10">
@@ -13,7 +13,7 @@
       </tr>
       <tr>
         <th>广告地点</th>
-        <td ng-bind="advertisement.broadcastLocation">黄浦区9382083</td>
+        <td ng-bind="locations"></td>
       </tr>
       <tr>
         <th>广告发布时段</th>
@@ -21,20 +21,24 @@
       </tr>
       <tr>
         <th>广告播放开始日期</th>
-        <td ng-bind="advertisement.startDate">2016年3月31日</td>
+        <td ng-bind="advertisement.startDate"></td>
       </tr>
       <tr>
         <th>广告播放结束日期</th>
-        <td ng-bind="advertisement.endDate">2016年3月31日</td>
+        <td ng-bind="advertisement.endDate"></td>
       </tr>
       <tr>
         <th>广告单条费用</th>
-        <td ng-bind="advertisement.price">0.22元</td>
+        <td ng-bind="advertisement.price"></td>
+      </tr>
+      <tr>
+        <th>广告状态</th>
+        <td ng-bind="advertisement.state"></td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 <div class="text-center">
-  <button class="btn btn-primary text-right" ui-sref="app.advert.edit({advertId: advertId})">修改信息</button>
+  <button class="btn btn-primary text-right" ui-sref="app.advert.edit({advertId: advertId})" ng-disabled="advertisement.status === '100'">修改信息</button>
 </div>

@@ -8,39 +8,9 @@
 // 保存草稿接口测试；BUG: 从详情进入广告编辑页面不修改点击保存草稿页面无反应或者返回错误207
 
   function AdvertEditCtrl($scope, $stateParams, $state, NoticeSrv, AdvertisementSrv) {
-    $scope.advertTypes = [{
-      id: 'other',
-      type: '其他'
-    },{
-      id: 'accommodation',
-      type: '食宿'
-    }, {
-      id: 'commodity',
-      type: '商品'
-    }, {
-      id: 'education',
-      type: '教育'
-    },{
-      id: 'entertainment',
-      type: '影视娱乐'
-    },{
-      id: 'recruit',
-      type: '招聘'
-    },{
-      id: 'service',
-      type: '服务'
-    },{
-      id: 'social',
-      type: '社交'
-    },{
-      id: 'tenancy',
-      type: '租赁'
-    }];
+    $scope.advertTypes = AdvertisementSrv.advertTypes;
 
-    $scope.advertCities = [{
-      id: 'Shanghai',
-      city: '上海'
-    }];
+    $scope.advertCities = AdvertisementSrv.advertCities;
 
     var selectedBefore = [];
 

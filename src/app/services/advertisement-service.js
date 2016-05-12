@@ -7,6 +7,56 @@
 
   /** @ngInject */
   function AdvertisementSrv($resource, baseURL) {
+    
+    this.advertTypes = [{
+      id: 'other',
+      type: '其他'
+    },{
+      id: 'accommodation',
+      type: '食宿'
+    }, {
+      id: 'commodity',
+      type: '商品'
+    }, {
+      id: 'education',
+      type: '教育'
+    },{
+      id: 'entertainment',
+      type: '影视娱乐'
+    },{
+      id: 'recruit',
+      type: '招聘'
+    },{
+      id: 'service',
+      type: '服务'
+    },{
+      id: 'social',
+      type: '社交'
+    },{
+      id: 'tenancy',
+      type: '租赁'
+    }];
+    
+    this.types = {
+      'other': '其他',
+      'accommodation': '食宿',
+      'commodity': '商品',
+      'education': '教育',
+      'entertainment': '影视娱乐',
+      'recruit': '招聘',
+      'service': '服务',
+      'social': '社交',
+      'tenancy': '租赁'
+    };
+    
+    
+    
+    this.advertCities = [{
+      id: 'Shanghai',
+      city: '上海'
+    }];
+    
+    
     this.getReleaseAdvertisement = function () {
         return $resource(baseURL + '/advertisement/list/all');
     };
@@ -32,7 +82,7 @@
     this.parseAdvertisement = function (advertisement, i) {
         advertisement.number = i;
         var state = '未知'
-
+        advertisement.catalog = this.types[advertisement.catalog];
         if (advertisement.status === '001') {
           state = '正常投放';
           advertisement.isDisableOff = true;
@@ -41,7 +91,7 @@
           advertisement.canSubmit = true;
           advertisement.isDisableModify = true;
         } else if (advertisement.status === '100') {
-          state = '未审核';
+          state = '待审核';
           advertisement.isDisableCancel = true;
           advertisement.canCancel = true;
         } else if (advertisement.status === '000') {

@@ -5,11 +5,7 @@
     .controller('AdvertEditCtrl', AdvertEditCtrl);
 
 // TODO: 提交草稿按钮往后端传数据多加2个attribute: 1.add:新加的location 2.remove:减少的location；
-// 保存草稿接口测试；
-// 修改提交审核按钮，当没有ID时要禁用提交审核按钮；
-// 取消按钮跳转已发布广告列表；
-// 提交审核按钮添加成功和失败提示；
-// BUG: 从详情进入广告编辑页面不修改点击保存草稿页面无反应或者返回错误207
+// 保存草稿接口测试；BUG: 从详情进入广告编辑页面不修改点击保存草稿页面无反应或者返回错误207
 
   function AdvertEditCtrl($scope, $stateParams, $state, NoticeSrv, AdvertisementSrv) {
     $scope.advertTypes = [{
@@ -100,11 +96,15 @@
       $scope.pageTitle = '新增广告';
       $scope.pageDetail = '所有信息都必填';
       $scope.advertId = null;
+      
+      // disabled提交按钮
+      
 
       // 初始化广告数据
       $scope.advertisement = {
         city: 'Shanghai',
-        catalog: 'other'
+        catalog: 'other',
+        price: '0'
       };
 
       AdvertisementSrv.getDistrictsByCity().get({
@@ -209,7 +209,6 @@
       var advertisement = $scope.advertisement;
 
       // TODO: 格式化时间
-      // TODO: 计算广告价格
 
       // 往后端传,多加2个attribute: 1.add:新加的location 2.remove:减少的location
       var result = compareArray(selectedBefore, selectedArray);
@@ -240,7 +239,7 @@
             console.log('保存草稿成功');
             console.log(response);
             // $('#successModal').modal('show');
-            $state.go('app.advert.edit', {advertId: response.id})
+            $state.go('app.advert.edit', {advertId: response.id});
             NoticeSrv.success('保存草稿成功');
           }
 
@@ -270,10 +269,11 @@
             $scope.resultDetail = '您的广告（编号为：'+$scope.advertId+'）已经提交至审核区，您可以在消息通知中查看审核结果，请耐心等待，谢谢！';
             $('#successModal').modal('show');
             console.log(response);
-          } else {
-            $scope.thereIsError = true;
-            $scope.errMessage = '未知错误: '+response.errCode;
           }
+          //  else {
+          //   $scope.thereIsError = true;
+          //   $scope.errMessage = '未知错误: '+response.errCode;
+          // }
         }, function (error) {
           $scope.thereIsError = true;
           $scope.errMessage = '未知错误: '+error;
@@ -281,6 +281,10 @@
           console.log(error);
         });
     };
+    
+    $('#successModal').on('hidden.bs.modal', function (e) {
+      $state.go('app.advert');
+    });
 
     /**
      * helper: 比较两个array并返回add和remove

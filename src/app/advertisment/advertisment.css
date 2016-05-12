@@ -1,12 +1,24 @@
-/*审核未通过*/
-.jx-notPass {
+/*001（正常/已通过审核）*/
+.xmd-passed {
+  color: forestgreen;
+}
+/*010 草稿*/
+.xmd-draft {
+  color: dodgerblue;
+}
+/*100 未审核*/
+.xmd-notSubmitted {
+  color: darkorange;
+}
+/*000 审核未通过*/
+.xmd-notPassed {
   color: #FF0000;
 }
-
-/*投放结束*/
-.jx-putEnd {
-  color: #CCCCCC;
+/*101 广告被下架*/
+.xmd-removed {
+  color: grey;
 }
+
 
 /*投放中*/
 .jx-putting {

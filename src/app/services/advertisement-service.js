@@ -83,8 +83,6 @@
         return $resource(baseURL + '/advertisement/remove');
     };
 
-    this.
-
     this.parseAdvertisement = function (advertisement, i) {
         advertisement.number = i;
         var state = '未知'
@@ -92,20 +90,25 @@
         if (advertisement.status === '001') {
           state = '正常投放';
           advertisement.isDisableOff = true;
+          advertisement.stateClass = "xmd-passed";
         } else if (advertisement.status === '010') {
           state = '草稿';
           advertisement.canSubmit = true;
           advertisement.isDisableModify = true;
+          advertisement.stateClass = "xmd-draft";
         } else if (advertisement.status === '100') {
           state = '待审核';
           advertisement.isDisableCancel = true;
+          advertisement.stateClass = "xmd-notSubmitted";
           advertisement.canCancel = true;
         } else if (advertisement.status === '000') {
           state = '审核未通过';
           advertisement.isDisableModify = true;
+          advertisement.stateClass = "xmd-notPassed";
         } else if (advertisement.status === '101') {
           state = '广告被下架';
           addEventListener.isDisableModify = true;
+          advertisement.stateClass = "xmd-removed";
         }
         advertisement.state = state;
 

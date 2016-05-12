@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function AdvertisementSrv($resource, baseURL) {
-    
+
     this.advertTypes = [{
       id: 'other',
       type: '其他'
@@ -36,7 +36,7 @@
       id: 'tenancy',
       type: '租赁'
     }];
-    
+
     this.types = {
       'other': '其他',
       'accommodation': '食宿',
@@ -48,15 +48,15 @@
       'social': '社交',
       'tenancy': '租赁'
     };
-    
-    
-    
+
+
+
     this.advertCities = [{
       id: 'Shanghai',
       city: '上海'
     }];
-    
-    
+
+
     this.getReleaseAdvertisement = function () {
         return $resource(baseURL + '/advertisement/list/all');
     };
@@ -78,6 +78,12 @@
     this.getDistrictsByCity = function () {
         return $resource(baseURL + '/advertisement/district/all');
     };
+
+    this.removeAdvertisementById = function () {
+        return $resource(baseURL + '/advertisement/remove');
+    };
+
+    this.
 
     this.parseAdvertisement = function (advertisement, i) {
         advertisement.number = i;
@@ -118,7 +124,7 @@
 
       return advertisement;
     };
-    
+
     this.parseDate = function (date) {
       var momentDate = moment(date);
       return momentDate.format('YYYY-MM-DD HH:mm:ss');

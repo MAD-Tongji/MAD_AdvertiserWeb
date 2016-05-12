@@ -66,9 +66,6 @@
       $scope.pageTitle = '新增广告';
       $scope.pageDetail = '所有信息都必填';
       $scope.advertId = null;
-      
-      // disabled提交按钮
-      
 
       // 初始化广告数据
       $scope.advertisement = {
@@ -179,7 +176,9 @@
       var advertisement = $scope.advertisement;
 
       // TODO: 格式化时间
-
+      var startDate = AdvertisementSrv.parseDate($scope.advertisement.startDate);
+      var endDate = AdvertisementSrv.parseDate($scope.advertisement.endDate);
+      
       // 往后端传,多加2个attribute: 1.add:新加的location 2.remove:减少的location
       var result = compareArray(selectedBefore, selectedArray);
       //console.log("selectedBefore:");
@@ -197,8 +196,8 @@
         "content": advertisement.content,
         "catalog": advertisement.catalog,
         "broadcastLocation": selectedArray,
-        "startDate": advertisement.startDate,
-        "endDate": advertisement.endDate,
+        "startDate": startDate,
+        "endDate": endDate,
         "city": advertisement.city,
         "price": advertisement.price,
         "add": result.add,

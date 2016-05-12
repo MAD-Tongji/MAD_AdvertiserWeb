@@ -118,5 +118,10 @@
 
       return advertisement;
     };
+    
+    this.parseDate = function (date) {
+      var momentDate = moment(date);
+      return momentDate.format('YYYY-MM-DD HH:mm:ss');
+    }
   }
 })();

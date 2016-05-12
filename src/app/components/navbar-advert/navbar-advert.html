@@ -16,7 +16,7 @@
         <a class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">广告管理<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li ng-class="{'active': isPush}">
-              <a ui-sref="app.advert.edit" ui-sref-opts="{reload: true}">发布新广告</a>
+              <a ui-sref="app.advert.edit({advertId: null})" ui-sref-opts="{reload: true}">发布新广告</a>
           </li>
           <li ng-class="{'active': isList}">
               <a ui-sref="app.advert" ui-sref-opts="{reload: true}">已发布广告</a>

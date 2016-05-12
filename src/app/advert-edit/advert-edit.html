@@ -21,7 +21,7 @@
         <div class="form-group">
           <fieldset class="col-sm-3 text-left">广告内容：</fieldset>
           <div class="col-sm-9">
-            <textarea class="form-control" placeholder="广告内容(不超过200字)" rows="3" name="content" ng-maxlength="200" ng-model="advertisement.content" required></textarea>
+            <textarea class="form-control" placeholder="广告内容(不超过200字)" rows="3" name="content" ng-maxlength="200" ng-model="advertisement.content" ng-change="changeContent(advertisement.content)" required></textarea>
           </div>
         </div>
         <div class="form-group">
@@ -40,10 +40,10 @@
         <div class="form-group">
           <fieldset class="col-sm-3 text-left">投放地点：</fieldset>
           <div class="col-sm-9">
-            <div class="row">
+            <div class="row" >
               <!--row begin-->
               <div class="col-sm-3 col-xs-4 checkbox" ng-repeat="district in districts">
-                <label><input type="checkbox" ng-model="district.selected"/>{{district.name}}</label>
+                <label><input type="checkbox" ng-change="changeDistrict()" ng-model="district.selected"/>{{district.name}}</label>
               </div>
               <!--row end-->
             </div>
@@ -55,16 +55,22 @@
             <div class="col-sm-9">
               <input class="form-control" type="date" ng-model="advertisement.startDate" required>
             </div>
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
             <fieldset class="col-sm-3 text-left">结束播放日期：</fieldset>
             <div class="col-sm-9">
               <input class="form-control" type="date" ng-model="advertisement.endDate" required>
             </div>
         </div>
+        <div class="form-group">
+            <fieldset class="col-sm-3 text-left">单条广告价格：</fieldset>
+            <div class="col-sm-9">
+              <label>¥ {{ advertisement.price }}</label>
+            </div>
+        </div>
         <div class="row button-group">
             <div class="col-xs-4">
-              <button type="button" class="btn btn-danger btn-fluit">取消</button>
+              <button type="button" class="btn btn-danger btn-fluit" ui-sref="app.advert">取消</button>
             </div>
             <div class="col-xs-4">
               <button type="button" class="btn btn-success btn-fluit" ng-click="submitApply()">提交审核</button>

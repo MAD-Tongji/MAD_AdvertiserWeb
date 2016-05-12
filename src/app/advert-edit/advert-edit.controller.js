@@ -48,6 +48,7 @@
 
     var oldDistrict = [];
     var districtArray = [];
+    $scope.districts = [];
     
     if ('' !== $stateParams.advertId) {
       // 修改广告信息
@@ -131,7 +132,60 @@
               console.log(error);
             });
     }
-
+    
+    function wordCount(input) {
+      var wordNum = 0;
+      var contentArray = input.split(' ');
+      var wordArray;
+      contentArray.forEach(function (word) {
+        if (word.search(/[\u4e00-\u9fa5]/g) !== -1) {
+          // 有汉字，再切一次
+          wordArray = word.split('');
+          wordNum += wordArray.length;
+        } else {
+          wordNum += 1;
+        }
+      });
+      return wordNum;
+    }
+    
+    function districtCount(districts) {
+      var num = 0;
+      districts.forEach(function (district) {
+        if (district.selected) {
+          num += 1;
+        }
+      });
+      return num;
+    }
+    
+    function calculatePrice(fontNum, districtNum) {
+      var price = (fontNum/districtNum);
+      return price.toFixed(2);
+    }
+      
+    $scope.changeContent = function (newVal) {
+      if (newVal) {
+        var wordNum = wordCount(newVal);
+        var districtNum = districtCount($scope.districts);
+        $scope.advertisement.price = calculatePrice(wordNum, districtNum);
+        console.log($scope.advertisement.price);
+      }
+    };
+    
+    $scope.changeDistrict = function () {
+      // 遍历districts
+      var num = districtCount($scope.districts);
+      if (num !== 0 && $scope.advertisement.content) {
+        // 字数或者单词数
+        var wordNum = wordCount($scope.advertisement.content);
+        
+        $scope.advertisement.price = calculatePrice(wordNum, num); 
+      } else {
+        $scope.advertisement.price = 0;
+      }
+      console.log($scope.advertisement.price);
+    };
     
     //暂存草稿
     $scope.saveDraft = function() {
@@ -157,18 +211,15 @@
       var oldDistrictSet = new Set(oldDistrict);
       if ($scope.advertId) {
         districtArray.forEach(function (district) {
-          if (selectedArray.has(district) && !oldDistrictSet.has(district)) {
+          if (selectedSet.has(district) && !oldDistrictSet.has(district)) {
             adds.push(district);
-          } else if (!selectedArray.has(district) && oldDistrictSet.has(district)) {
+          } else if (!selectedSet.has(district) && oldDistrictSet.has(district)) {
             removes.push(district);
           }
         });
       } else {
         adds = selectedArray;
       }
-      
-      
-      
       
       
       var advertisement = $scope.advertisement;
@@ -185,7 +236,7 @@
         "startDate": advertisement.startDate,
         "endDate": advertisement.endDate,
         "city": advertisement.city,
-        "price": 10.0
+        "price": advertisement.price
       }).$promise.then(
         function (response) {
           if (response.errCode === 0) {

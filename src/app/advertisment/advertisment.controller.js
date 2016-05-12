@@ -4,14 +4,13 @@
     .module('mad')
     .controller('AdvertCtrl', AdvertCtrl);
 
-// TODO: 修改广告的几个按钮逻辑
-
   function AdvertCtrl($scope, AdvertisementSrv, NoticeSrv) {
     var i = 0;
     $scope.advertList = [];
     $scope.itemsByPage = 10;
-    $scope.advertCollection = [];//.concat($scope.advertList);
+    $scope.advertCollection = [];
 
+    // 获取广告信息
     AdvertisementSrv.getReleaseAdvertisement().get().$promise.then(function(response) {
       if (response.errCode === 0) {
         // console.log(response.advertisement);
@@ -29,5 +28,9 @@
     });
 
     $scope.advertCollection = [].concat($scope.advertList);
+
+    //下架接口
+    //$scope.
+    //提交审核接口
   }
 })();

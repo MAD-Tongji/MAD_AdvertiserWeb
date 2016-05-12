@@ -7,7 +7,7 @@
 // TODO: 列表的退款状态和充值状态应该显示中文
 
 
-  function AccountRechargeCtrl($scope, $http, AdvertiserSrv) {
+  function AccountRechargeCtrl($scope, NoticeSrv, AdvertiserSrv) {
 
     $scope.checkbox = {
       trueValue : true
@@ -18,6 +18,32 @@
       $('#balance-btn').hide();
       $('#balance-label').show();
     };
+    
+    function getRecharges() {
+      $scope.rowCollection = [];
+
+      AdvertiserSrv.getRechargeHistory().get().$promise.then(
+        function (response) {
+          var i = 0;
+          var state = '';
+          if (response.errCode === 0) {
+            console.log('充值记录')
+            console.log(response);
+            for (i = 0; i < response.rechargeHistory.length; i++) {
+              // if (response.refundHistory[i].status) {
+              //   state = '';
+              // } else {
+              //   state = '';
+              // }
+              $scope.rowCollection.push(response.rechargeHistory[i]);
+            }
+          }
+        }, function (error) {
+          console.log('充值记录Error');
+          console.log(error);
+        });
+    }
+    getRecharges();
 
     // 广告商账户信息展示
     // TODO:广告商头像
@@ -32,9 +58,10 @@
 
     // 显示账户充值二维码
     $scope.recharge = function (account, amount) {
-      if(account == null || amount == null) {
-        $scope.thereIsError = true;
-        $scope.errMessage = '请输入完整信息';
+      if(!account || !amount) {
+        // $scope.thereIsError = true;
+        // $scope.errMessage = '请输入完整信息';
+        NoticeSrv.notice('请输入完整信息');
       } else {
         $scope.thereIsError = false;
         // 根据amount显示modal图片
@@ -68,44 +95,18 @@
           console.log(response);
           if (0 == response.errCode) {
             console.log('充值申请成功');
-            $('#qrCodeModal').modal('hide');
-            $('#successModal').modal('show');
-            // TODO: 刷新下面表格内容
-          } else {
-            // 错误处理
-            $scope.thereIsError = true;
-            $scope.errMessage = '未知错误:' + response.errCode;
-          }
+            // $('#qrCodeModal').modal('hide');
+            // $('#successModal').modal('show');
+            NoticeSrv.success('充值成功');
+            getRecharges();
+          } 
         }, function (error) {
           console.log('充值失败');
           console.log(error);
-          $scope.thereIsError = true;
-          $scope.errMessage = '未知错误:' + error;
-        }
-      );
+          // $scope.thereIsError = true;
+          // $scope.errMessage = '未知错误:' + error;
+          NoticeSrv.error('充值失败');
+        });
     };
-
-    $scope.rowCollection = [];
-
-    AdvertiserSrv.getRechargeHistory().get().$promise.then(
-      function (response) {
-        var i = 0;
-        var state = '';
-        if (response.errCode === 0) {
-          console.log('充值记录')
-          console.log(response);
-          for (i = 0; i < response.rechargeHistory.length; i++) {
-            // if (response.refundHistory[i].status) {
-            //   state = '';
-            // } else {
-            //   state = '';
-            // }
-            $scope.rowCollection.push(response.rechargeHistory[i]);
-          }
-        }
-      }, function (error) {
-        console.log('充值记录Error');
-        console.log(error);
-      });
   }
 })();

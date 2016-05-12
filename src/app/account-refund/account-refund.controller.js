@@ -4,7 +4,7 @@
     .module('mad')
     .controller('AccountRefundCtrl', AccountRefundCtrl);
 
-  function AccountRefundCtrl($scope, $http, AdvertiserSrv) {
+  function AccountRefundCtrl($scope, NoticeSrv, AdvertiserSrv) {
 
     // 广告商账户信息展示
     // TODO:广告商头像
@@ -23,40 +23,47 @@
       $('#balance-label').show();
     };
 
-    // TODO:表格信息的填写
-    $scope.rowCollection = [];
-    AdvertiserSrv.getRefundHistory().get().$promise.then(
-      function (response) {
-        var i = 0;
-        var state = '';
-        if (response.errCode === 0) {
-          console.log('退款记录')
-          console.log(response);
-          for (i = 0; i < response.refundHistory.length; i++) {
-            // if (response.refundHistory[i].status) {
-            //   state = '';
-            // } else {
-            //   state = '';
-            // }
-            $scope.rowCollection.push(response.refundHistory[i]);
+    function getRefunds() {
+      $scope.rowCollection = [];
+      AdvertiserSrv.getRefundHistory().get().$promise.then(
+        function (response) {
+          var i = 0;
+          var state = '';
+          if (response.errCode === 0) {
+            console.log('退款记录')
+            console.log(response);
+            for (i = 0; i < response.refundHistory.length; i++) {
+              // if (response.refundHistory[i].status) {
+              //   state = '';
+              // } else {
+              //   state = '';
+              // }
+              $scope.rowCollection.push(response.refundHistory[i]);
+            }
           }
-        }
-      }, function (error) {
-        console.log('退款记录Error');
-        console.log(error);
-      });
-
+        }, function (error) {
+          console.log('退款记录Error');
+          console.log(error);
+          NoticeSrv.error('退款申请提交失败');
+        });
+    }
+    
+    getRefunds();
+    
+    
     // 退款操作
     $scope.refund = function (amount, account) {
-      if (amount == null || account == null) {
-        $scope.thereIsError = true;
-        $scope.errMessage = '请输入完整信息';
+      if (!amount || !account) {
+        // $scope.thereIsError = true;
+        // $scope.errMessage = '';
+        NoticeSrv.notice('请输入完整信息');
         return;
       }
 
       if (amount < 0) {
-        $scope.thereIsError = true;
-        $scope.errMessage = '请输入合法退款金额';
+        // $scope.thereIsError = true;
+        // $scope.errMessage = '';
+        NoticeSrv.notice('请输入合法退款金额');
         return;
       }
 
@@ -69,24 +76,16 @@
           console.log(response);
           if (0 == response.errCode) {
             console.log('退款申请成功');
-            $('#successModal').modal('show');
-            // TODO: 刷新下面表格内容
-          } else {
-            // 错误处理
-            if (304 == response.errCode) {
-              $scope.thereIsError = true;
-              $scope.errMessage = '退款金额大于余额';
-            } else {
-              $scope.thereIsError = true;
-              $scope.errMessage = '未知错误:' + response.errCode;
-            }
-          }
-        }
-        , function (error) {
+            // $('#successModal').modal('show');
+            NoticeSrv.success('退款申请提交成功');
+            getRefunds();
+          } 
+        }, function (error) {
           console.log('退款失败');
           console.log(error);
-          $scope.thereIsError = true;
-          $scope.errMessage = '未知错误:' + error;
+          // $scope.thereIsError = true;
+          // $scope.errMessage = '未知错误:' + error;
+          NoticeSrv.error('退款申请提交失败');
         }
       );
     }

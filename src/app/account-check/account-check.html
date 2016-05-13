@@ -212,7 +212,7 @@
         <img flow-img="$flow.files[0]" />
       </div>-->
       
-      <div>
+      <!--<div>
         <button id="uploadBtn" class="btn btn-default">Upload</button>
       </div>
       
@@ -228,12 +228,12 @@
                   ng-bind="f.progress + '%'"></div>
           </span>
       </div>     
-      {{errorMsg}}
+      {{errorMsg}}-->
       
       
       <hr style="margin-top:10px;">
       <div class="text-center">
-        <button class="btn btn-primary" ng-click="submit()">提交申请</button>
+        <button class="btn btn-primary" ng-disabled="!canSubmit" ng-click="submit()">提交申请</button>
       </div>
     </form>
   </div>

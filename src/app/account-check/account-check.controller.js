@@ -87,42 +87,74 @@
     // });
 
     
-    $scope.uploadFiles = function(file, errFiles) {
-        $scope.f = file;
-        $scope.errFile = errFiles && errFiles[0];
-        if (file) {
-            file.upload = Upload.upload({
-                url: 'https://web.file.myqcloud.com/files/v1/10035512/mad/test',
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                  'Authorization': '[AKIDs7AklOniibC7X0shwTGBhLX5cVpZ5ql1,6oUOZwEh3DouaghoSZEWQcKsdDDRCUId]',
-                  'Host': 'web.file.myqcloud.com',
-                  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-                },
-                data: {
-                  op: 'upload',
-                  filecontent: file
-                }
-            });
-                              // 'Content-Length': resumeSizeResponseReader(file),
-            // web.file.myqcloud.com/files/v1/appid/[bucket_name]/[DirName]/[file_name]
+    // $scope.uploadFiles = function(file, errFiles) {
+    //     $scope.f = file;
+    //     $scope.errFile = errFiles && errFiles[0];
+    //     if (file) {
+    //         file.upload = Upload.upload({
+    //             url: 'https://web.file.myqcloud.com/files/v1/10035512/mad/test',
+    //             headers: {
+    //               'Content-Type': 'multipart/form-data',
+    //               'Authorization': '[AKIDs7AklOniibC7X0shwTGBhLX5cVpZ5ql1,6oUOZwEh3DouaghoSZEWQcKsdDDRCUId]',
+    //               'Host': 'web.file.myqcloud.com',
+    //               'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    //             },
+    //             data: {
+    //               op: 'upload',
+    //               filecontent: file
+    //             }
+    //         });
+    //                           // 'Content-Length': resumeSizeResponseReader(file),
+    //         // web.file.myqcloud.com/files/v1/appid/[bucket_name]/[DirName]/[file_name]
 
-            file.upload.then(function (response) {
-                $timeout(function () {
-                    file.result = response.data;
-                });
-            }, function (response) {
-                if (response.status > 0)
-                    $scope.errorMsg = response.status + ': ' + response.data;
-            }, function (evt) {
-                file.progress = Math.min(100, parseInt(100.0 * 
-                                         evt.loaded / evt.total));
-            });
-        }   
-    }
+    //         file.upload.then(function (response) {
+    //             $timeout(function () {
+    //                 file.result = response.data;
+    //             });
+    //         }, function (response) {
+    //             if (response.status > 0)
+    //                 $scope.errorMsg = response.status + ': ' + response.data;
+    //         }, function (evt) {
+    //             file.progress = Math.min(100, parseInt(100.0 * 
+    //                                      evt.loaded / evt.total));
+    //         });
+    //     }   
+    // }
     
     
-    
+    AdvertiserSrv.getCheckDetail().get().$promise.then(
+      function (response) {
+        console.log(response);
+        if (response.errCode === 0) {
+          if (response.detail) {
+            // 有验证信息，把数据填到页面上，disabled掉提交按钮
+            $scope.detail = {
+              companyType: response.type,
+              licenseType: 
+              companyName:
+              licenseCode:
+              companyLocationProvince:
+              companyLocationDistrict:
+              accomodation:
+              businessScope:
+              businessPeriodStr:
+              organizationCode:
+              legalPersonName:
+              legalPersonLocation:
+              legalPersonId:
+              legalPersonValidDateStr:
+              legalPersonIdIsLong:
+              legalPersonIflegalperson:
+              contactEmail:
+            };
+            $scope.canSubmit = false;
+          } else {
+            $scope.canSubmit = true; 
+          }
+        }
+      },function (error) {
+        console.log(error);
+      });
     
     
     $scope.submit = function () {

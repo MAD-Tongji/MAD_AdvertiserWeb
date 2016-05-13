@@ -64,5 +64,9 @@
     this.changeAlipay = function () {
       return $resource(baseURL + '/account/changeAlipay')
     };
+    
+    this.getCheckDetail = function () {
+      return $resource(baseURL + '/account/check/detail')
+    }
   }
 })();

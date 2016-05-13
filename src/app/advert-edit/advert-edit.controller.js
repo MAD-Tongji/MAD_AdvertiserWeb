@@ -4,8 +4,7 @@
     .module('mad')
     .controller('AdvertEditCtrl', AdvertEditCtrl);
 
-// TODO: 提交草稿按钮往后端传数据多加2个attribute: 1.add:新加的location 2.remove:减少的location；
-// 保存草稿接口测试；BUG: 从详情进入广告编辑页面不修改点击保存草稿页面无反应或者返回错误207
+// TODO: 保存草稿接口测试；BUG: 从详情进入广告编辑页面不修改点击保存草稿页面无反应或者返回错误207
 
   function AdvertEditCtrl($scope, $stateParams, $state, NoticeSrv, AdvertisementSrv) {
     $scope.advertTypes = AdvertisementSrv.advertTypes;
@@ -175,7 +174,6 @@
       }
       var advertisement = $scope.advertisement;
 
-      // TODO: 格式化时间
       var startDate = AdvertisementSrv.parseDate($scope.advertisement.startDate);
       var endDate = AdvertisementSrv.parseDate($scope.advertisement.endDate);
       

@@ -1,7 +1,12 @@
 <div class="container">
-  <div class="text-center">
+  <div class="text-center" ng-show="canSubmit">
     <h1>广告商认证</h1>
     <p>您需要通过认证才可以发表广告</p>
+    <hr>
+  </div>
+  <div class="text-center" ng-hide="canSubmit">
+    <h1>广告商认证</h1>
+    <h3>您的审核信息已提交，请不要重复提交审核信息</h3>
     <hr>
   </div>
   <div class="col-md-offset-2 col-sm-8 col-sm-offset-1 col-sm-10">
@@ -128,7 +133,7 @@
         <div class="col-sm-7">
           <div class="checkbox">
             <label>
-              <input type="checkbox" ng-model="detail.businessPeriodIsLong">长期
+              <input type="checkbox" ng-model="detail.periodIsLong">长期
             </label>
           </div>
         </div>

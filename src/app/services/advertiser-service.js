@@ -26,12 +26,38 @@
       } else {
         var day = moment(data.businessPeriod);
         data.businessPeriodStr = day.format('YYYY-MM-DD HH:mm:ss');
+        
+      }
+      
+      if (data.legalPersonIdIsLong) {
+        data.legalPersonValidDateStr = '长期';
+      } else {
         day = moment(data.legalPersonValidDate);
         data.legalPersonValidDateStr = day.format('YYYY-MM-DD HH:mm:ss');
       }
-
+      
       return data;
     };
+    
+    this.parseCheckInfo = function (data) {
+      // 单位所在地，营业期限
+      // 省份证有效期
+      // 填写人身份
+      data.companyLocationProvince = data.location.split(',')[0];
+      data.companyLocationDistrict = data.location.split(',')[1];
+      var day;
+      if (!data.legalPerson.iflongterm) {
+        day = moment(data.businessPeriod);
+        data.periodDate = day.toDate();
+      } 
+      
+      if (!data.periodIsLong) {
+        day = moment(data.legalPerson.validDate);
+        data.legalPerson.idValidDate = day.toDate();
+      }
+      
+      return data;
+    }
 
     this.getAccountDetails = function () {
       return $resource(baseURL + '/account/detail');

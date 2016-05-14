@@ -7,7 +7,7 @@
 // TODO: 图片上传功能；当用户验证过时给用户提示；所有页面都需要加消息提醒
 
     /** @ngInject */
-  function AccountCheckCtrl($scope, Upload, AdvertiserSrv) {
+  function AccountCheckCtrl($scope, $state, AdvertiserSrv, NoticeSrv) {
     
     
     // var uploader = Qiniu.uploader({
@@ -124,28 +124,32 @@
     
     AdvertiserSrv.getCheckDetail().get().$promise.then(
       function (response) {
-        console.log(response);
+        
         if (response.errCode === 0) {
           if (response.detail) {
+            // console.log(response.detail);
             // 有验证信息，把数据填到页面上，disabled掉提交按钮
+            var detail = AdvertiserSrv.parseCheckInfo(response.detail);
+            console.log(detail);
             $scope.detail = {
-              companyType: response.type,
-              licenseType: 
-              companyName:
-              licenseCode:
-              companyLocationProvince:
-              companyLocationDistrict:
-              accomodation:
-              businessScope:
-              businessPeriodStr:
-              organizationCode:
-              legalPersonName:
-              legalPersonLocation:
-              legalPersonId:
-              legalPersonValidDateStr:
-              legalPersonIdIsLong:
-              legalPersonIflegalperson:
-              contactEmail:
+              companyType: detail.type,
+              licenseType: detail.licenseType,
+              companyName:detail.companyName,
+              licenseCode:detail.licenseCode,
+              companyLocationProvince: detail.companyLocationProvince,
+              companyLocationDistrict: detail.companyLocationDistrict,
+              accomodation:detail.accomodation,
+              businessScope:detail.businessScope,
+              businessPeriod: detail.periodDate,
+              periodIsLong: detail.periodIsLong,
+              organizationCode: detail.organizationCode,
+              legalPersonName: detail.legalPerson.name,
+              legalPersonLocation: detail.legalPerson.location,
+              legalPersonId: detail.legalPerson.id,
+              legalPersonValidDate: detail.legalPerson.idValidDate,
+              legalPersonIdIsLong: detail.legalPerson.iflongterm,
+              legalPersonIflegalperson: detail.legalPerson.iflegalperson,
+              contactEmail: detail.contactEmail
             };
             $scope.canSubmit = false;
           } else {
@@ -162,6 +166,7 @@
       if (!$scope.detail || !checkInfoValid($scope.detail)) {
         console.log('输入检查');
         console.log($scope.detail);
+        NoticeSrv.notice('请输入合法信息');
         return;
       }
       
@@ -180,6 +185,7 @@
             "accomodation": detail.accomodation,
             "businessScope": detail.businessScope,
             "businessPeriod": detail.businessPeriodStr,
+            "periodIsLong": detail.periodIsLong,
             "organizationCode": detail.organizationCode,
             "legalPerson": {
                 "name": detail.legalPersonName,
@@ -196,6 +202,8 @@
           if (response.errCode === 0) {
             console.log('提交checkInfo成功');
             console.log(response);
+            NoticeSrv.success('提交验证信息成功');
+            $state.go('app.account.check', {reload: true});
           }
         }, function (error) {
           console.log('提交checkInfo失败');
@@ -205,15 +213,25 @@
   }
   
   function checkInfoValid(detail) {
-    if (detail.accomodation && detail.businessPeriod 
-      && detail.businessScope && detail.companyLocationDistrict 
+    if (detail.accomodation && detail.businessScope 
+      && detail.companyLocationDistrict 
       && detail.companyLocationProvince && detail.companyName 
       && detail.companyType && detail.contactEmail 
       && detail.legalPersonId && detail.legalPersonIflegalperson 
-      && detail.legalPersonLocation && detail.legalPersonName 
-      && detail.legalPersonValidDate && detail.licenseCode
+      && detail.legalPersonLocation && detail.legalPersonName  
+      && detail.licenseCode
       && detail.licenseType && detail.organizationCode) {
-      return true;
+        if ((detail.businessPeriod || detail.periodIsLong) && (detail.legalPersonValidDate || detail.legalPersonIdIsLong)) {
+          
+          // 不能日期和长期都填
+          if (detail.businessPeriod && detail.periodIsLong) {
+            return false;
+          }
+          if (detail.legalPersonValidDate && detail.legalPersonIdIsLong) {
+            return false;
+          }
+          return true;
+        }
     }
     return false;
   }

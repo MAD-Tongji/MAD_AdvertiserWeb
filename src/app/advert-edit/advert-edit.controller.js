@@ -4,8 +4,6 @@
     .module('mad')
     .controller('AdvertEditCtrl', AdvertEditCtrl);
 
-// TODO: 保存草稿接口测试；BUG: 从详情进入广告编辑页面不修改点击保存草稿页面无反应或者返回错误207
-
   function AdvertEditCtrl($scope, $stateParams, $state, NoticeSrv, AdvertisementSrv) {
     $scope.advertTypes = AdvertisementSrv.advertTypes;
 

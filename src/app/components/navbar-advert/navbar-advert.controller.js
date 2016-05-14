@@ -8,7 +8,7 @@
 // TODO: 完成登录注册；如果没有登录且不在登录页应该跳转首页
 
   /** @ngInject */
-  function HeaderCtrl($rootScope, $scope, $location, $state, AdvertiserSrv) {
+  function HeaderCtrl($rootScope, $scope, $location, $state, AdvertiserSrv, TokenSrv, NoticeSrv) {
     $scope.isMain = false;
 
     $scope.isManage = false;
@@ -84,18 +84,19 @@
       console.log('hide login');
     })
     
-    $scope.isLogin = true;//for test
-    
-    
-    if ($rootScope.token !== undefined && $rootScope.token !== null) {
-      $scope.isLogin = true;
-    } 
-    
+    // console.log('token:' + TokenSrv.getToken());
+    if (TokenSrv.getToken()) {
+      $rootScope.logined = true;
+      $scope.name = TokenSrv.getName();
+    } else {
+      $rootScope.logined = false;
+    }
+    $scope.isLogin = $rootScope.logined;
     $scope.thereIsError = false;
     
     // 注册
     $scope.register = function (nickname, email, pass, confirmPass) {
-      if (nickname == null || email == null || pass == null || confirmPass == null) {
+      if (!nickname || !email || !pass || !confirmPass) {
         $scope.thereIsError = true;
         $scope.errMessage = '请输入完整信息';
         return;
@@ -112,26 +113,20 @@
       }
       
       $scope.thereIsError = false;
+      var sha256Pass = sha256(pass);
+      
       AdvertiserSrv.register().save({
           username: nickname,
           email: email,
-          password: pass
+          password: sha256Pass
         }).$promise.then(
           function (response) {
             console.log(response);
-            if ('0' == response.errCode) {
+            if (0 === response.errCode) {
               console.log('注册成功');
+              NoticeSrv.success('恭喜您注册成功，请您验证邮箱后登录');
               $('#signup').modal('hide');
-            } else {
-              // 错误处理
-              if ('104' == response.errCode) {
-                $scope.thereIsError = true;
-                $scope.errMessage = '该用户邮箱已被注册';  
-              } else {
-                $scope.thereIsError = true;
-                $scope.errMessage = '未知错误:' + response.errCode;
-              }
-            }
+            } 
           }, function (error) {
             console.log('注册失败');
             console.log(error);
@@ -154,45 +149,35 @@
         return;
       }
       
+      var sha256Pass = sha256(pass);
+      // console.log('sha256:' + sha256Pass);
+      
       AdvertiserSrv.login().save({
         email: email,
-        password: pass
+        password: sha256Pass
       }).$promise.then(
         function (response) {
           console.log(response);
-          if ('0' == response.errCode) {
+          if (0 === response.errCode) {
             console.log('登录成功');
-            $rootScope.token = response.token;
+            TokenSrv.setToken(response.token);
+            TokenSrv.setName(response.name);
             $('#login').modal('hide');
             $scope.isLogin = true;
-          } else {
-            // 错误处理
-            if ('103' == response.errCode) {
-              $scope.thereIsError = true;
-              $scope.errMessage = '用户邮箱未验证';
-            } else if ('102' == response.errCode) {
-              $scope.thereIsError = true;
-              $scope.errMessage = '用户名或密码错误';
-            } else {
-              $scope.thereIsError = true;
-              $scope.errMessage = '未知错误:' + response.errCode;
-            }
+            $scope.name = response.name;
+            $rootScope.logined = true;
           }
         }, function(error) {
           console.log('登录失败');
           console.log(error);
         });
-    }
+    };
     
-    $scope.logout = function () {
-      console.log('logout');
-      
-      $rootScope.token = null;
+    $scope.logout = function () {      
+      TokenSrv.setToken('');
       $scope.isLogin = false;
-      $state.go('app');
-    }
-    
-    
-    
+      $rootScope.logined = false;
+      $state.go('app', {reload: true});
+    };
   }
 })();

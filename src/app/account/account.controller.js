@@ -5,7 +5,7 @@
     .controller('AccountCtrl', AccountCtrl);
 
   /** @ngInject */
-  function AccountCtrl($scope, $http, AdvertiserSrv) {
+  function AccountCtrl($scope, AdvertiserSrv) {
     angular.module('tabsDemoDynamicHeight', ['ngMaterial']);
     //获取账户信息
     AdvertiserSrv.getAccountDetails().get().$promise.then(function(response) {
@@ -89,9 +89,12 @@
       $scope.confirmPwdError = false;
       $scope.newPwdError = false;
       //发送请求
+      var oldPassSHA256 = sha256(oldPwd);
+      var newPassSHA256 = sha256(newPwd);
+      
       AdvertiserSrv.changePassword().save({
-        oldPwd: oldPwd,
-        newPwd: newPwd
+        oldPwd: oldPassSHA256,
+        newPwd: newPassSHA256
       }).$promise.then(
         function (response) {
           console.log(response);
@@ -99,6 +102,7 @@
             $scope.oldPwdError = false;
             $scope.resultDetail = "您的密码修改成功";
             $('#successModal').modal('show');
+            
           } else {
             // 错误处理
             if (305 == response.errCode) {

@@ -28,12 +28,12 @@
                     var $state = $injector.get('$state');
                     // 不在登陆页面且未登陆
                     // console.log($state.current.url);
-                    // if ( !$rootScope.logined && ($state.current.url !== '\\' && $state.current.url !== '^')) {
-                    //     $injector.get('$state').go('login');
-                    // }
-                    // if (!token.getToken()) {
-                    //     window.location.href = '#/login';
-                    // }
+                    if ( !$rootScope.logined && ($state.current.url !== '\\' && $state.current.url !== '^')) {
+                        $injector.get('$state').go('app');
+                    }
+                    if (!TokenSrv.getToken()) {
+                        window.location.href = '#/';
+                    }
                     return config;
                 },
                 response: function (response) {

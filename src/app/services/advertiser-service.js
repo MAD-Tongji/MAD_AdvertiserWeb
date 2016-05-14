@@ -7,6 +7,14 @@
 
   /** @ngInject */
   function AdvertiserSrv($resource, baseURL) {
+    
+    this.applyState = {
+      '01': '申请等待处理',
+      '00': '申请被拒绝',
+      '11': '申请通过'
+    }
+    
+    
     this.register = function () {
         return $resource(baseURL + '/signup');
     };

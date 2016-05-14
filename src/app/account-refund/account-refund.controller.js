@@ -33,11 +33,7 @@
             console.log('退款记录')
             console.log(response);
             for (i = 0; i < response.refundHistory.length; i++) {
-              // if (response.refundHistory[i].status) {
-              //   state = '';
-              // } else {
-              //   state = '';
-              // }
+              response.refundHistory[i].state = AdvertiserSrv.applyState[response.refundHistory[i].status];
               $scope.rowCollection.push(response.refundHistory[i]);
             }
           }

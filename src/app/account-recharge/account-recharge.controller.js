@@ -4,9 +4,6 @@
     .module('mad')
     .controller('AccountRechargeCtrl', AccountRechargeCtrl);
 
-// TODO: 列表的退款状态和充值状态应该显示中文
-
-
   function AccountRechargeCtrl($scope, NoticeSrv, AdvertiserSrv) {
 
     $scope.checkbox = {
@@ -30,11 +27,7 @@
             console.log('充值记录')
             console.log(response);
             for (i = 0; i < response.rechargeHistory.length; i++) {
-              // if (response.refundHistory[i].status) {
-              //   state = '';
-              // } else {
-              //   state = '';
-              // }
+              response.rechargeHistory[i].state = AdvertiserSrv.applyState[response.rechargeHistory[i].status];
               $scope.rowCollection.push(response.rechargeHistory[i]);
             }
           }

@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function AdvertisementSrv($resource, baseURL) {
-    
+
     this.advertTypes = [{
       id: 'other',
       type: '其他'
@@ -36,7 +36,7 @@
       id: 'tenancy',
       type: '租赁'
     }];
-    
+
     this.types = {
       'other': '其他',
       'accommodation': '食宿',
@@ -48,15 +48,15 @@
       'social': '社交',
       'tenancy': '租赁'
     };
-    
-    
-    
+
+
+
     this.advertCities = [{
       id: 'Shanghai',
       city: '上海'
     }];
-    
-    
+
+
     this.getReleaseAdvertisement = function () {
         return $resource(baseURL + '/advertisement/list/all');
     };
@@ -79,6 +79,10 @@
         return $resource(baseURL + '/advertisement/district/all');
     };
 
+    this.removeAdvertisementById = function () {
+        return $resource(baseURL + '/advertisement/remove');
+    };
+
     this.parseAdvertisement = function (advertisement, i) {
         advertisement.number = i;
         var state = '未知'
@@ -86,20 +90,25 @@
         if (advertisement.status === '001') {
           state = '正常投放';
           advertisement.isDisableOff = true;
+          advertisement.stateClass = "xmd-passed";
         } else if (advertisement.status === '010') {
           state = '草稿';
           advertisement.canSubmit = true;
           advertisement.isDisableModify = true;
+          advertisement.stateClass = "xmd-draft";
         } else if (advertisement.status === '100') {
           state = '待审核';
           advertisement.isDisableCancel = true;
+          advertisement.stateClass = "xmd-notSubmitted";
           advertisement.canCancel = true;
         } else if (advertisement.status === '000') {
           state = '审核未通过';
           advertisement.isDisableModify = true;
+          advertisement.stateClass = "xmd-notPassed";
         } else if (advertisement.status === '101') {
           state = '广告被下架';
           addEventListener.isDisableModify = true;
+          advertisement.stateClass = "xmd-removed";
         }
         advertisement.state = state;
 
@@ -118,7 +127,7 @@
 
       return advertisement;
     };
-    
+
     this.parseDate = function (date) {
       var momentDate = moment(date);
       return momentDate.format('YYYY-MM-DD HH:mm:ss');

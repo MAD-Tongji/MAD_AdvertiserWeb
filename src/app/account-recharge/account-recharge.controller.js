@@ -18,7 +18,7 @@
       $('#balance-btn').hide();
       $('#balance-label').show();
     };
-    
+
     function getRecharges() {
       $scope.rowCollection = [];
 
@@ -65,18 +65,22 @@
       } else {
         $scope.thereIsError = false;
         // 根据amount显示modal图片
-        console.log(amount);
+        console.log(typeof amount);
+        if(typeof amount === "string") {
+          amount = parseInt(amount);
+          console.log(typeof amount);
+        }
         switch (amount) {
-          case "50":
+          case 50:
             $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/50.jpg";
             break;
-          case "100":
+          case 100:
             $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/100.jpg";
             break;
-          case "200":
+          case 200:
             $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/200.jpg";
             break;
-          case "500":
+          case 500:
             $scope.qrCodeImage = "http://mad-10035512.file.myqcloud.com/500.jpg";
             break;
           default :
@@ -87,6 +91,10 @@
 
     // 充值申请
     $scope.rechargeFinish = function(account, amount) {
+      if(typeof amount === "string") {
+        amount = parseInt(amount);
+        console.log(typeof amount);
+      }
       AdvertiserSrv.recharge().save({
         recharge: amount,
         Alipay: account
@@ -99,7 +107,7 @@
             // $('#successModal').modal('show');
             NoticeSrv.success('充值成功');
             getRecharges();
-          } 
+          }
         }, function (error) {
           console.log('充值失败');
           console.log(error);

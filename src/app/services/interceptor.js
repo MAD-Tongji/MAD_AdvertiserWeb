@@ -42,7 +42,10 @@
                     if (response.data.errCode === 101) {
                         console.log('errCode:' + response.data.errCode);
                         $injector.get('NoticeSrv').notice($injector.get('ErrorSrv').getError(response.data.errCode + ""));
-                        // window.location.href = '#/';
+                        TokenSrv.setToken('');
+                        
+                        var $state = $injector.get('$state');
+                        $injector.get('$state').go('app');
                     }
                     if (response.data.errCode && response.data.errCode !== 0) {
                         $injector.get('NoticeSrv').error($injector.get('ErrorSrv').getError(response.data.errCode + ""));

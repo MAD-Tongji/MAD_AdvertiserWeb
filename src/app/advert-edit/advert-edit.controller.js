@@ -185,6 +185,9 @@
       //console.log(result.add);
       //console.log("removed:");
       //console.log(result.remove);
+      // console.log(typeof advertisement.price);
+      advertisement.price = parseFloat(advertisement.price);
+      
       // 发送请求
       AdvertisementSrv.saveDraftAdvertisement().save({
         "id": $scope.advertId,

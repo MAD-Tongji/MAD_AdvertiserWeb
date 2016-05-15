@@ -5,8 +5,6 @@
     .module('mad')
     .controller('HeaderCtrl', HeaderCtrl);
 
-// TODO: 完成登录注册；如果没有登录且不在登录页应该跳转首页
-
   /** @ngInject */
   function HeaderCtrl($rootScope, $scope, $location, $state, AdvertiserSrv, TokenSrv, NoticeSrv) {
     $scope.isMain = false;

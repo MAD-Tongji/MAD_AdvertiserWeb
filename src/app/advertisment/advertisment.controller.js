@@ -12,6 +12,10 @@
 
     // 获取广告信息
     var getReleasedAdvertisement = function () {
+      $scope.advertCollection = [];
+      $scope.advertList = [];
+      
+      
       AdvertisementSrv.getReleaseAdvertisement().get().$promise.then(function(response) {
         if (response.errCode === 0) {
           for (i = 0; i < response.advertisement.length; i += 1) {
@@ -30,6 +34,7 @@
       });
       $scope.advertCollection = [].concat($scope.advertList);
     };
+    
     getReleasedAdvertisement();
 
     //下架接口

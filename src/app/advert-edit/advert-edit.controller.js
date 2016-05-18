@@ -147,27 +147,6 @@
       }
       console.log($scope.advertisement.price);
     };
-    
-    // $scope.check = {
-    //   title: {
-    //     isEmpty: false,
-    //     isTooLong: false
-    //   }, 
-    //   content: {
-    //     isEmpty: false,
-    //     isTooLong: false
-    //   },
-    //   district: {
-    //     isEmpty: false
-    //   },
-    //   startDate: {
-    //     isEmpty: false
-    //   }, 
-    //   endDate: {
-    //     isEmpty: false,
-    //     earlyThanStart: false
-    //   }
-    // };
 
     //暂存草稿
     $scope.saveDraft = function() {

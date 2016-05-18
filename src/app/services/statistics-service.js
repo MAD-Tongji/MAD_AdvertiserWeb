@@ -15,6 +15,10 @@
         return $resource(baseURL + '/statistics/detail/:id', {
           id: 'id'
         });
-    }
+    };
+    
+    this.getStatisticsData = function() {
+        return $resource(baseURL + '/statistics/data');
+    };
   }
 })();

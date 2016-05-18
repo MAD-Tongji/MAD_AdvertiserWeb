@@ -7,7 +7,20 @@
     .module('mad')
     .controller('SatisticsAdvertMapCtrl', SatisticsAdvertMapCtrl);
 
-  function SatisticsAdvertMapCtrl($scope) {
+  function SatisticsAdvertMapCtrl($scope, StatisticsSrv) {
+      StatisticsSrv.getStatisticsData().get().$promise
+        .then(function (response) {
+            if (0 === response.errCode) {
+                console.log(response.advertisement);
+            }
+        }, function (error) {
+            console.log(error);
+        });
+      
+      
+      
+      
+      
  var advertisChartData = generateChartData();
       
     var chart = AmCharts.makeChart("chartdiv", {

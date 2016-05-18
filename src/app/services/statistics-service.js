@@ -10,5 +10,11 @@
     this.getAdvertisementStatistics = function () {
         return $resource(baseURL + '/statistics/all');
     };
+    
+    this.getAdvertDetail = function () {
+        return $resource(baseURL + '/statistics/detail/:id', {
+          id: 'id'
+        });
+    }
   }
 })();

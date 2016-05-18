@@ -103,8 +103,8 @@
           url: '/advertis',
           views: {
               'content@': {
-                  templateUrl: 'app/statistics-detail/statistics-detail.html',
-                  controller: 'SatisticsDetailCtrl'
+                  templateUrl: 'app/statistics-advertis/statistics-advertis.html',
+                  controller: 'SatisticsAdvertMapCtrl'
               }
           }
       })
@@ -112,8 +112,8 @@
           url: '/detail/:advertId',
           views: {
               'content@': {
-                  templateUrl: 'app/statistics-advertis/statistics-advertis.html',
-                  controller: 'SatisticsAdvertMapCtrl'
+                  templateUrl: 'app/statistics-detail/statistics-detail.html',
+                  controller: 'SatisticsDetailCtrl'
               }
           }
       })

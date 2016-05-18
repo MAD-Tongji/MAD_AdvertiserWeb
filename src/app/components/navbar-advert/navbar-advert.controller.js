@@ -69,14 +69,14 @@
       $scope.isMsg = true;
     }
     
-    $('#signup').on('hidden.bs.modal', function (e) {
+    $('#signup').on('hide.bs.modal', function (e) {
       $scope.thereIsError = false;
       $scope.errMessage = '';
       console.log('hide signup');
       
     });
     
-    $('#login').on('hidden.bs.modal', function (e) {
+    $('#login').on('hide.bs.modal', function (e) {
       $scope.thereIsError = false;
       $scope.errMessage = '';
       console.log('hide login');
@@ -99,6 +99,11 @@
         $scope.errMessage = '请输入完整信息';
         return;
       }
+      if (pass.length < 9) {
+        $scope.thereIsError = true;
+        $scope.errMessage = '密码至少要大于8位';
+        return;
+      }
       if (pass !== confirmPass) {
         $scope.thereIsError = true;
         $scope.errMessage = '两次输入密码不一致';
@@ -109,6 +114,7 @@
         $scope.errMessage = '请输入合法邮箱';
         return;
       }
+      
       
       $scope.thereIsError = false;
       var sha256Pass = sha256(pass);
@@ -136,7 +142,9 @@
     
     // 登录
     $scope.login = function (email, pass) {
-      if (email == null || pass == null) {
+      $scope.thereIsError = false;
+      
+      if (!email || !pass) {
         $scope.thereIsError = true;
         $scope.errMessage = '请输入用户名和密码';
         return;
@@ -155,7 +163,7 @@
         password: sha256Pass
       }).$promise.then(
         function (response) {
-          console.log(response);
+          console.log(response.errCode);
           if (0 === response.errCode) {
             console.log('登录成功');
             TokenSrv.setToken(response.token);

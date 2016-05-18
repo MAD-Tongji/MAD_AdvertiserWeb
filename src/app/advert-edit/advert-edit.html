@@ -5,27 +5,35 @@
       <p class="text-center" ng-bind="pageDetail"></p>
       <hr>
 
-      <form class="form-horizontal panel-body" role="form" name="form" novalidate="novalidate">
+      <form class="form-horizontal panel-body" role="form" name="advertForm" novalidate="novalidate">
         <div class="form-group">
-          <fieldset class="col-sm-3 text-left">广告编号：</fieldset>
+          <label class="col-sm-3 control-label">广告编号：</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" placeholder="(不可修改)" readonly="true" ng-model="advertId">
           </div>
         </div>
         <div class="form-group">
-          <fieldset class="col-sm-3 text-left">广告标题：</fieldset>
+          <label class="col-sm-3 control-label">广告标题：</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" placeholder="广告标题(不超过20字)" name="title" ng-maxlength="20" ng-model="advertisement.title" required>
+            <input type="text" class="form-control" placeholder="广告标题(不超过20字)" name="title" ng-model="advertisement.title" required>
+            <span style="color:red">
+              <span ng-show="check.title.isEmpty">广告名称是必须的。</span>
+              <span ng-show="check.title.isTooLong">广告标题不能超过20字</span>
+            </span>
           </div>
         </div>
         <div class="form-group">
-          <fieldset class="col-sm-3 text-left">广告内容：</fieldset>
+          <label class="col-sm-3 control-label">广告内容：</label>
           <div class="col-sm-9">
-            <textarea class="form-control" placeholder="广告内容(不超过200字)" rows="3" name="content" ng-maxlength="200" ng-model="advertisement.content" ng-change="changeContent(advertisement.content)" required></textarea>
+            <textarea class="form-control" placeholder="广告内容(不超过60字)" rows="3" name="content" ng-model="advertisement.content" ng-change="changeContent(advertisement.content)" required></textarea>
+            <span style="color:red">
+              <span ng-show="check.content.isEmpty">广告内容是必须的。</span>
+              <span ng-show="check.content.isTooLong">广告内容不能超过60字</span>
+            </span>
           </div>
         </div>
         <div class="form-group">
-          <fieldset class="col-sm-3 text-left">广告类别：</fieldset>
+          <label class="col-sm-3 control-label">广告类别：</label>
           <div class="col-sm-4">
             <select class="form-control" name="adType" ng-model="advertisement.catalog" ng-options="m.id as m.type for m in advertTypes" ng-disabled="advertId !== null">
             </select>
@@ -35,40 +43,46 @@
           </div>
         </div>
         <div class="form-group">
-          <fieldset class="col-sm-3 text-left">面向城市：</fieldset>
+          <label class="col-sm-3 control-label">面向城市：</label>
           <div class="col-sm-4">
             <select class="form-control" name="adCity" ng-model="advertisement.city" ng-options="c.id as c.city for c in advertCities"></select>
           </div>
         </div>
         <div class="form-group">
-          <fieldset class="col-sm-3 text-left">投放地点：</fieldset>
+          <label class="col-sm-3 control-label">投放地点：</label>
           <div class="col-sm-9">
             <div class="row" >
-              <!--row begin-->
               <div class="col-sm-3 col-xs-4 checkbox" ng-repeat="district in districts">
                 <label><input type="checkbox" ng-change="changeDistrict()" ng-model="district.selected"/>{{district.name}}</label>
               </div>
-              <!--row end-->
             </div>
+            <span style="color:red" ng-show="check.district.isEmpty">广告投放地点是必须的。</span>
           </div>
         </div>
 
         <div class="form-group">
-            <fieldset class="col-sm-3 text-left">开始播放日期：</fieldset>
+            <label class="col-sm-3 control-label">开始播放日期：</label>
             <div class="col-sm-9">
-              <input class="form-control" type="date" ng-model="advertisement.startDate" required>
+              <input class="form-control" type="date" name="startDate" ng-model="advertisement.startDate" required>
+              <span style="color:red">
+                <span ng-show="check.startDate.isEmpty">广告开始时间是必须的。</span>
+              </span>
             </div>
         </div>
         <div class="form-group">
-            <fieldset class="col-sm-3 text-left">结束播放日期：</fieldset>
+            <label class="col-sm-3 control-label">结束播放日期：</label>
             <div class="col-sm-9">
-              <input class="form-control" type="date" ng-model="advertisement.endDate" required>
+              <input class="form-control" type="date" name="endDate" ng-model="advertisement.endDate" required>
+              <span style="color:red">
+                <span ng-show="check.endDate.isEmpty">广告结束时间是必须的。</span>
+                <span ng-show="check.endDate.earlyThanStart">广告结束时间不能早于开始时间</span>
+              </span>              
             </div>
         </div>
         <div class="form-group">
-            <fieldset class="col-sm-3 text-left">单条广告价格：</fieldset>
+            <label class="col-sm-3 control-label">单条广告价格：</label>
             <div class="col-sm-9">
-              <label>{{ advertisement.price }} MAD币</label>
+              <strong><p class="form-control-static">{{ advertisement.price }} MAD币</p></strong>
             </div>
         </div>
         <div class="row button-group">

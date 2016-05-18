@@ -6,7 +6,6 @@
 
   function AdvertEditCtrl($scope, $stateParams, $state, NoticeSrv, AdvertisementSrv) {
     $scope.advertTypes = AdvertisementSrv.advertTypes;
-
     $scope.advertCities = AdvertisementSrv.advertCities;
 
     var selectedBefore = [];
@@ -149,9 +148,50 @@
       console.log($scope.advertisement.price);
     };
     
+    // $scope.check = {
+    //   title: {
+    //     isEmpty: false,
+    //     isTooLong: false
+    //   }, 
+    //   content: {
+    //     isEmpty: false,
+    //     isTooLong: false
+    //   },
+    //   district: {
+    //     isEmpty: false
+    //   },
+    //   startDate: {
+    //     isEmpty: false
+    //   }, 
+    //   endDate: {
+    //     isEmpty: false,
+    //     earlyThanStart: false
+    //   }
+    // };
 
     //暂存草稿
     $scope.saveDraft = function() {
+      $scope.check = {
+        title: {
+          isEmpty: false,
+          isTooLong: false
+        }, 
+        content: {
+          isEmpty: false,
+          isTooLong: false
+        },
+        district: {
+          isEmpty: false
+        },
+        startDate: {
+          isEmpty: false
+        }, 
+        endDate: {
+          isEmpty: false,
+          earlyThanStart: false
+        }
+      };
+      
       // 获取最后被选中的行政区
       var selectedArray = [];
       $scope.districts.forEach(function (district) {
@@ -159,17 +199,84 @@
           selectedArray.push(district.id);
         }
       });
+      
+      // 输入检查
+      if ($scope.advertisement) {
+        // title
+        if (!$scope.advertisement.title) {
+          $scope.check.title.isEmpty = true;
+          return;
+        } else {
+          if (wordCount($scope.advertisement.title) > 20) {
+            $scope.check.title.isTooLong = true;
+            return;
+          }
+        }
+        
+        // content
+        if (!$scope.advertisement.content) {
+          $scope.check.content.isEmpty = true;
+          return;
+        } else {
+          if (wordCount($scope.advertisement.content) > 60) {
+            $scope.check.content.isTooLong = true;
+            return;
+          }
+        }
+        
+        // district
+        if (selectedArray.length < 1) {
+          $scope.check.district.isEmpty = true;
+          return;
+        }
+        
+        // startDate
+        if (!$scope.advertisement.startDate) {
+          $scope.check.startDate.isEmpty = true;
+          return;
+        }
+        
+        // endDate
+        if (!$scope.advertisement.endDate) {
+          $scope.check.endDate.isEmpty = true;
+          return;
+        } else {
+          if ($scope.advertisement.startDate.getTime() > $scope.advertisement.endDate.getTime()) {
+            $scope.check.endDate.earlyThanStart = true;
+            return;
+          }
+        }        
+      } else {
+        // 全部填true
+        $scope.check = {
+          title: {
+            isEmpty: true,
+            isTooLong: true
+          }, 
+          content: {
+            isEmpty: true,
+            isTooLong: true
+          },
+          district: {
+            isEmpty: true
+          },
+          startDate: {
+            isEmpty: true
+          }, 
+          endDate: {
+            isEmpty: true,
+            earlyThanStart: true
+          }
+        };
+        
+        return;
+      }
+      
+       
 
       // 获取原先选中的行政区
       selectedBefore = $scope.advertisement.broadcastLocation;
-      // 输入检查
-      if (!$scope.advertisement || !$scope.advertisement.title
-        || !$scope.advertisement.content || !$scope.advertisement.catalog
-        || !$scope.advertisement.city || !$scope.advertisement.startDate || !$scope.advertisement.endDate) {
-        console.log('输入检查');
-        NoticeSrv.notice('请输入完整信息');
-        return;
-      }
+      
       var advertisement = $scope.advertisement;
 
       var startDate = AdvertisementSrv.parseDate($scope.advertisement.startDate);

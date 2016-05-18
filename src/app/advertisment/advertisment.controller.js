@@ -15,13 +15,10 @@
         if (response.errCode === 0) {
           for (i = 0; i < response.advertisement.length; i += 1) {
             var advert = response.advertisement[i];
-            // console.log("advert:");
-            // console.log(advert);
             $scope.advertList.push(AdvertisementSrv.parseAdvertisement(advert, i));
           }
           // console.log($scope.advertList);
           $scope.advertCollection = [].concat($scope.advertList);
-          NoticeSrv.success('获取广告列表成功');
         }
       }, function(error) {
         console.log('获取广告列表失败');
@@ -31,7 +28,6 @@
 
     //下架接口
     $scope.removeAdvertisementById = function (id) {
-      //发送请求
       AdvertisementSrv.removeAdvertisementById().save({
         id: id
       }).$promise.then(
@@ -47,8 +43,7 @@
         }
       );
     };
-    
-    
+
     
     //提交审核接口
     $scope.submitAdvertisementById = function (id) {
@@ -66,7 +61,8 @@
           console.log(response);
           if (0 == response.errCode) {
             NoticeSrv.success("广告提交审核成功");
-            getReleasedAdvertisement();
+
+            $state.reload('app.advert');
           } else {
             // 错误处理
             NoticeSrv.notice('未知错误:' + response.errCode);

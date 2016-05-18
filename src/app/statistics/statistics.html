@@ -15,7 +15,7 @@
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <table class="table table-hover">
+      <table st-table="advertCollection" st-safe-src="advertList" class="table table-hover">
         <thead>
         <tr>
           <th>广告编号</th>
@@ -27,9 +27,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="tableColumn in tableContent">
-          <td ng-repeat="x in tableColumn track by $index">{{x}}</td>
-          <td><button class="btn btn-sm btn-success" ui-sref="app.statistics.advertis">查看详情</button></td>
+        <tr ng-repeat="advert in advertCollection">
+          <td>{{ advert.id }}</td>
+          <td>{{ advert.title }}</td>
+          <td>{{ advert.startDate }}</td>
+          <td>{{ advert.broadcastSum }}</td>
+          <td>{{ advert.priceSum }}</td>
+          <td><button class="btn btn-sm btn-success" ui-sref="app.statistics.detail({advertId: advert.id})">查看详情</button></td>
         </tr>
         </tbody>
       </table>

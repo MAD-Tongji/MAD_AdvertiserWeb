@@ -99,8 +99,8 @@
               }
           }
       })
-      .state('app.statistics.detail', {
-          url: '/detail',
+      .state('app.statistics.advertis', {
+          url: '/advertis',
           views: {
               'content@': {
                   templateUrl: 'app/statistics-detail/statistics-detail.html',
@@ -108,8 +108,8 @@
               }
           }
       })
-      .state('app.statistics.advertis', {
-          url: '/advertis',
+      .state('app.statistics.detail', {
+          url: '/detail/:advertId',
           views: {
               'content@': {
                   templateUrl: 'app/statistics-advertis/statistics-advertis.html',

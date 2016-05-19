@@ -29,10 +29,11 @@
                     // 不在登陆页面且未登陆
                     // console.log($state.current.url);
                     if ( !$rootScope.logined && ($state.current.url !== '\\' && $state.current.url !== '^')) {
-                        $injector.get('$state').go('app');
+                        $injector.get('$state').go('app', {reload: true});
                     }
                     if (!TokenSrv.getToken()) {
                         window.location.href = '#/';
+                        $injector.get('$state').go('app', {reload: true});
                     }
                     return config;
                 },
@@ -43,7 +44,7 @@
                         console.log('errCode:' + response.data.errCode);
                         $injector.get('NoticeSrv').notice($injector.get('ErrorSrv').getError(response.data.errCode + ""));
                         TokenSrv.setToken('');
-                        
+
                         var $state = $injector.get('$state');
                         $injector.get('$state').go('app');
                     }
@@ -59,5 +60,3 @@
             return myInterceptor;
   }
 })();
-
-    

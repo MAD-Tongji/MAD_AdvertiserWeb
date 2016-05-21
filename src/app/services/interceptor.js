@@ -32,8 +32,7 @@
                         $injector.get('$state').go('app', {reload: true});
                     }
                     if (!TokenSrv.getToken()) {
-                        window.location.href = '#/';
-                        $injector.get('$state').go('app', {reload: true});
+                        window.location.replace('#/');
                     }
                     return config;
                 },

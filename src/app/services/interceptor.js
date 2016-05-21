@@ -32,7 +32,7 @@
                         $injector.get('$state').go('app');
                     }
                     if (!TokenSrv.getToken()) {
-                        window.location.href = '#/';
+                        window.location.replace('#/');
                     }
                     return config;
                 },
@@ -43,7 +43,7 @@
                         console.log('errCode:' + response.data.errCode);
                         $injector.get('NoticeSrv').notice($injector.get('ErrorSrv').getError(response.data.errCode + ""));
                         TokenSrv.setToken('');
-                        
+
                         var $state = $injector.get('$state');
                         $injector.get('$state').go('app');
                     }
@@ -59,5 +59,3 @@
             return myInterceptor;
   }
 })();
-
-    

@@ -102,15 +102,19 @@
     };
 
     this.changePassword = function () {
-      return $resource(baseURL + '/account/changePwd')
+      return $resource(baseURL + '/account/changePwd');
     };
 
     this.changeAlipay = function () {
-      return $resource(baseURL + '/account/changeAlipay')
+      return $resource(baseURL + '/account/changeAlipay');
     };
 
     this.getCheckDetail = function () {
-      return $resource(baseURL + '/account/check/detail')
+      return $resource(baseURL + '/account/check/detail');
+    };
+
+    this.getUpToken = function () {
+      return $resource(baseURL + '/account/check/uptoken');
     }
   }
 })();

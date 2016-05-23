@@ -68,20 +68,20 @@
     if ($location.path() == '/notification') {
       $scope.isMsg = true;
     }
-    
+
     $('#signup').on('hide.bs.modal', function (e) {
       $scope.thereIsError = false;
       $scope.errMessage = '';
       console.log('hide signup');
-      
+
     });
-    
+
     $('#login').on('hide.bs.modal', function (e) {
       $scope.thereIsError = false;
       $scope.errMessage = '';
       console.log('hide login');
     })
-    
+
     // console.log('token:' + TokenSrv.getToken());
     if (TokenSrv.getToken()) {
       $rootScope.logined = true;
@@ -91,7 +91,7 @@
     }
     $scope.isLogin = $rootScope.logined;
     $scope.thereIsError = false;
-    
+
     // 注册
     $scope.register = function (nickname, email, pass, confirmPass) {
       if (!nickname || !email || !pass || !confirmPass) {
@@ -114,11 +114,11 @@
         $scope.errMessage = '请输入合法邮箱';
         return;
       }
-      
-      
+
+
       $scope.thereIsError = false;
       var sha256Pass = sha256(pass);
-      
+
       AdvertiserSrv.register().save({
           username: nickname,
           email: email,
@@ -130,20 +130,20 @@
               console.log('注册成功');
               NoticeSrv.success('恭喜您注册成功，请您验证邮箱后登录');
               $('#signup').modal('hide');
-            } 
+            }
           }, function (error) {
             console.log('注册失败');
             console.log(error);
             $scope.thereIsError = true;
             $scope.errMessage = '未知错误' + error;
           });
-      
+
     };
-    
+
     // 登录
     $scope.login = function (email, pass) {
       $scope.thereIsError = false;
-      
+
       if (!email || !pass) {
         $scope.thereIsError = true;
         $scope.errMessage = '请输入用户名和密码';
@@ -154,10 +154,10 @@
         $scope.errMessage = '请输入合法邮箱';
         return;
       }
-      
+
       var sha256Pass = sha256(pass);
       // console.log('sha256:' + sha256Pass);
-      
+
       AdvertiserSrv.login().save({
         email: email,
         password: sha256Pass
@@ -178,8 +178,8 @@
           console.log(error);
         });
     };
-    
-    $scope.logout = function () {      
+
+    $scope.logout = function () {
       TokenSrv.setToken('');
       $scope.isLogin = false;
       $rootScope.logined = false;

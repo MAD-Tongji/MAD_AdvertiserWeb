@@ -126,8 +126,7 @@
           NoticeSrv.error('未知错误');
           // $scope.confirmPwdError = true;
           // $scope.confirmErrMsg = '未知错误:' + error;
-        }
-      );
-    }
+        });
+    };
   }
 })();

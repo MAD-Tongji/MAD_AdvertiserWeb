@@ -99,9 +99,9 @@
         $scope.errMessage = '请输入完整信息';
         return;
       }
-      if (pass.length < 9) {
+      if (pass.length < 8) {
         $scope.thereIsError = true;
-        $scope.errMessage = '密码至少要大于8位';
+        $scope.errMessage = '密码至少要8位';
         return;
       }
       if (pass !== confirmPass) {

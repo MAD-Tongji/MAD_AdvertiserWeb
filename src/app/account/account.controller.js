@@ -74,25 +74,33 @@
     //修改密码接口
     $scope.changePassword = function(oldPwd,newPwd,confirmPwd) {
       //验证输入有效性
+      if(newPwd.length < 8) {
+        $scope.newPwdError = true;
+        $scope.newErrMsg = '密码至少要8位';
+        return;
+      }
+
+      $scope.newPwdError = false;
+
       if(!oldPwd || !newPwd || !confirmPwd) {
         $scope.confirmPwdError = true;
         $scope.confirmErrMsg = '请输入完整信息';
         return;
       }
-      if(newPwd.length < 8) {
-        $scope.newPwdError = true;
-        $scope.newErrMsg = '密码必须大于等于8位';
-        return;
-      }
+
       if(confirmPwd !== newPwd) {
-        $scope.newPwdError = false;
         $scope.confirmPwdError = true;
         $scope.confirmErrMsg = '再次输入的密码不正确，请重新输入';
         return;
       }
+      if(newPwd === oldPwd) {
+        $scope.confirmPwdError = true;
+        $scope.confirmErrMsg = '密码没有改变，请重新输入';
+        return;
+      }
       //输入有效
       $scope.confirmPwdError = false;
-      $scope.newPwdError = false;
+
       //发送请求
       var oldPassSHA256 = sha256(oldPwd);
       var newPassSHA256 = sha256(newPwd);

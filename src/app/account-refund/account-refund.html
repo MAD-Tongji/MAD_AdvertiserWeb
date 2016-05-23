@@ -11,7 +11,7 @@
               <h3 class="panel-title text-center">退款</h3>
             </div>
             <div class="panel-body">
-              <div class="col-sm-7 recharge-part">
+              <div class="col-sm-9 recharge-part">
                 <form class="form-horizontal">
                   <div class="form-group">
                     <label for="" class="col-sm-3 control-label">退款金额</label>
@@ -41,18 +41,28 @@
                   </div>
                 </form>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-3">
                 <div class="ht-user-info row">
-                  <div class="col-sm-6">
-                    <img src="assets/images/avatar.jpg" alt="头像图片" class="img-responsive img-rounded">
-                  </div>
-                  <div class="col-sm-6">
-                    <h3 for="">{{name}}<br><small>{{email}}</small></h3>
+                  <div class="col-sm-12 text-center">
+                    <h4 for="">{{name}}</h4>
+                    <p><small>{{email}}</small></p>
                     <button class="btn btn-primary" id="balance-btn" ng-click="getBalance()">查看账户余额</button>
                     <p id="balance-label" hidden><b>余额：</b>{{balance}}</p>
                   </div>
                 </div>
               </div>
+              <!--<div class="col-sm-5">-->
+                <!--<div class="ht-user-info row">-->
+                  <!--<div class="col-sm-6">-->
+                    <!--<img src="assets/images/avatar.jpg" alt="头像图片" class="img-responsive img-rounded">-->
+                  <!--</div>-->
+                  <!--<div class="col-sm-6">-->
+                    <!--<h3 for="">{{name}}<br><small>{{email}}</small></h3>-->
+                    <!--<button class="btn btn-primary" id="balance-btn" ng-click="getBalance()">查看账户余额</button>-->
+                    <!--<p id="balance-label" hidden><b>余额：</b>{{balance}}</p>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
             </div>
           </div>
         </div>

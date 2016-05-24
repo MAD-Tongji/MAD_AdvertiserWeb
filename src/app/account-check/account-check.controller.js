@@ -4,11 +4,10 @@
     .module('mad')
     .controller('AccountCheckCtrl', AccountCheckCtrl);
 
-// TODO: 图片上传功能；
-
     /** @ngInject */
   function AccountCheckCtrl($scope, $state, $log, $qupload, $window, AdvertiserSrv, NoticeSrv) {
 
+    // 获取图片上传token
     AdvertiserSrv.getUpToken().get().$promise.then(
       function (response) {
         if (response.errCode === 0) {
@@ -20,7 +19,7 @@
       });
 
 
-
+    // 上传图片
     $scope.selectFiles = [];
       console.log($window.localStorage['upToken']);
   		var start = function (index) {

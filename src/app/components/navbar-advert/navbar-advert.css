@@ -12,7 +12,7 @@ a.navbar-brand {
   margin-top: 14px;
   width: 100px;
   height: 30px;
-  background-image: url('../../../assets/images/logo.png');
+  background-image: url('http://mad-10035512.file.myqcloud.com/logo.png');
   background-size: 77px 30px;
   background-repeat: no-repeat;
 }
@@ -57,7 +57,7 @@ a.navbar-brand {
 }
 
 a.navbar-brand:hover{
-  background-image: url('../../../assets/images/logo2.png');
+  background-image: url('http://mad-10035512.file.myqcloud.com/logo2.png');
 }
 
 .navbar-collapse {

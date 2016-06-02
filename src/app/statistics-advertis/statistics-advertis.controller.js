@@ -11,18 +11,77 @@
       StatisticsSrv.getStatisticsData().get().$promise
         .then(function (response) {
             if (0 === response.errCode) {
-                console.log(response.advertisement);
+              // 该广告商所有广告投放数据
+              // console.log(response.advertisement);
+
+              var broadcastData = [];
+              var costData = [];
+
+
+              var element;
+              for (var i = 0; i < response.advertisement.length; i += 1) {
+                element = response.advertisement[i];
+                broadcastData[i] = {
+                  'id': element.id,
+                  'data': [],
+                  'sum': 0
+                };
+
+                costData[i] = {
+                  'id': element.id,
+                  'data': [],
+                  'sum': 0
+                }
+
+                for (var j = 0; j < element.statistics.length; j += 1) {
+                  broadcastData[i].sum += element.statistics[j].totalBroadcast;
+                  broadcastData[i].data.push({
+                    'date': moment(element.statistics[j].date).toDate(),
+                    'broadcast': element.statistics[j].totalBroadcast
+                  });
+
+                  costData[i].sum += element.statistics[j].totalPrice;
+                  costData[i].data.push({
+                    'date': moment(element.statistics[j].date).toDate(),
+                    'broadcast': element.statistics[j].totalPrice
+                  });
+                }
+              }
+              broadcastData.sort(function (a, b) {
+                return b.sum - a.sum;
+              });
+              costData.sort(function (a, b) {
+                return b.sum - a.sum;
+              });
+              console.log(broadcastData);
+              console.log(costData);
+
+              // 取最高的前三名
+              // var advert1;
+              // var advert2;
+              // var advert3;
+              // if (broadcastData.length > 2) {
+              //   advert1 = broadcastData[1];
+              //   advert2 = broadcastData[2];
+              //   advert3 = broadcastData[3];
+              // } else {
+              //   broadcastData.forEach(function (advert) {
+              //
+              //   })
+              // }
+
             }
         }, function (error) {
             console.log(error);
         });
-      
-      
-      
-      
-      
- var advertisChartData = generateChartData();
-      
+
+
+
+
+
+        var advertisChartData = generateChartData();
+        // console.log(advertisChartData);
+
     var chart = AmCharts.makeChart("chartdiv", {
         "type": "serial",
         "theme": "light",

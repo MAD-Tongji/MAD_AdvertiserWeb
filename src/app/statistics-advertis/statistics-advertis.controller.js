@@ -8,312 +8,320 @@
     .controller('SatisticsAdvertMapCtrl', SatisticsAdvertMapCtrl);
 
   function SatisticsAdvertMapCtrl($scope, StatisticsSrv) {
-      StatisticsSrv.getStatisticsData().get().$promise
-        .then(function (response) {
-            if (0 === response.errCode) {
-              // 该广告商所有广告投放数据
-              // console.log(response.advertisement);
 
-              var broadcastData = [];
-              var costData = [];
+    function dateExist(array, date) {
+      var i;
+      for (i = 0; i < array.length; i += 1) {
+        if (array[i].date.getTime() === date.getTime()) {
+          return i;
+        }
+      }
+    }
 
+    function generateChartData(rawData) {
+      var chartData = [];
+      var index, advertData, element;
+      var i = 0, j = 0;
 
-              var element;
-              for (var i = 0; i < response.advertisement.length; i += 1) {
-                element = response.advertisement[i];
-                broadcastData[i] = {
-                  'id': element.id,
-                  'data': [],
-                  'sum': 0
-                };
+      for (i = 0; i < 3; i += 1) {
+        advertData = rawData[i].data;
 
-                costData[i] = {
-                  'id': element.id,
-                  'data': [],
-                  'sum': 0
-                }
+        for (j = 0; j < advertData.length; j += 1) {
 
-                for (var j = 0; j < element.statistics.length; j += 1) {
-                  broadcastData[i].sum += element.statistics[j].totalBroadcast;
-                  broadcastData[i].data.push({
-                    'date': moment(element.statistics[j].date).toDate(),
-                    'broadcast': element.statistics[j].totalBroadcast
-                  });
-
-                  costData[i].sum += element.statistics[j].totalPrice;
-                  costData[i].data.push({
-                    'date': moment(element.statistics[j].date).toDate(),
-                    'broadcast': element.statistics[j].totalPrice
-                  });
-                }
-              }
-              broadcastData.sort(function (a, b) {
-                return b.sum - a.sum;
-              });
-              costData.sort(function (a, b) {
-                return b.sum - a.sum;
-              });
-              console.log(broadcastData);
-              console.log(costData);
-
-              // 取最高的前三名
-              // var advert1;
-              // var advert2;
-              // var advert3;
-              // if (broadcastData.length > 2) {
-              //   advert1 = broadcastData[1];
-              //   advert2 = broadcastData[2];
-              //   advert3 = broadcastData[3];
-              // } else {
-              //   broadcastData.forEach(function (advert) {
-              //
-              //   })
-              // }
-
+          index = dateExist(chartData, advertData[j].date);
+          if (index === undefined) {
+            element = {
+              'date': advertData[j].date,
+              'advert1': 0,
+              'advert2': 0,
+              'advert3': 0
+            };
+            if (i === 0) {
+              element.advert1 = advertData[j].num;
+            } else if (i === 1) {
+              element.advert2 = advertData[j].num;
+            } else if (i === 2) {
+              element.advert3 = advertData[j].num;
             }
-        }, function (error) {
-            console.log(error);
-        });
+            chartData.push(element);
+          } else {
+            if (i === 0) {
+              chartData[index].advert1 = advertData[j].num;
+            } else if (i === 1) {
+              chartData[index].advert2 = advertData[j].num;
+            } else if (i === 2) {
+              chartData[index].advert3 = advertData[j].num;
+            }
+          }
+        }
+      }
+      chartData.sort(function (a, b) {
+        return a.date.getTime() - b.date.getTime();
+      });
 
-
-
-
-
-        var advertisChartData = generateChartData();
-        // console.log(advertisChartData);
-
-    var chart = AmCharts.makeChart("chartdiv", {
-        "type": "serial",
-        "theme": "light",
-        "marginRight": 40,
-        "marginLeft": 40,
-        "autoMarginOffset": 20,
-        "mouseWheelZoomEnabled":true,
-        "dataDateFormat": "YYYY-MM-DD",
-        "valueAxes": [{
-            "id": "v1",
-            "axisAlpha": 0,
-            "position": "left",
-            "ignoreAxisWidth":true
-        }],
-        "balloon": {
-            "borderThickness": 1,
-            "shadowAlpha": 0
-        },
-        "graphs": [{
-                "id": "g1",
-                "balloon":{
-                "drop":true,
-                "adjustBorderColor":false,
-                "color":"#ffffff"
-            },
-            "bullet": "round",
-            "bulletBorderAlpha": 1,
-            "bulletColor": "#FFFFFF",
-            "bulletSize": 5,
-            "hideBulletsCount": 50,
-            "lineThickness": 2,
-            "title": "advertisment1",
-            "useLineColorForBulletBorder": true,
-            "valueField": "value",
-            "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
-        },
-        {
-            "id": "g2",
-            "balloon":{
-            "drop":true,
-            "adjustBorderColor":false,
-            "color":"#ffffff"
-            },
-            "bullet": "round",
-            "bulletBorderAlpha": 1,
-            "bulletColor": "#FFFFFF",
-            "bulletSize": 5,
-            "hideBulletsCount": 50,
-            "lineThickness": 2,
-            "title": "advertisment2",
-            "useLineColorForBulletBorder": true,
-            "valueField": "hits",
-            "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
-        },
-        {
-            "id": "g3",
-            "balloon":{
-            "drop":true,
-            "adjustBorderColor":false,
-            "color":"#ffffff"
-            },
-            "bullet": "round",
-            "bulletBorderAlpha": 1,
-            "bulletColor": "#FFFFFF",
-            "bulletSize": 5,
-            "hideBulletsCount": 50,
-            "lineThickness": 2,
-            "title": "advertisment2",
-            "useLineColorForBulletBorder": true,
-            "valueField": "views",
-            "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
-        }],
-        "chartScrollbar": {
-            "graph": "g1",
-            "oppositeAxis":false,
-            "offset":30,
-            "scrollbarHeight": 80,
-            "backgroundAlpha": 0,
-            "selectedBackgroundAlpha": 0.1,
-            "selectedBackgroundColor": "#888888",
-            "graphFillAlpha": 0,
-            "graphLineAlpha": 0.5,
-            "selectedGraphFillAlpha": 0,
-            "selectedGraphLineAlpha": 1,
-            "autoGridCount":true,
-            "color":"#AAAAAA"
-        },
-        "chartCursor": {
-            "pan": true,
-            "valueLineEnabled": true,
-            "valueLineBalloonEnabled": true,
-            "cursorAlpha":1,
-            "cursorColor":"#258cbb",
-            "limitToGraph":"g1",
-            "valueLineAlpha":0.2
-        },
-        "valueScrollbar":{
-        "oppositeAxis":false,
-        "offset":50,
-        "scrollbarHeight":10
-        },
-        "categoryField": "date",
-        "categoryAxis": {
-            "parseDates": true,
-            "dashLength": 1,
-            "minorGridEnabled": true
-        },
-        "export": {
-            "enabled": true
-        },
-        "dataProvider": advertisChartData
-    });
-
-    chart.addListener("rendered", zoomChart);
-
-    zoomChart();
-
-    function zoomChart() {
-        chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
+      return chartData;
     }
 
-    var chart = AmCharts.makeChart("advertisment-chart", {
-        "type": "serial",
-        "theme": "light",
-        "legend": {
-            "useGraphSettings": true
-        },
-        "dataProvider": advertisChartData,
-        "valueAxes": [{
-            "id":"v1",
-            "axisColor": "#FF6600",
-            "axisThickness": 2,
-            "gridAlpha": 0,
-            "axisAlpha": 1,
-            "position": "left"
-        }, {
-            "id":"v2",
-            "axisColor": "#FCD202",
-            "axisThickness": 2,
-            "gridAlpha": 0,
-            "axisAlpha": 1,
-            "position": "right"
-        }, {
-            "id":"v3",
-            "axisColor": "#B0DE09",
-            "axisThickness": 2,
-            "gridAlpha": 0,
-            "offset": 50,
-            "axisAlpha": 1,
-            "position": "left"
-        }],
-        "graphs": [{
-            "valueAxis": "v1",
-            "lineColor": "#FF6600",
-            "bullet": "round",
-            "bulletBorderThickness": 1,
-            "hideBulletsCount": 30,
-            "title": "advertisment1",
-            "valueField": "visits",
-            "fillAlphas": 0
-        }, {
-            "valueAxis": "v2",
-            "lineColor": "#FCD202",
-            "bullet": "square",
-            "bulletBorderThickness": 1,
-            "hideBulletsCount": 30,
-            "title": "advertisment2",
-            "valueField": "hits",
-            "fillAlphas": 0
-        }, {
-            "valueAxis": "v3",
-            "lineColor": "#B0DE09",
-            "bullet": "triangleUp",
-            "bulletBorderThickness": 1,
-            "hideBulletsCount": 30,
-            "title": "advertisment3",
-            "valueField": "views",
-            "fillAlphas": 0
-        }],
-        "chartScrollbar": {},
-        "chartCursor": {
-            "cursorPosition": "mouse"
-        },
-        "categoryField": "date",
-        "categoryAxis": {
-            "parseDates": true,
-            "axisColor": "#DADADA",
-            "minorGridEnabled": true
-        },
-        "export": {
-            "enabled": true,
-            "position": "bottom-right"
-        }
-    });
 
-    chart.addListener("dataUpdated", zoomChart);
-    zoomChart();
+    StatisticsSrv.getStatisticsData().get().$promise
+      .then(function (response) {
+          if (0 === response.errCode) {
+            // 该广告商所有广告投放数据
+            // console.log('response');
+            // console.log(response.advertisement);
 
+            var broadcastData = [];
+            var costData = [];
+            var i = 0;
+            var j = 0;
 
-    // generate some random data, quite different range
-    function generateChartData() {
-        var chartData = [];
-        var firstDate = new Date();
-        firstDate.setDate(firstDate.getDate() - 100);
+            var element;
+            for (i = 0; i < response.advertisement.length; i += 1) {
+              element = response.advertisement[i];
+              broadcastData[i] = {
+                'id': element.id,
+                'data': [],
+                'sum': 0
+              };
 
-        for (var i = 0; i < 100; i++) {
-            // we create date objects here. In your data, you can have date strings
-            // and then set format of your dates using chart.dataDateFormat property,
-            // however when possible, use date objects, as this will speed up chart rendering.
-            var newDate = new Date(firstDate);
-            newDate.setDate(newDate.getDate() + i);
+              costData[i] = {
+                'id': element.id,
+                'data': [],
+                'sum': 0
+              }
 
-            var visits = Math.round(Math.random() * 40) + 100;
-            var hits = Math.round(Math.random() * 80) + 500;
-            var views = Math.round(Math.random() * 6000);
+              for (j = 0; j < element.statistics.length; j += 1) {
+                broadcastData[i].sum += element.statistics[j].totalBroadcast;
+                broadcastData[i].data.push({
+                  'date': moment(element.statistics[j].date).toDate(),
+                  'num': element.statistics[j].totalBroadcast
+                });
 
-            chartData.push({
-                date: newDate,
-                visits: visits,
-                value: visits,
-                hits: hits,
-                views: views
+                costData[i].sum += element.statistics[j].totalPrice;
+                costData[i].data.push({
+                  'date': moment(element.statistics[j].date).toDate(),
+                  'num': element.statistics[j].totalPrice
+                });
+              }
+            }
+            broadcastData.sort(function (a, b) {
+              return b.sum - a.sum;
             });
-        }
-        return chartData;
-    }
+            costData.sort(function (a, b) {
+              return b.sum - a.sum;
+            });
+            // console.log(broadcastData);
+            // console.log(costData);
 
-    function zoomChart(){
-        chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
-    }
+            // 取投放量最高的前三名
+            var chart1Data = [];
+            var chart2Data = [];
+            var advertData;
+            var index;
+            if (broadcastData.length > 2) {
+              var chart1Data = generateChartData(broadcastData);
 
+              console.log('chart1Data');
+              console.log(chart1Data);
 
+              var chart = AmCharts.makeChart("chartdiv", {
+                  "type": "serial",
+                  "theme": "light",
+                  "marginRight": 40,
+                  "marginLeft": 40,
+                  "autoMarginOffset": 20,
+                  "mouseWheelZoomEnabled":true,
+                  "dataDateFormat": "YYYY-MM-DD",
+                  "valueAxes": [{
+                      "id": "v1",
+                      "axisAlpha": 0,
+                      "position": "left",
+                      "ignoreAxisWidth":true
+                  }],
+                  "balloon": {
+                      "borderThickness": 1,
+                      "shadowAlpha": 0
+                  },
+                  "graphs": [{
+                          "id": "g1",
+                          "balloon":{
+                          "drop":true,
+                          "adjustBorderColor":false,
+                          "color":"#ffffff"
+                      },
+                      "bullet": "round",
+                      "bulletBorderAlpha": 1,
+                      "bulletColor": "#FFFFFF",
+                      "bulletSize": 5,
+                      "hideBulletsCount": 50,
+                      "lineThickness": 2,
+                      "title": broadcastData[0].id,
+                      "useLineColorForBulletBorder": true,
+                      "valueField": "advert1",
+                      "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
+                  },
+                  {
+                      "id": "g2",
+                      "balloon":{
+                      "drop":true,
+                      "adjustBorderColor":false,
+                      "color":"#ffffff"
+                      },
+                      "bullet": "round",
+                      "bulletBorderAlpha": 1,
+                      "bulletColor": "#FFFFFF",
+                      "bulletSize": 5,
+                      "hideBulletsCount": 50,
+                      "lineThickness": 2,
+                      "title": "advertisment2",
+                      "useLineColorForBulletBorder": true,
+                      "valueField": "advert2",
+                      "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
+                  },
+                  {
+                      "id": "g3",
+                      "balloon":{
+                      "drop":true,
+                      "adjustBorderColor":false,
+                      "color":"#ffffff"
+                      },
+                      "bullet": "round",
+                      "bulletBorderAlpha": 1,
+                      "bulletColor": "#FFFFFF",
+                      "bulletSize": 5,
+                      "hideBulletsCount": 50,
+                      "lineThickness": 2,
+                      "title": "advertisment3",
+                      "useLineColorForBulletBorder": true,
+                      "valueField": "advert3",
+                      "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
+                  }],
+                  "chartScrollbar": {
+                      "graph": "g1",
+                      "oppositeAxis":false,
+                      "offset":30,
+                      "scrollbarHeight": 80,
+                      "backgroundAlpha": 0,
+                      "selectedBackgroundAlpha": 0.1,
+                      "selectedBackgroundColor": "#888888",
+                      "graphFillAlpha": 0,
+                      "graphLineAlpha": 0.5,
+                      "selectedGraphFillAlpha": 0,
+                      "selectedGraphLineAlpha": 1,
+                      "autoGridCount":true,
+                      "color":"#AAAAAA"
+                  },
+                  "chartCursor": {
+                      "pan": true,
+                      "valueLineEnabled": true,
+                      "valueLineBalloonEnabled": true,
+                      "cursorAlpha":1,
+                      "cursorColor":"#258cbb",
+                      "limitToGraph":"g1",
+                      "valueLineAlpha":0.2
+                  },
+                  "valueScrollbar":{
+                  "oppositeAxis":false,
+                  "offset":50,
+                  "scrollbarHeight":10
+                  },
+                  "categoryField": "date",
+                  "categoryAxis": {
+                      "parseDates": true,
+                      "dashLength": 1,
+                      "minorGridEnabled": true
+                  },
+                  "export": {
+                      "enabled": true
+                  },
+                  "dataProvider": chart1Data
+              });
+            } else {
+              // 有几个取几个
+            }
 
+            if (costData.length > 2) {
+              var chart2Data = generateChartData(costData);
+
+              var chart = AmCharts.makeChart("advertisment-chart", {
+                  "type": "serial",
+                  "theme": "light",
+                  "legend": {
+                      "useGraphSettings": true
+                  },
+                  "dataProvider": chart2Data,
+                  "valueAxes": [{
+                      "id":"v1",
+                      "axisColor": "#FF6600",
+                      "axisThickness": 2,
+                      "gridAlpha": 0,
+                      "axisAlpha": 1,
+                      "position": "left"
+                  }, {
+                      "id":"v2",
+                      "axisColor": "#FCD202",
+                      "axisThickness": 2,
+                      "gridAlpha": 0,
+                      "axisAlpha": 1,
+                      "position": "right"
+                  }, {
+                      "id":"v3",
+                      "axisColor": "#B0DE09",
+                      "axisThickness": 2,
+                      "gridAlpha": 0,
+                      "offset": 50,
+                      "axisAlpha": 1,
+                      "position": "left"
+                  }],
+                  "graphs": [{
+                      "valueAxis": "v1",
+                      "lineColor": "#FF6600",
+                      "bullet": "round",
+                      "bulletBorderThickness": 1,
+                      "hideBulletsCount": 30,
+                      "title": costData[0].id,
+                      "valueField": "advert1",
+                      "fillAlphas": 0
+                  }, {
+                      "valueAxis": "v2",
+                      "lineColor": "#FCD202",
+                      "bullet": "square",
+                      "bulletBorderThickness": 1,
+                      "hideBulletsCount": 30,
+                      "title": costData[1].id,
+                      "valueField": "advert2",
+                      "fillAlphas": 0
+                  }, {
+                      "valueAxis": "v3",
+                      "lineColor": "#B0DE09",
+                      "bullet": "triangleUp",
+                      "bulletBorderThickness": 1,
+                      "hideBulletsCount": 30,
+                      "title": costData[2].id,
+                      "valueField": "advert3",
+                      "fillAlphas": 0
+                  }],
+                  "chartScrollbar": {},
+                  "chartCursor": {
+                      "cursorPosition": "mouse"
+                  },
+                  "categoryField": "date",
+                  "categoryAxis": {
+                      "parseDates": true,
+                      "axisColor": "#DADADA",
+                      "minorGridEnabled": true
+                  },
+                  "export": {
+                      "enabled": true,
+                      "position": "bottom-right"
+                  }
+              });
+            } else {
+              // 有几个取几个
+            }
+          }
+      }).catch(function (error) {
+          console.log(error);
+      });
   }
 })();

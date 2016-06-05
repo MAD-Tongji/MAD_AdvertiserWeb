@@ -125,6 +125,14 @@
                   controller: 'NotificationCtrl'
               }
           }
+      })
+      .state('app.pact', {
+          url: 'pact',
+          views: {
+              'content@': {
+                  templateUrl: 'app/pact/pact.html'
+              }
+          }
       });
   }
 

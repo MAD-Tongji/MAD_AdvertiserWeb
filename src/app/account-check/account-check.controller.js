@@ -73,7 +73,21 @@
             // console.log(response.detail);
             // 有验证信息，把数据填到页面上，disabled掉提交按钮
             var detail = AdvertiserSrv.parseCheckInfo(response.detail);
-            // console.log(detail);
+            console.log(detail);
+
+            $scope.checkStatus = {
+              'unsubmitted': false
+            };
+
+            if (detail.status === '100') {
+              $scope.checkStatus.submitted = false;
+              $scope.checkStatus.completedCheck = true;
+            } else {
+              $scope.checkStatus.submitted = true;
+              $scope.checkStatus.completedCheck = false;
+            }
+
+
             $scope.detail = {
               companyType: detail.type,
               licenseType: detail.licenseType,
@@ -95,9 +109,10 @@
               contactEmail: detail.contactEmail,
               licenseImageUrl: detail.licenseImageUrl
             };
-            $scope.canSubmit = false;
           } else {
-            $scope.canSubmit = true;
+            $scope.checkStatus = {
+              'unsubmitted': true
+            };
           }
         }
       },function (error) {

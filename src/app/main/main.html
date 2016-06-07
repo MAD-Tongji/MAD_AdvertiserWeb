@@ -13,7 +13,7 @@
         <div class="carousel-caption">
           <h1>您是车主</h1>
           <p>我们为您提供了一种新的方式来赚钱，<br>仅仅依靠您的汽车播放一些广告，您就可以轻松愉快地收获利润。</p>
-          <p><button class="btn btn-success">下载app</button></p>
+          <p><button type="button" class="btn btn-success" data-toggle="modal" data-target="#downloadModal">下载app</button></p>
         </div>
       </div>
     </div>
@@ -101,8 +101,9 @@
   </div>
   <h2 class="text-center">联系我们</h2>
   <p class="text-center">若您有任何疑问，欢迎通过邮件来联系我们</p>
-  <hr>
-  <div class="col-md-6 col-md-offset-3 col-sm-offset-2 col-sm-8">
+  <p class="text-center">邮箱：mad_info@163.com</p>
+  <!-- <hr> -->
+  <!-- <div class="col-md-6 col-md-offset-3 col-sm-offset-2 col-sm-8">
     <form>
       <div class="form-group">
         <label>邮件主题</label>
@@ -114,5 +115,33 @@
       </div>
       <button type="submit" class="btn btn-info" style="width:100%;">Submit</button>
     </form>
+  </div> -->
+</div>
+
+<div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">下载App</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <img style="width:200px; margin:10px auto;" src="http://mad-10035512.file.myqcloud.com/liuApp.jpg" class="img-responsive" alt="二维码图片">
+            <p class="text-center">流应用二维码</p>
+          </div>
+          <hr>
+          <div class="col-md-12">
+            <div style="width:250px; margin:10px auto">
+              <p class="text-center"><a href="http://o8e8i11ed.bkt.clouddn.com/H5661AF68_0607165646.apk">Android App连接</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

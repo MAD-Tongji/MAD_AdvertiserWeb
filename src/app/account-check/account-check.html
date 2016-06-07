@@ -1,14 +1,23 @@
 <div class="container">
-  <div class="text-center" ng-show="canSubmit">
+
+  <div class="text-center" ng-show="checkStatus.unsubmitted">
     <h1>广告商认证</h1>
     <p>您需要通过认证才可以发表广告</p>
     <hr>
   </div>
-  <div class="text-center" ng-hide="canSubmit">
+
+  <div class="text-center" ng-show="checkStatus.submitted">
     <h1>广告商认证</h1>
     <h3>您的审核信息已提交，请不要重复提交审核信息</h3>
     <hr>
   </div>
+
+  <div class="text-center" ng-show="checkStatus.completedCheck">
+    <h1>广告商认证</h1>
+    <h3>您的审核信息已验证成功，请不要重复提交审核信息</h3>
+    <hr>
+  </div>
+
   <div class="col-md-offset-2 col-sm-8 col-sm-offset-1 col-sm-10">
     <form class="form-horizontal" name="checkInfo">
       <h4>单位类型</h4>

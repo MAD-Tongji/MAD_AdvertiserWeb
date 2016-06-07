@@ -96,7 +96,7 @@
           console.log(response);
           if (0 == response.errCode) {
             console.log('充值申请成功');
-            // $('#qrCodeModal').modal('hide');
+            $('#qrCodeModal').modal('hide');
             // $('#successModal').modal('show');
             NoticeSrv.success('充值成功');
             getRecharges();
